@@ -1,15 +1,18 @@
-# CertWatch Product Requirements Document
+# TLSBeacon Product Requirements Document
 
 **Version:** 0.1 — Approved  
 **Date:** 10 November 2026  
-**Product owner:** Merizrizal  
+**Product owner:** Merizrizal
+
+**Project name:** TLSBeacon
+
 **Status:** Approved by the product owner. This approval covers the product requirements, scope, decisions, and defaults in this PRD; it is not approval of an architecture or implementation contract.
 
 ## 1. Purpose and first user
 
-CertWatch helps an infrastructure operator detect certificate expiry, identity mismatches, and certificate-path validation failures on explicitly configured TLS endpoints. It preserves inspection evidence and delivers actionable notifications. It observes certificates; it does not issue, renew, install, or repair them.
+TLSBeacon helps an infrastructure operator detect certificate expiry, identity mismatches, and certificate-path validation failures on explicitly configured TLS endpoints. It preserves inspection evidence and delivers actionable notifications. It observes certificates; it does not issue, renew, install, or repair them.
 
-The first intended user is Merizrizal operating a private infrastructure lab. The pilot should answer: “Which configured endpoints need attention, what did CertWatch actually observe, and when?” Broader customer demand remains a hypothesis to test after the pilot.
+The first intended user is Merizrizal operating a private infrastructure lab. The pilot should answer: “Which configured endpoints need attention, what did TLSBeacon actually observe, and when?” Broader customer demand remains a hypothesis to test after the pilot.
 
 There are two separate success criteria: the product must provide useful, trustworthy monitoring, and the engineering workflow must deliver it with proportionate planning and convergent reviews. Process metrics must not change the product's health assessments.
 
@@ -28,7 +31,7 @@ Go and PostgreSQL remain preferred architecture candidates, not approved archite
 
 ## 3. User journey and scope
 
-The operator starts CertWatch, configures the permitted network destinations and trust roots, and registers an endpoint. A manual inspection shows the certificate information and any validation problems. The background service repeats inspections, retains their history, and sends a webhook when a monitored condition opens, changes severity, or resolves. The operator can inspect failed notification deliveries and retry them.
+The operator starts TLSBeacon, configures the permitted network destinations and trust roots, and registers an endpoint. A manual inspection shows the certificate information and any validation problems. The background service repeats inspections, retains their history, and sends a webhook when a monitored condition opens, changes severity, or resolves. The operator can inspect failed notification deliveries and retry them.
 
 The first complete MVP includes endpoint registration, manual and scheduled checks, durable history, status and freshness reporting, internal CA support, and durable webhook delivery. Delivery 1 is a useful manual inspection pilot; it is not yet the complete monitoring MVP.
 
@@ -53,7 +56,7 @@ Out of scope for the MVP: certificate issuance or renewal, ACME, remediation, pr
 
 ## 5. Interpretation of results
 
-An observation describes one connection from the CertWatch host at a particular time. It does not prove that every load-balancer backend, DNS answer, network location, or end-user connection presents the same certificate. Record the contacted address when available.
+An observation describes one connection from the TLSBeacon host at a particular time. It does not prove that every load-balancer backend, DNS answer, network location, or end-user connection presents the same certificate. Record the contacted address when available.
 
 Use separate result dimensions rather than allowing one “healthy” flag to hide missing evidence:
 
@@ -99,7 +102,7 @@ These are required future evidence, not claims that tests have run. Certificate 
 | AC-007 | Concurrent manual/scheduled checks and delayed completion cannot regress current status or produce duplicate logical events. Results remain bound to their effective configuration. | FR-003, FR-006–009 |
 | AC-008 | Repeated warning results create one opening event; escalation creates one new transition event. A later timeout does not falsely recover the expiry condition. Positive fresh evidence can resolve it. | FR-009 |
 | AC-009 | Crash after event creation and timeout after receiver acceptance preserve the event and its ID across retry. Exhausted delivery is visible and replayable. | FR-009–012 |
-| AC-010 | A stopped or stalled scheduler produces stale status when queried after the freshness deadline. On restart, reconcile staleness and resume checks. No external alert is promised while the only CertWatch process is down. | FR-006–009, FR-012 |
+| AC-010 | A stopped or stalled scheduler produces stale status when queried after the freshness deadline. On restart, reconcile staleness and resume checks. No external alert is promised while the only TLSBeacon process is down. | FR-006–009, FR-012 |
 | AC-011 | Disallowed destinations are rejected at connection time, including DNS resolution to a disallowed address. Inspection sends no HTTP application request; webhook secrets do not appear in output. | FR-003, FR-010, security boundaries |
 | AC-012 | The bounded 100-endpoint test meets the five-minute batch target. Storage unavailability is visible and cannot yield false persistence/delivery success. | FR-006–007, FR-010–012 |
 
@@ -110,7 +113,7 @@ These are product milestones, not a competing implementation ladder. Each delive
 | Delivery | Useful outcome | Included scope and evidence |
 | --- | --- | --- |
 | 1 Manual inspection pilot | Register a lab endpoint and obtain a trustworthy manual report | Registry persistence, lifecycle controls, direct TLS inspection, custom trust, CLI/JSON, network authority. Manual-report portions of AC-001–005, probe-policy portion of AC-011, and registry restart behavior from AC-006. History, scheduling, and notification portions remain assigned to later deliveries. |
-| 2 Continuous monitoring | Leave CertWatch running and inspect its history and freshness | Scheduling, durable inspection history, effective configuration identity, current-status ordering, disable/re-enable behavior, bounded resource use. Remaining history portions of AC-001–005, AC-006, ordering portion of AC-007, status/restart portions of AC-010, probe/storage portions of AC-012. |
+| 2 Continuous monitoring | Leave TLSBeacon running and inspect its history and freshness | Scheduling, durable inspection history, effective configuration identity, current-status ordering, disable/re-enable behavior, bounded resource use. Remaining history portions of AC-001–005, AC-006, ordering portion of AC-007, status/restart portions of AC-010, probe/storage portions of AC-012. |
 | 3 Notifications and first MVP release | Receive actionable events with durable delivery and recovery | Alert lifecycle, webhook, retry/replay, crash recovery, service health and installation/backup guidance. AC-008–009, alert portions of AC-002 and AC-007, and remaining portions of AC-010–012; regression of all earlier acceptance scenarios. |
 | 4 Optional expansion | Improve usability after pilot feedback | Dashboard and any additional adapters, retention, or multi-user capability require separate scope decisions. They are not necessary for the first MVP. |
 
@@ -128,7 +131,7 @@ Track workflow measures from the first specification review:
 | Decision authority | Level 0/1/2 classifications and the reason for each human escalation |
 | Delivery quality | Requirement-driven rework, escaped defects, unresolved findings, and human interventions |
 
-After two remediation rounds for the same bounded specification, inspect why convergence is failing. This is a process diagnostic trigger, not automatic acceptance and not a hard review cap. A revised workflow's success on CertWatch does not by itself establish improvement over LabReserve; a separately scoped historical replay would support comparison.
+After two remediation rounds for the same bounded specification, inspect why convergence is failing. This is a process diagnostic trigger, not automatic acceptance and not a hard review cap. A revised workflow's success on TLSBeacon does not by itself establish improvement over LabReserve; a separately scoped historical replay would support comparison.
 
 ## 10. Next boundary
 
