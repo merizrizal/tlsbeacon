@@ -1,0 +1,242 @@
+# D1 — Manual inspection pilot task contract
+
+**Status:** APPROVED AND ACCEPTED by the user. Not implementation authorization; verify Git state separately.
+
+**Approval record:** The user explicitly accepted and approved this contract and its paired ADR in the current conversation, following the independent INITIAL draft specification review, which returned `DRAFT_SPEC_READY` with no blocking findings. Approval covers the reviewed candidate contents, including architecture, TLS compatibility, trust-refresh, normalization, network policy and CLI/exit choices, not subsequent substantive changes.
+
+**Reviewed candidate:** Before these approval-record updates, this contract had SHA-256 `a643c2505832c1a0df330bad6797499105587d39aa21268e47e6936882fc2550` and the paired ADR had SHA-256 `e0fa561f5f509bf40a33a86d1810ca40ddb3109375cf1454575d512a4f96af27`, on `main` at HEAD `376af5074b4fc1a8827cd54f46c399e1b3089e13`, tree `069882aa5a4466e921982c58bf4f873d529a43fc`. Both files were untracked. These hashes identify the reviewed content, not the files after recording approval.
+
+**Boundary:** Approval does not commit either document, authorize an implementation plan, preflight, execution, infrastructure provisioning or deployment, or establish that any product tests passed. Subsequent substantive changes require appropriate revalidation and approval.
+
+**Bounded capability:** PRD Delivery 1, approved roadmap phases 01–02 together.
+
+**Product authority:** [PRD v0.1](../prd-v0.1.md), especially §§2–8 and 10.
+
+**Architecture:** The paired [ADR-001](../architecture/01-adr-001-delivery-1-manual-inspection.md) is approved with this contract; verify its Git state separately.
+
+**Candidate base:** `376af5074b4fc1a8827cd54f46c399e1b3089e13`, tree `069882aa5a4466e921982c58bf4f873d529a43fc`; clean `main` before authoring.
+
+## 1. Objective and observable outcomes
+
+One trusted operator configures destination policy and selected roots, registers a DNS/IPv4/IPv6 lab endpoint, restarts the CLI, manually inspects its direct TLS connection and receives a truthful timestamped human or versioned JSON report. The report distinguishes independently known negative findings from unavailable assessments. Registry/configuration persist; inspection reports are not retained by the application in this delivery.
+
+This is the complete manual pilot, not merely the phase 01 foundation and not the complete monitoring MVP. A successful local fixture demonstration and requirement-driven regression evidence must eventually establish this journey. Drafting this contract completes no roadmap checkbox or implementation acceptance scenario.
+
+## 2. Prerequisites and source hierarchy
+
+- The approved PRD controls product behavior; the [accepted overview](../implementation-plan/00-implementation-overview.md), [01](../implementation-plan/01-registry-and-safety-foundations.md) and [02](../implementation-plan/02-trustworthy-manual-inspection.md) control the selected roadmap scope only.
+- Their approval record at the candidate base identifies accepted candidate `ea045cd39ee7aee8e67b2d5c11964573590a40df`, tree `ca46327127abe09e23323833c7af5709626d4262`. Inspection of the complete approval commit diff found only three roadmap approval-record changes. Source hashes and limitations are in ADR-001 §§1, 12; all eight material source hashes matched the external handoff.
+- No accepted implementation, legacy contract, schema, test, runtime or build/check entry point exists in the inspected repository/history. Nothing here treats future phase work as already accepted behavior.
+- The paired drafts have been independently reviewed and approved by the user. Before implementation, commit the approved documents under the applicable separately authorized process, then separately authorize one controlling implementation plan, required preflight and execution. No step is dispatched by this contract.
+- The approved architecture is a local Go CLI plus PostgreSQL configuration registry. Exact maintained versions, dependencies, Linux root-source paths, protected local configuration/state locations and runnable verification commands must be recorded by the separately authorized planning/implementation workflow. They are not installed or asserted to exist here.
+- If requirements, approval evidence, repository state or either approved document changes, revalidate the affected boundaries together. A document title, Git commit or authoring verdict does not supply missing implementation authority.
+
+## 3. Product rules and approved input/lifecycle resolutions
+
+PRD PD-001–004/006, FR-001–005 and §§5–6 are binding. The following concrete input, identity and lifecycle resolutions were developed under PRD §10 and subsequently approved with this contract; they were not previously approved by the PRD itself.
+
+### 3.1 Required fields and normalization
+
+| Input | Approved contract |
+| --- | --- |
+| Label | Required nonblank Unicode display text; preserve entered content. Not a selector/authority token and not required to be unique. Escape controls in human/log output and JSON-encode normally |
+| Connection host | Required host only, not URL/path/userinfo/combined host:port. Strip surrounding ASCII whitespace. Accept DNS, conventional dotted-decimal IPv4 and IPv6; optional IPv6 brackets normalize away. Scoped IPv6 is supported for link-local connections with explicit interface scope. Reject ambiguous legacy numeric IP forms rather than handing them to an alternate numeric resolver |
+| DNS canonicalization | Non-transitional UTS #46/IDNA2008 lookup processing with STD3 and DNS label/wire-length validation; lower-case A-labels; remove one terminal root dot. Single-label names are supported. Empty labels, embedded whitespace and wildcard input identities/targets are malformed. Preserve original spelling as non-authoritative display data; do not impose ASCII-only input or a shorter arbitrary length limit |
+| IP canonicalization | Parse structurally; use canonical textual address plus separate scope. Normalize IPv4-mapped IPv6 consistently with its IPv4 identity/policy classification. No DNS query for an IP literal. Preserve a meaningful IPv6 interface scope for dialing/policy, never as certificate identity |
+| Port | Required integer TCP port 1–65535; no implicit 443 and no URL scheme inference |
+| Expected identity | Required explicit DNS name or IP address, canonicalized separately. Do not derive it silently from connection host. No port, URL, wildcard pattern or IPv6 zone in a SAN identity. Explain how to put interface scope in connection host instead. An IP connection with a distinct DNS expected identity is supported |
+| Trust | Required selected profile ID and immutable version returned by trust import/refresh. No implicit custom-to-system fallback or silent version tracking |
+| Interval | Optional on create, default 1 hour; positive representable duration, no invented minimum monitoring frequency. Store/list effective value even though no scheduler runs yet |
+| Warning/critical | Optional on create, default 30/7 days. Positive exact durations with `0 < critical < warning`; reject zero, negative, equal, reversed, malformed and overflow values |
+| Enabled | Optional on create, default true; persist explicit effective boolean. No background monitoring is claimed merely because it is true |
+
+Duration input supports `ns`, `us`, `ms`, `s`, `m`, `h` and `d`, with `d` exactly 24 hours; accept decimal quantities only when exactly representable at nanosecond resolution. Do not round to make an invalid threshold valid. Store exact effective durations. Protocol/representation validity checks are not arbitrary product caps. Do not resolve/dial a target merely to register or list it: an offline endpoint can be registered.
+
+### 3.2 Identity, edit, no-op and enablement
+
+- Return an opaque stable registration ID on create. Never repurpose it; label/target duplicates are permitted as separate records. Select records by ID, not an ambiguous label. Up to 100 enabled endpoints is a pilot capacity target, not a registry cap.
+- Generate a new monitoring ID on any actual change to canonical connection host/scope/port, expected identity, selected trust profile or material version/digest. Returning to a former value creates another new monitoring ID. Label, interval, thresholds and enabled-only edits retain it.
+- Create an effective endpoint configuration revision atomically with every actual endpoint mutation. The immutable effective attempt context also identifies the policy revision and selected root material. A label/interval/threshold change must not relabel captured evidence.
+- Edit is a patch: omitted fields preserve their values, not creation defaults. Required fields cannot be cleared. Canonical equality is checked under the same consistency boundary as commit. Equivalent host case/trailing-dot/Unicode/IP spelling does not change identity or overwrite stored display spelling by itself. A canonically unchanged edit returns `unchanged` and preserves revisions, IDs and update timestamps. Repeat enable/disable is likewise a no-op. No activity/event count is invented: there is no event store in this delivery.
+- Disable changes configuration only; it is not recovery and erases nothing. Manual inspection is an explicit operator action allowed for a disabled registration; report disabled freshness and no monitoring-healthy claim. No automatic probes exist here. Delivery 2 must stop new scheduled probes while disabled and require a fresh check after re-enablement; do not implement a scheduler or historical-current view now.
+- Atomic mutations, conflict handling and restart semantics are specified in §6. A missing record is an actionable `not_found` execution error, never an implicit new registration. Deletion is not required and is not added by this contract.
+
+## 4. In-scope boundary and approved CLI surface
+
+Approved installed executable name: `tlsbeacon`. These are future interface contracts, not commands currently available to execute. Exact help formatting/short aliases are Level 1, but these semantics and machine fields must remain consistent.
+
+| Command family | Required observable behavior |
+| --- | --- |
+| `policy set` / `policy show` | Atomically replace validated operator-supplied rules; show effective policy/revision and protected-class semantics. No implicit allow-all when absent; canonical identical replacement is `unchanged` |
+| `trust import` / `trust refresh` / `trust list` | Import system/custom material and return stable profile ID, immutable version and digest; refresh never silently activates for endpoints; identical canonical roots in the same profile/source mode are `unchanged` |
+| `endpoint add` / `endpoint list` / `endpoint show` | Validate/persist complete effective records; return stable/monitoring IDs, configuration revision, all required effective fields, selected trust and enabled state. Listing includes disabled records distinctly |
+| `endpoint edit` / `endpoint enable` / `endpoint disable` | Apply §3 patch/identity/no-op semantics atomically; errors are actionable and do not pretend to persist |
+| `inspect` | Select a registration by ID, capture effective context, perform one authorized bounded direct TLS attempt, and render §7. No unregistered ad hoc target bypass |
+| `--json` | For every listed command, emit one versioned JSON envelope on stdout instead of human output. Diagnostics/progress must not corrupt that stream; errors use the envelope whenever output is possible |
+
+Only the minimal build/dependency structure, registry persistence, configuration/trust/policy handling, inspection/assessment, focused tests and manual-pilot usage documentation are included in future implementation. Usage guidance must cover local Linux setup, errors, scoped IPv6/policy opt-in, custom/system root refresh, output/exits, shutdown by bounded CLI completion, and target-side connection-log side effects.
+
+## 5. Explicit exclusions and preserved future obligations
+
+PRD §8 assigns the following to later deliveries; none are waived:
+
+- **Delivery 2 / [phase 03](../implementation-plan/03-continuous-monitoring-and-evidence.md):** durable immutable completed inspections including failures, latest attempt versus latest certificate, query-time freshness, enabled-period history, single active service, scheduling/overdue restart, manual/scheduled current-status ordering, shared maximum-five-probe admission and the controlled 100-endpoint/five-minute batch proof. Preserve registrations/context on actual pilot upgrades; do not backfill manual-only history.
+- **Delivery 3 / [phases 04](../implementation-plan/04-durable-alerts-and-webhooks.md)–[05](../implementation-plan/05-operations-and-mvp-validation.md):** independent conditions, no false recovery from unknowns/disablement, one event per supported transition, atomic durable condition/event commits, stable event IDs, at-least-once verified HTTPS webhook delivery, retry/replay/exhaustion, pending-delivery restart, service/storage/lag/delivery health, full installation/backup/restore/release evidence and seven-day pilot on 5–10 endpoints. Receiver acceptance is not human acknowledgement; duplicate delivery is not duplicate logical events.
+- No scheduler leases, notification backoff design, dashboard, speculative future tables/APIs, event infrastructure or second execution ladder is permitted in this Delivery 1 contract.
+- PRD §3 MVP exclusions remain excluded: issuance/renewal/ACME/remediation, monitored private keys, discovery/scanning, public signup, multiple tenants/roles, dashboard, STARTTLS, QUIC, authenticated client-certificate sessions, revocation checks, CT, cipher grading, general application availability, and approaching-expiry alerts for intermediates. Already-invalid intermediate paths must still fail now. Optional Delivery 4 expansion, retention changes, production deployment and LabReserve historical replay require separate scope/authority.
+
+## 6. Architecture, evidence and safety constraints
+
+### 6.1 Durable configuration, local authority and failure safety
+
+Use the approved ADR-001 architecture subject to the remaining implementation gates. Configuration/trust/policy writes and associated revisions/identity changes are atomic. Never acknowledge persistence before successful commit. A startup/storage/read/permission failure is an execution error, not an empty registry or permission to use default roots/policy. A failed mutation must not leave a partial record or remove the last valid policy. If commit outcome is genuinely unknown after connection loss, say `commit_outcome_unknown`, instruct read-back and avoid blind creation retry; do not assert rollback that was not observed.
+
+Use a dedicated least-privilege registry role, not superuser; no elevated publicly callable database operations are proposed. Local files/state/imports are operator-owned and owner-only writable; configuration carrying connection secrets is owner-readable only. Reject insecure ownership/write permissions with an actionable error, including unsafe parent-path replacement risks. Do not read or emit client/server private keys. Escape endpoint-provided text in human/log output and redact any local connection credentials. No anonymous listening configuration/inspection API exists.
+
+Parallel CLI mutations must serialize safely or return an explicit revision conflict; no silent lost updates. A probe takes a consistent immutable configuration/trust/policy snapshot without holding a database transaction across network I/O. Editing during an inspection cannot relabel its result. No attempt-history/current-status write is made in Delivery 1. The report must say `retained_by_application: false`, not claim a persisted inspection. Registry restart must preserve complete registrations, IDs, selected roots, policy and disabled state. Unsupported stored schema versions fail safely. Later upgrade tests must preserve real pilot data; no generic migration platform is required today.
+
+### 6.2 Trust and destination policy
+
+ADR-001 §§5–6 are approved together with this contract. Snapshot the actual enumerable roots, profile/version/digest, policy revision and full effective endpoint settings used. Custom roots are exclusive; no implicit OS roots, peer-as-root promotion, unrelated chain cache or root/intermediate download. System roots are explicit imported Linux snapshots; source changes do not silently change selected material. Explicit refresh/selection is documented and tested. Trust input errors do not turn into a false path result from substituted roots.
+
+A numeric address/port grant with all applicable class acknowledgments is required at every actual connection. Support deliberate public/private/loopback/link-local/metadata access; do not impose blanket lab-target denial or unrestricted egress. Denies override allows; unmatched addresses are denied; empty valid policy is deny-all. Metadata requires its additional acknowledgment for the ADR's built-in overlay and operator-added metadata ranges; other special-use unicast requires its own acknowledgment. IPv4-mapped IPv6, scopes and overlapping classifications cannot bypass policy. Invalid unspecified/multicast/broadcast destinations are rejected. The implementation must publish/test its versioned class table, including range boundaries.
+
+Resolve under the budget, authorize each resolved candidate and connect numerically without unchecked second resolution. Any retry/new resolution is checked again. Denied candidates are never contacted even in a mixed allowed/denied answer set. A broad hostname check or registration-time validation alone is insufficient. Do not honor proxy environment variables. Use the operator's installed resolver; its infrastructure is not a target authorization grant. Record contacted numeric address/port/scope when known and candidate-attempt diagnostics. This controls the socket-visible destination, not unseen downstream NAT/routing; operator policy must cover installation-specific metadata aliases.
+
+### 6.3 Probe, timing and independent dimensions
+
+- Approved support is TLS 1.2/1.3 with documented library compatibility; the PRD itself did not establish that protocol floor. Unsupported peers receive a negotiation outcome; never invent an identity/path defect. Any change to that compatibility/risk boundary is resolved before dependent implementation.
+- DNS expected identity supplies canonical SNI even for an IP connection. IP expected identity omits SNI even for a DNS connection host. Output records SNI/null. Identity assessment is independent SAN matching: DNS-ID wildcard handling is confined to a whole left-most certificate label matching one label; IP identity matches iPAddress SAN bytes, not DNS text or CN. No CN fallback.
+- Send no HTTP/application request, client credentials/certificate or application ALPN probe. Capture invalid-certificate evidence through a probe-local handshake configuration and independently validate it; do not weaken database or future webhook TLS. If a peer requests client authentication, use no credentials and report actual evidence/failure.
+- One default 10-second monotonic deadline starts before resolution and includes resolution, all address attempts, connect and handshake. It does not reset on retry. Cancellation closes in-flight probe work and prevents new late connections. Resolver behavior must support this bound. Configuration loading/rendering are outside the probe budget, but may not hide a probe that exceeded it. No per-address timeout multiplication.
+- Resolve a candidate set once and try permitted candidates in a documented stable order. Once a candidate yields peer certificate evidence, finish that connection's handshake within the remaining budget and do not try another address, even if negotiation subsequently fails. Otherwise stop at completed handshake/final failure/deadline. Retry only pre-evidence connection/negotiation failures within the same budget; preserve all earlier diagnostics. Do not search other addresses to hide an invalid certificate or claim all-backend coverage.
+- Record `started_at`, `completed_at` and monotonic probe duration. Set `observed_at` when peer certificate evidence is captured and use that same UTC instant as `assessed_at` for certificate calculations. If no certificate exists, both are null and certificate dimensions are explicitly unavailable. Production inspection uses the actual clock; controlled validation time is an internal test seam.
+- Leaf time is `valid` exactly when `notBefore <= t <= notAfter`, `not_yet_valid` before, `expired` after. Remaining duration is `notAfter - t`, unrounded, computed without overflow or saturation for any supported certificate date; do not use a fixed-width duration conversion that truncates far-future lifetimes. After `notAfter`, expiry is `expired`; otherwise `critical` for remaining at most critical, `warning` for remaining at most warning, else `normal`. Exactly `notAfter` is valid/critical with zero remaining. Before `notBefore` remains invalid regardless of expiry band. All day conversions use 24 hours.
+- Assess service identity and certification path for server authentication independently. Path validation includes applicable constraints, CA/usage rules and chain time validity at the same instant. Hostname mismatch must not itself force path failure; path failure must not suppress known identity/leaf findings. Use selected roots and actually available peer intermediates only. Report supported error reasons; a chain-build failure alone does not prove a missing intermediate, wrong server configuration or specific remote cause.
+- Certificate observed, transport success and certificate validity are different facts. A partial handshake may provide usable certificate evidence; retain it and the failed transport. If bytes cannot be parsed/assessed, preserve known diagnostics and mark affected fields/dimensions unavailable instead of inventing a negative certificate result. Revocation is always `not_checked`.
+
+## 7. Domain outcomes, human/JSON reports and exits
+
+### 7.1 Versioned envelope and registry results
+
+The approved JSON envelope has required fields `schema_version` (string `tlsbeacon.cli.v1`), `command` (canonical command name), `outcome` (`success`, `inspection_completed`, `execution_failed`), `data` (object or null), and `error` (object or null). Success/completed inspection has data and null error; execution failure has null data and `{code, message, action}`. No credentials or stack dump appears in the envelope. Successful mutation data includes `result` (`created`, `updated`, `unchanged`) and effective IDs/revisions/fields; list/show data carries complete effective records or profiles/policy as applicable.
+
+Within v1, required fields/types/enum meanings and exit semantics cannot change silently. Additive optional fields are permitted; consumers ignore unknown fields. A breaking change uses a new schema version and explicit compatibility guidance, not reinterpretation of v1. JSON stdout contains exactly one envelope and newline when writable. Human diagnostics may use stderr, but the JSON machine channel remains parseable. If stdout fails, return execution-failure exit where controllable and report on stderr; do not claim successful report delivery. Signals/OS-forced termination can prevent any envelope and are not completed inspections.
+
+### 7.2 Required inspection data
+
+All rows below are required semantic fields in v1 `data`; nested structures may use the indicated grouping. Enumerated values are stable lower-case strings. Null is explicit and accompanied by an unavailable reason; a dimension uses `{status, reason}` where reason is null only when no diagnostic is needed. Human output must convey the same facts without requiring JSON interpretation.
+
+| Field/group | Required meaning |
+| --- | --- |
+| `registration_id`, `monitoring_id`, `configuration_revision`, `effective_configuration` | Snapshot label, canonical host/scope/port, expected identity/type, interval, enabled, warning/critical, trust selection, plus policy revision. Include original input spelling only as display data. No mutable reread of current settings while rendering |
+| `trust_context` | Profile ID, immutable material version, mode, SHA-256 root-set digest, source digests where applicable; clear selected-snapshot semantics, not only a filename |
+| `policy_context` | Policy revision/digest and applicable connection authority, sufficient to interpret which policy was enforced |
+| `started_at`, `completed_at`, `observed_at`, `assessed_at`, `probe_duration_ns` | UTC RFC3339 timestamps with sufficient fractional precision; null observation/assessment when unavailable. Duration is an exact decimal integer nanosecond string; use monotonic elapsed time, not wall-clock subtraction |
+| `contacted_address`, `sni`, `tls` | Actual numeric peer address/port/scope when available; actual DNS SNI or null for absence; negotiated TLS version or null with reason. DNS refusal has no invented contacted peer |
+| `attempt_outcome`, `candidate_attempts` | `tls_observed`, `dns_failure`, `connection_failure`, `timeout`, `tls_negotiation_failure`, `policy_denied`, or `certificate_evidence_unavailable`; ordered candidate-address/stage/diagnostic entries. `tls_observed` says transport/evidence obtained, not validated healthy. Refusal is a distinct connection diagnostic, not timeout |
+| `observation` | `certificate_observed` or `unavailable` with supported failure reason. Certificate evidence can coexist with a negotiation/timeout outcome |
+| `certificate` | Null with reason when unavailable, otherwise observed leaf SHA-256 DER fingerprint (lower-case hex), issuer, DNS/IP and other presented SAN types, `not_before`, `not_after`, and exact signed `remaining_lifetime_ns` string. Do not claim unsupported SAN types are matching identities |
+| `leaf_time`, `service_identity`, `certification_path`, `expiry` | Independent `{status, reason}`: time `valid`/`not_yet_valid`/`expired`/`not_assessed`; identity `match`/`mismatch`/`not_assessed`; path `pass`/`fail`/`not_assessed`; expiry `normal`/`warning`/`critical`/`expired`/`not_assessed`. Preserve all known results |
+| `freshness` | `current` for the completed manual attempt when enabled, `disabled` when disabled; explicitly evaluated at completion and limited to this report. A recent failed completed attempt is current failure evidence, not stale success. No retained/latest historical view is claimed |
+| `revocation`, `healthy`, `diagnostics` | Revocation `not_checked`; healthy boolean true only with enabled/current evidence, successful transport, observed certificate, valid leaf, matching identity, passing path and normal expiry. Actionable supported diagnostics by stage; unavailable is never a pass |
+| `retained_by_application`, `limitations` | False; no durable inspection history, scheduling or alerts. State single connection/location/instant, not all DNS/backends/end-user coverage; revocation not checked |
+
+Effective intervals/thresholds in JSON are exact decimal integer nanosecond strings too; display rounding is presentation only. No present-day expiry conclusion is synthesized from an earlier report. Registry list/show returns `freshness: null` with reason `inspection_history_not_retained`, rather than falsely claiming `never_checked` or current success. Persisted/query-time `current`/`stale`/`never_checked`/`disabled` monitoring views belong to Delivery 2: enabled is stale only **after** two configured intervals without a completed attempt in the current enabled period, or since enablement if none completed; pre-enable evidence remains historical. Do not build that status store now.
+
+### 7.3 Outcome and exit mapping
+
+| Situation | Envelope / exit | Required behavior |
+| --- | --- | --- |
+| Successful registry/configuration read, create, change or canonical no-op | `success` / 0 | Report actual result and effective revision; no-op does not write |
+| Completed enabled inspection meeting every healthy condition | `inspection_completed` / 0 | Timestamped report with positive independent evidence and no warning |
+| Completed adverse/unavailable inspection, including DNS/refusal/timeout/negotiation/validation/policy findings | `inspection_completed` / 1 | Preserve independently available evidence; unavailable certificate values stay unavailable, not execution-error placeholders |
+| Explicit inspection while disabled | `inspection_completed` / 1 | Preserve actual assessments but freshness disabled and healthy false; no re-enable or recovery |
+| Malformed arguments, invalid/missing configuration/trust/policy, record not found, storage/permission/conflict/internal/output error | `execution_failed` / 2 | Actionable code/message/action, no false completed inspection or persisted-success claim; output failure may prevent envelope |
+
+Stable v1 diagnostic codes include `invalid_input`, `not_found`, `configuration_error`, `trust_configuration_error`, `policy_configuration_error`, `storage_error`, `commit_outcome_unknown`, `revision_conflict`, `permission_error`, `output_error` and `internal_error` for execution failures; inspection reasons distinguish DNS resolution, connection refusal/other connection error, timeout stage, negotiation, policy and supported validation findings. Do not coerce a network error into an unsupported specific remote cause. If multiple address attempts fail, retain their individual reasons; the top-level outcome is the final stopping condition, not a fabricated uniform explanation.
+
+## 8. Requirement and acceptance traceability
+
+`CURRENT_TASK` is an obligation for future implementation, not evidence of existing coverage. `EXPLICITLY_DEFERRED` is authorized by PRD §8. There is no `ALREADY_ACCEPTED` implementation. Later phase files remain proposed and cannot independently alter product allocation.
+
+| PRD source | Disposition for this task | Required evidence / preserved deferral |
+| --- | --- | --- |
+| §§1–3; PD-001 | CURRENT_TASK: useful local single-operator manual pilot and explicit exclusions | V-01/V-10; one-active-monitoring-service behavior deferred to Delivery 2 |
+| PD-002 | CURRENT_TASK: registry/manual CLI, human/versioned JSON | V-09; history/status in Delivery 2, delivery/replay CLI in Delivery 3; dashboard OUTSIDE_SELECTED_SCOPE |
+| PD-003/004 | CURRENT_TASK: direct TLS DNS/IP/port, separate identity, selected exclusive roots | V-02/V-03/V-05/V-08; no extra protocol adapters/client credentials |
+| PD-005 | EXPLICITLY_DEFERRED to Delivery 3 | One generic verified HTTPS webhook; no payload/backoff design now |
+| PD-006 | CURRENT_TASK: hourly default; no new registration cap | V-02; 100-endpoint batch/concurrency proof EXPLICITLY_DEFERRED to Delivery 2 |
+| FR-001 | CURRENT_TASK in full | V-01/V-02/V-03: all fields, actionable errors and restart |
+| FR-002 | CURRENT_TASK: lifecycle, IDs and effective context without reattribution | V-02/V-03/V-10; retained history/disabled historical views EXPLICITLY_DEFERRED to Delivery 2 |
+| FR-003 | CURRENT_TASK: selected manual inspection and distinct outcomes | V-04/V-06/V-09; shared manual/scheduled ordering deferred to Delivery 2, event deduplication to Delivery 3 |
+| FR-004 | CURRENT_TASK: independent leaf/time/SAN/server-auth path/expiry and details | V-04/V-05; durable retention deferred to Delivery 2 |
+| FR-005 | CURRENT_TASK: actual configuration/trust attribution and no trust broadening/downloads | V-03/V-05; stored inspection context/history deferred to Delivery 2 |
+| FR-006 | EXPLICITLY_DEFERRED to Delivery 2 | Scheduling, overdue resume, bounded shared concurrency and supersession; no scheduler infrastructure now |
+| FR-007 | CURRENT_TASK: timestamped truthful manual attempt/evidence, explicit unknowns | V-04/V-06/V-09; immutable history/latest attempt versus latest certificate and query freshness deferred to Delivery 2 |
+| FR-008 | CURRENT_TASK: manual/registry human and v1 JSON, exit distinction | V-09; status/history in Delivery 2, event/delivery views in Delivery 3 |
+| FR-009/010 | EXPLICITLY_DEFERRED to Delivery 3 | Independent conditions, supported recovery only, atomic durable events, stable retry/replay IDs, at-least-once delivery |
+| FR-011 | CURRENT_TASK: durable registry lifecycle, no false recovery claim | V-01/V-02; history/scheduling recovery and re-enable freshness in Delivery 2, conditions/pending deliveries in Delivery 3 |
+| FR-012 | CURRENT_TASK: startup/config/storage/probe errors and manual-pilot usage guidance | V-01/V-06/V-09/V-10; service/persistence-recency/lag in Delivery 2, delivery health/full operations in Delivery 3 |
+| AC-001 | CURRENT_TASK manual report portion | V-04/V-09: trusted matching valid beyond warning, timestamp/fingerprint/healthy; history/status deferred to Delivery 2 |
+| AC-002 | CURRENT_TASK manual exact-boundary portion | V-04: before/at/after both validity instants and warning/critical, unrounded edges; alert transitions deferred to Delivery 3 |
+| AC-003 | CURRENT_TASK in full for manual pilot | V-02/V-05: wrong DNS/IP, CN-only, explicit DNS identity while connecting to IP |
+| AC-004 | CURRENT_TASK manual trust/path portion | V-03/V-05: intended/unrelated roots, missing/expired intermediate/unrelated anchor, honest diagnostics; retained context in Delivery 2 |
+| AC-005 | CURRENT_TASK manual failure portion | V-06/V-09: distinct DNS/refusal/timeout/negotiation, unavailable new certificate findings; timestamped retained earlier observations deferred to Delivery 2 |
+| AC-006 | CURRENT_TASK registry restart portion | V-01/V-02; history restart, no disabled scheduled probes, re-enable freshness and overdue behavior deferred to Delivery 2 |
+| AC-007 | CURRENT_TASK snapshot attribution only, not full concurrency acceptance | V-03/V-10; manual/scheduled ordering in Delivery 2, logical-event deduplication in Delivery 3 |
+| AC-008/009 | EXPLICITLY_DEFERRED to Delivery 3 | Supported condition recovery, atomic event persistence, crash/ambiguous acceptance/replay/exhaustion |
+| AC-010 | EXPLICITLY_DEFERRED: status/restart to Delivery 2, events/operations to Delivery 3 | No external-alert promise while the sole process is down |
+| AC-011 | CURRENT_TASK probe-policy/no-HTTP portion | V-07/V-08; webhook policy/verified TLS/secret redaction deferred to Delivery 3; local diagnostics must not leak credentials now |
+| AC-012 | CURRENT_TASK registry storage-failure safety, not full acceptance | V-01; probe/history/storage and batch target in Delivery 2, event/delivery storage and combined release proof in Delivery 3 |
+| §5 | CURRENT_TASK independent manual dimensions, exact time, SAN-only and single-observation limits | V-04–V-09; retained views/query freshness and alert recovery assigned as above |
+| §6 | CURRENT_TASK operator/network authority, actual trust/configuration, no payload/credentials and 10-second total default | V-01/V-03/V-07/V-08; immutable retained records/resource-scale/history in Delivery 2, atomic events/notifications in Delivery 3 |
+| §§8, 10 | CURRENT_TASK complete manual pilot and concrete contract resolutions | V-10; no leases, backoff or dashboard design; no second controlling ladder |
+| §9 | CURRENT_TASK future specification-review workflow evidence, not a product feature | Record real review effort/findings/authority/convergence from first specification review; no fabricated earlier digest. Seven-day 5–10-endpoint product pilot and full MVP acceptance deferred to Delivery 3 |
+
+## 9. Verification contract — future implementation, not executed
+
+Use local TLS/CA, DNS/network and real selected-storage fixtures; do not depend on public websites, real cloud metadata or production credentials. Generated test-only private keys stay confined to fixtures and never become product credential support. State fixture topology, Linux/runtime/database versions and clock assumptions. No repository command is specified as existing: choose/document actual commands after tooling is present. Mocks alone cannot prove PostgreSQL durability/atomicity, actual dialing or no-application-data behavior.
+
+| ID / behavior | Required positive and negative scenarios | Test seam/dependency | Required observed result |
+| --- | --- | --- | --- |
+| V-01 — registry durability and failures | Fresh startup, full registration, policy/trust persistence, restart/reconnect, disabled state, invalid config, unavailable DB, denied file permissions, failed write/commit and ambiguous commit response | Actual selected PostgreSQL version, separate CLI processes, transaction/fault-injection and protected temporary paths | Acknowledged config/IDs survive restart; failed changes do not partially replace valid state; ambiguity is honest; no empty-registry/default-trust success on errors |
+| V-02 — validation and lifecycle | All fields/defaults; DNS case/dot/IDNA, IPv4/IPv6/scopes, separate DNS identity for IP target; malformed hosts/ports/durations/thresholds; duplicate labels/targets; patch omissions; canonical no-op; every target/trust edit; disable/re-enable | Pure validation plus real registry/CLI integration | Canonical equivalents preserve identity/revisions/timestamps; actual identity change gets fresh monitoring ID; other edits preserve monitoring ID but record config; no arbitrary cap/default port/expected-name guess |
+| V-03 — configuration/trust attribution | Custom/system imports, file overwritten at same path, explicit refresh/selection, equivalent reordered/duplicated roots, material changed, corrupt/empty/private-key input, edit during probe | Local controlled root sources, actual registry, synchronized probe barrier | Report uses exact immutable selected roots/config/policy; unchanged material is no-op; no silent activation or fallback; snapshot cannot be relabeled; failure does not create partial versions |
+| V-04 — exact assessment time | Valid matching beyond warning; before/at/after notBefore and notAfter; before/at/after warning and critical; sub-display-unit edges; not-yet-valid with distant expiry; negative and far-future remaining duration without arithmetic overflow | Local CA/TLS plus controlled validation instant and precision-aware fixtures; real clock only for bounded probe timing | Inclusive validity, zero-at-notAfter critical, after expired, unrounded 24-hour-day thresholds; never healthy with any invalid/unavailable dimension; independent known results retained |
+| V-05 — identity/path/isolation | Matching/wrong DNS/IP; CN-only; appropriate wildcard SAN cases; DNS expected identity over IP/SNI; IP expected identity with no SNI; server-auth EKU/key/CA/name constraints; untrusted roots; missing/expired intermediate; unrelated anchor; expired root; chain offering an untrusted root | Local generated CA hierarchies/TLS servers and selected-root verifier, fixture AIA/download canary | SAN-only matching, independent server-auth path/time findings, no implicit peer trust/system fallback or downloads, no unsupported missing-intermediate claim. Compare custom roots against an unrelated system-root fixture as an isolation negative |
+| V-06 — honest failure evidence | Controlled DNS failure, TCP refusal, timeout at each stage, non-TLS listener/protocol failure, partial handshake/certificate evidence, client-auth request without credentials | Controlled DNS/network/listeners, synchronized failure injection | Distinct supported diagnostics, contacted address only where known, null/unassessed without certificate; preserve partial known evidence and transport failure; do not invent cause/expiry or reuse an earlier report |
+| V-07 — actual-address authority | Explicit allow/deny for public/private/loopback/link-local/metadata/other-special; IPv4/IPv6/mapped forms/scopes; CIDR boundaries; broad rules missing metadata acknowledgment; mixed answers; rebinding/second-resolution trap; retry from allowed failure to disallowed candidate; deny precedence/empty policy/proxy environment | Fake deterministic resolver plus numeric-dial spy AND authorized local integration listeners; virtual/simulated addresses for metadata, never real metadata services | Every actual address/port/scope checked under captured policy; no denied connection on any path/retry; private lab opt-in works; no unchecked second resolution/proxy bypass; effective class table recorded |
+| V-08 — protocol and whole budget | TLS 1.2/1.3 success and unsupported-peer diagnostics; invalid certificate still observable; listener records post-handshake bytes/client-cert requests; slow resolution, several addresses/refusals/stalled handshakes under one ten-second default | Real local TLS/TCP listeners, injected slow resolver/dial stages, monotonic elapsed measurement and cancellation checks | No HTTP/application bytes/client credentials; independent checks still run; no late connect after cancellation; total probe stays within the one ten-second budget, not ten seconds per stage/address. Record instrumentation/scheduling measurement tolerance without treating it as extra permitted probe work |
+| V-09 — output/exit contract | Human and parsed v1 JSON for healthy, warning, critical, expired, not-yet-valid, mismatch, path fail, unknown/no-cert, disabled, policy denial; registry no-op and all execution failures; control-text/secret redaction; broken stdout | Actual CLI subprocess exits/stdout/stderr with controlled fixtures and failing-output sink | Field presence/types/null reasons, same independent facts, 0/1/2 distinction, no false healthy/persistence, exact duration strings; JSON stream clean; no retained-history or perpetual-current claims |
+| V-10 — complete manual pilot and boundaries | Configure policy/roots, register, close process, restart, list, inspect human/JSON; concurrent CLI edits/no-op and edit while probe runs; carry-forward data format documentation | Separate CLI processes with actual DB/local fixtures; barriers for deterministic conflicts/snapshots | Full approved 01–02 outcome; no lost updates or relabeled snapshot; observable usage guidance; no scheduler/history/events/webhooks. Record real implementation verification entry points and residual limitations |
+
+A timeout test's controlled validation clock does not replace real monotonic deadline measurement. The future evidence report must identify both. Test independent negatives together (for example, expired and mismatched with untrusted path) to prove one finding cannot hide another. Regress policy/custom-root isolation and unknown values through the actual CLI, not only unit helpers.
+
+## 10. Implementation authority and decision fidelity
+
+- **LEVEL_0:** Routine fixtures, compilation, formatting, debugging, focused tests and in-scope repairs under a separately authorized implementation.
+- **LEVEL_1:** After architecture/contract approval, select maintained versions/dependency pins, exact package/symbol names, ID generation, equivalent hash encoding with unambiguous attribution, PostgreSQL transaction/locking mechanism, parser/test tooling and equivalent policy representation. Record material tradeoffs and prove the same contract. Complexity alone is not a Level 2 escalation.
+- **LEVEL_2:** Human approval before dependent work for changes to product behavior/scope, new material compatibility restrictions beyond the approved contract, weakened custom-root isolation or destination authority, legacy cryptographic risk, silent evidence/recovery changes, architecture/storage substitution, unauthorized infrastructure or irreversible/destructive changes. Identify exact source, alternatives, tradeoffs, recommendation, deferral effect and safe independent work; do not implement the answer by assumption.
+
+No genuine unresolved Level 2 product contradiction was identified while drafting or in the independent review. User approval of this contract and ADR-001 encompasses the reviewed architecture, TLS compatibility, trust-refresh, normalization, policy and CLI/exit choices. If a needed legacy TLS target or material conflicting requirement is established, stop dependent work and present the smallest decision rather than inventing support or silently excluding it.
+
+ADR-001 §2 maps approved rules to this contract; §§3–7 resolve the paired behavior. If the approved documents are inconsistent, reconcile both against the PRD under the appropriate authority before dependent implementation. No plan/ADS chunk list is included or controlling.
+
+## 11. Future completion criteria and evidence
+
+Before a future implementation candidate may claim completion of this task:
+
+1. The entire §1 workflow exists, under approved sources and the one separately authorized controlling plan, without excluded infrastructure.
+2. All CURRENT_TASK rows in §8 map to concrete passing candidate evidence, including V-01–V-10; an existing passing suite alone is insufficient. Missing/failing required evidence is reported, not silently waived.
+3. Actual native syntax/format/build/focused integration/CLI verification commands are documented and run as applicable. Diagnose in-scope regressions and run required repository-wide verification after focused checks. No nonexistent command is assumed from this contract.
+4. Re-read usage/output compatibility, inspect complete tracked/staged/untracked final changes, preserve unrelated work, and verify no credentials/local environment files or out-of-scope modules were introduced. Do not auto-stage/commit/deploy.
+5. Report base and candidate revision/tree, full dirty state and changed components; approved source revisions; material Level 1 choices and Level 2 resolutions; actual commands/results/environment; fixture clocks and real deadline evidence; restart/manual workflow evidence; each acceptance portion versus deferred portion; skips, unresolved risks and limitations. Include source freshness and complete diff-review evidence.
+
+**Future executor verdicts:** `READY_FOR_REVIEW`, `BLOCKED` or `INCOMPLETE`, as substantiated. They are not authoring verdicts or substitutes for fresh independent implementation review. Health misstatement, network-authority bypass or falsely persisted-success defects are not cosmetic acceptance exceptions (PRD §9).
+
+## 12. Sources, limitations and next boundary
+
+The full PRD §§1–10 and README, all roadmap files 00–05, paired external authoring instruction/handoff, earlier scope-review handoff/instruction and applicable project/authoring instructions were read. Earlier scope-review instructions were historical evidence, not authority to perform another review now. No relevant legacy contract was found in repository inventory or the available history. Missing earlier full scope-review digest and previous-session rationale are recorded in ADR-001 §1; external RFC/library references were not fetched, and no implementation behavior is inferred from them.
+
+The paired documents have since received independent draft review and user approval. At the time approval was recorded, no product test/build, migration, runtime setup, application implementation, controlling-plan authoring, preflight, commit or deployment had been performed. Future implementation verification above is required evidence, not a claim of present-stage test execution. Verify commitment separately; a controlling implementation plan requires separate authorization and must not start automatically.
