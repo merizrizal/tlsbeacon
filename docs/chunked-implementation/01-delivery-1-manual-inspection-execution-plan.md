@@ -1,0 +1,727 @@
+# TLSBeacon Delivery 1 — Manual inspection execution plan
+
+## 1. Identity, outcome and authorization
+
+- **Status:** APPROVED AND ACCEPTED by the user; not implementation authorization.
+- **Approval record:** Following an independent INITIAL read-only plan review with recommendation `PLAN_REVIEW_READY` and no substantiated material findings, the user explicitly accepted and approved this document and requested that approval be recorded and committed.
+- **Reviewed and approved candidate:** Before this approval-record update, this untracked plan had SHA-256 `9e0ca075be8d5d289dd588fa7e62c3b2efd7cda52e93a9c317d57c6a74343b42` on `main` at HEAD `de8f0f224b62d22ab8daef6eab31457e03021b3b`, tree `db67292d919427df9d691ae563ad41e4e9bd51a1`. The review recommendation applies to those candidate bytes, not to the subsequent approval-record update. Material changes require affected revalidation.
+- **Approval boundary:** Acceptance and the requested commit do not authorize implementation preflight, execution, infrastructure provisioning, deployment or a selected execution mode, and do not establish that product tests passed.
+- **Planner verdict:** `PLAN_READY` — historical author self-assessment only; not independent acceptance, implementation preflight or permission to implement.
+- **Task:** D1, the entire PRD Delivery 1 manual-inspection pilot, spanning accepted roadmap phases 01–02 together.
+- **Project mode:** **new project**: observed documentation-only repository, not an existing application to extend.
+- **Controlling ladder:** this file, `docs/chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md`. Roadmap steps are scope input, not another executable ladder. No candidate ADS was supplied or discovered.
+- **Base:** branch `main`, HEAD `de8f0f224b62d22ab8daef6eab31457e03021b3b`, tree `db67292d919427df9d691ae563ad41e4e9bd51a1`.
+- **Planning starting state:** staged, unstaged, untracked and relevant ignored inventories empty. Local `origin/main` and `origin/HEAD` point at that HEAD; this is local reference evidence, not proof of a push or remote freshness. No remote operation was performed.
+- **Planning authority:** the current user explicitly authorized the action in external instruction 04 and requested output under `docs/chunked-implementation/`. That overrides its suggested destination under `docs/implementation-plan/`. Both candidate paths were vacant; the chosen directory existed and was empty.
+- **Execution mode:** `UNSELECTED`. All chunks are **not started**, including discovery. This planning session executes no chunk, project test/build, service, migration or provisioner.
+- **Gates not established:** current implementation preflight, execution authorization and execution mode. The independent plan review and user acceptance are recorded above; remaining gates require their separately authorized processes and must not be dispatched automatically.
+- **Executor compatibility:** installed `chunked-implementation` entrypoint, core safety, execution policy and delivery contract read in full; resolved interface embedded in §8. Fresh-session orchestration capability has not been established in this session.
+
+Smallest complete useful outcome:
+
+```text
+trusted local operator configures numeric destination authority and selected roots
+-> registers a DNS/IP lab endpoint with separate expected identity
+-> closes/restarts the CLI and retains complete registration/context
+-> explicitly inspects an authorized direct-TLS endpoint
+-> receives truthful timestamped human or v1 JSON evidence and meaningful exit code
+```
+
+Only configuration is durable. Delivery 1 does not retain inspection reports, schedule work or send alerts.
+
+## 2. Sources, approval provenance and freshness
+
+### 2.1 Authoritative materials
+
+All sources below were read through their endings. Hashes are SHA-256 of the working bytes; all ten match instruction 04's paired handoff and the current committed baseline.
+
+| ID | Source | Authority / relevant sections | SHA-256 |
+| --- | --- | --- | --- |
+| S1 | [README](../../README.md) | Product summary, not expanded Delivery 1 scope | `7530e52d65ef80dcc379ec46ee5372837aa4ce83078af357945e2b055c569880` |
+| S2 | [PRD v0.1](../prd-v0.1.md) | Product-owner approved; §§1–10, particularly §§5–8 | `ce87476179bc0f903a2286c14a7e86f1c0c4c98d88a7165f8574874d3accf138` |
+| S3 | [Roadmap overview](../implementation-plan/00-implementation-overview.md) | Accepted Delivery 1 scope/decomposition, not runtime authority | `8951b2176e9301a860a0f198c3f25a60bc78abaab6aff53bca2f53495a502741` |
+| S4 | [Phase 01](../implementation-plan/01-registry-and-safety-foundations.md) | Accepted foundation scope | `50fea12e417b6691724c39a919b0c7b7a85ac76796bff7f922cd214342268b93` |
+| S5 | [Phase 02](../implementation-plan/02-trustworthy-manual-inspection.md) | Accepted complete manual-report scope | `3c40925bd8a2539f960490bc453d097959f2e34dd66e956585be085981965fc1` |
+| S6 | [Phase 03](../implementation-plan/03-continuous-monitoring-and-evidence.md) | Proposed Delivery 2 roadmap; preserve PRD deferrals only | `2b8b90956e75f1c309f13a326da69629140c8ed71329a4a362b0fcab07704772` |
+| S7 | [Phase 04](../implementation-plan/04-durable-alerts-and-webhooks.md) | Proposed Delivery 3 roadmap; not an accepted contract | `d773b62299c3285159ef3207bf71684b84e793c0f2346bb41804f9d8e133c9f8` |
+| S8 | [Phase 05](../implementation-plan/05-operations-and-mvp-validation.md) | Proposed operations/release roadmap; not current execution scope | `4e3410ecd3880852e9c7dd1c139cd83ae6e9e9e466e92e70dff4e1539510f2e8` |
+| S9 | [ADR-001](../architecture/01-adr-001-delivery-1-manual-inspection.md) | Approved Go/PostgreSQL architecture and §§3–9 boundaries | `3a4598c1a342fb034668544a7fa35b69c3135ddf87f50977563c3abfd122c950` |
+| S10 | [D1 task contract](../tasks/01-delivery-1-manual-inspection-contract.md) | Approved behavior §§3–7, allocation §8, mandatory V-01–V-10 in §9 | `0f230f0fd224a1ef130b52a5c8cd0af61a49feabcf915d6ec3e48bcca7de976a` |
+
+Applicable instructions: the planning environment's user-level `AGENTS.md` (read fully), the current user instruction and external instruction 04. No additional applicable ancestor/repository `AGENTS.md` was found. `.gitignore` was read; no build/verification configuration exists. No knowledge-base document or earlier legacy task contract was found in the current inventory or available relevant Git history. The approved D1 contract is the sole discovered task contract; no legacy implementation acceptance is inferred.
+
+External handoff pair, read completely from the planning environment (not included in this repository):
+
+| File | Role | SHA-256 |
+| --- | --- | --- |
+| `04-instruction-delivery-1-implementation-plan.md` | Separately authorized documentation action and stop boundary | `f7a89326b36a3acb8516a71adf6d2b5be7f4fe1b6ac0bdd1036023bf8637aa57` |
+| `04-delivery-1-implementation-plan-handoff.md` | Background evidence, not substitute authority | `0b2c2b202803156e597e0e3a1f42b2ba4f06d0a9fb147a03a443e42ceb1c573b` |
+
+### 2.2 Approval versus review versus commitment
+
+1. Roadmap approval is explicitly recorded in S3–S5, following INITIAL `SCOPE_READY`, for candidate `ea045cd39ee7aee8e67b2d5c11964573590a40df`, tree `ca46327127abe09e23323833c7af5709626d4262`. The complete `376af5074b4fc1a8827cd54f46c399e1b3089e13` parent diff changes approval/status/provenance wording in only those three roadmap files; its tree is `069882aa5a4466e921982c58bf4f873d529a43fc`.
+2. S9/S10 explicitly record user approval following INITIAL independent `DRAFT_SPEC_READY`, with no blocking findings. Their reviewed, then-untracked draft fingerprints were respectively `e0fa561f5f509bf40a33a86d1810ca40ddb3109375cf1454575d512a4f96af27` and `a643c2505832c1a0df330bad6797499105587d39aa21268e47e6936882fc2550`, on `376af507...`. These are **not** the later approved-file hashes.
+3. The handoff records the user's explicit acceptance of both documents and authorization of approval/status updates and their commit. The current approved files preserve that distinction. The complete `de8f0f2...` commit diff was inspected: only S9/S10 added, 412 lines total. Both are tracked and unchanged. A commit is not approval by itself; the explicit approval records and fingerprint-bound chronology supply the documented provenance.
+4. The original untracked draft bytes, complete prior scope-review digest, full draft-review conversation report and PRD's referenced previous-session rationale are not available here. No exact reconstructed draft-to-approved diff or prior finding closure is claimed. The handoff describes approval/status-only updates; this session independently inspected the committed contents, approval claims and source mappings, not an unavailable earlier transcript. The draft verdict is not relabelled as a review of later bytes.
+5. At planning time, no material source/candidate drift from the committed handoff baseline was found. Historical roadmap statements that technology/contracts were undecided belong to earlier stages, not a conflict with the subsequently approved ADR/task. The destination change was user-authorized, not product drift. The sole planned change was this new file.
+
+These access limits do not prevent source-grounded planning: the primary approved behavior, architecture and commitment are available and unchanged. If a later conclusion depends on unavailable prior reasoning, obtain that exact evidence rather than manufacture it. Any material future source, approval, implementation or candidate change requires affected revalidation; unrelated HEAD movement alone is not a blocker.
+
+### 2.3 Installed planner/executor identity
+
+The following identities refer to skills installed in the planning environment. This is a content-identity record, not a dependency on private skill files at execution; §8 embeds the operational contract.
+
+| Source | SHA-256 |
+| --- | --- |
+| `single-implementation-plan/SKILL.md` | `dab6b9242e808313d6ea4087a668195c7b5b055be232413a0e4cc353c01b1478` |
+| `single-implementation-plan/references/integrated-plan-ownership.md` | `bc8ae40644ba750feb5aa431faa1fb83b4d3bface44e64632f9360e14874e05d` |
+| `single-implementation-plan/references/plan-template.md` | `ccd333fb4d0d7d900d30ccba5d1a761b0ccfa62a6ba3d8574aa077abad54d88f` |
+| `single-implementation-plan/references/chunked-execution-contract.md` | `ef0c6f3cca0205135f8ad40cf40e094326d64ce7683af4dd5cffa2aea9525367` |
+| `single-implementation-plan/references/quality-checklist.md` | `2b2ed4291ed9d154c12e0da3c8b88d437a7e6ba99eca99a6bdcc0775a4cbecc5` |
+| `chunked-implementation/SKILL.md` | `1facb456e5ad8f29e0849dda09930f2a5a3c2234a6161b1dacf5898289b9230c` |
+| `chunked-implementation/references/core-safety-contract.md` | `4d5ed44e7b5823d7a005933bbf198cd391224e98cff57fb2c932cae1e83dd614` |
+| `chunked-implementation/references/execution-policy.md` | `1f367383c371aac18dd2fbdea1a930015b718a190ad711d070d2d8c2fb9a2f31` |
+| `chunked-implementation/references/delivery-execution-contract.md` | `f1dbc726a84774a52c1420eb75a707a63ffc8190624088665e2adcf14c3f0c38` |
+
+## 3. Scope and binding invariants
+
+This section makes critical constraints visible to each chunk; S2/S9/S10 remain authoritative in full.
+
+### 3.1 Registration, mutation and local authority
+
+- Local Go CLI, installed executable `tlsbeacon`, PostgreSQL configuration registry; one trusted Linux operator and no anonymous listening API. Runtime role is dedicated and least-privilege, not superuser, with no publicly callable elevated bypass. Check actual effective grants, not only a role's name.
+- Required creation fields: nonblank Unicode label, connection host only, explicit integer port 1–65535, separate expected DNS/IP identity, explicit selected trust profile/version. Label and target duplicates are permitted; select by opaque never-reused registration ID. There is no deletion feature or new endpoint-count cap.
+- Connection host: strip surrounding ASCII whitespace; no URL/path/userinfo/combined host:port. Structural IPv4/IPv6 parsing, optional IPv6 brackets, scoped IPv6 connection interface where needed; reject ambiguous legacy numeric IP spellings. No DNS lookup for a literal and no target network activity on registry/list commands.
+- DNS: non-transitional UTS #46/IDNA2008 lookup processing with STD3, DNS label/wire limits, lowercase A-labels and one terminal root dot removed; support single-label names. Reject empty labels, embedded whitespace and wildcard input. Preserve original spelling as display-only data. Expected identity cannot contain a zone, port, URL or wildcard pattern; connection scope is separate from SAN identity. Normalize mapped IPv6 consistently with IPv4 identity/policy. Do not add arbitrary shorter limits or ASCII-only restrictions.
+- Defaults on **create** only: interval 1 hour, enabled true, warning/critical 30/7 days. Durations support `ns`, `us`, `ms`, `s`, `m`, `h`, `d`; decimal values must be exactly representable at nanosecond resolution, days exactly 24 hours. Require positive representable interval and `0 < critical < warning`; reject malformed, fractional-nanosecond and overflow input without rounding or invented minimum frequency.
+- Edit is a patch: omission preserves existing values; required fields cannot be cleared. Every real edit atomically changes configuration revision. Connection host/scope/port, expected identity or trust profile/version/material change creates a **fresh monitoring ID**, including reverting to an earlier value. Label/interval/threshold/enabled-only edits retain monitoring ID. Canonical no-ops, including repeated enable/disable, cause no write, revision/ID/timestamp change or display-spelling replacement.
+- Serialize concurrent edits or explicitly reject a revision conflict; no lost updates. Check canonical equality inside that consistency boundary. Snapshot endpoint, selected immutable roots and policy consistently, then release the transaction **before** network work; edits cannot relabel captured evidence.
+- Acknowledged writes survive restart. Validation/permission/storage/write/commit failures never become empty-registry/default-policy/default-trust or partial-success results. Genuinely ambiguous commit returns `commit_outcome_unknown`, read-back guidance and no blind creation retry; do not assert unobserved rollback.
+- Operator ownership and owner-only writable files/imports/state, secret-bearing config owner-readable only, safe parent paths/replacement handling, escaped control text and redacted credentials are required. Protect the open/read path against permission-check/replacement races. Unsupported stored schema versions fail safely. No secret/local environment file is committed.
+- Disabled records remain distinct. Explicit manual inspection is allowed, but reports disabled freshness and cannot claim monitoring health, re-enable or recover anything. No automatic probes exist.
+
+### 3.2 Exact selected trust
+
+- Stable profile ID plus immutable material versions. Persist exact parsed CA DER root set, source mode (`system`/`custom`), deterministic SHA-256 over sorted/deduplicated length-delimited DER, and source-file digests where applicable. Attribute the **actual** verifier root set, not a different bundle or opaque OS verifier.
+- Custom roots are exclusive. Unreadable/malformed/empty/private-key-containing imports fail atomically; do not silently drop malformed entries or substitute roots. An expired CA can be imported and must then be assessed truthfully.
+- System mode imports configured, documented Linux root sources into an explicit enumerable snapshot. Mutable files, OS changes or a mid-probe overwrite cannot alter selected roots. Explicit refresh creates a new version without activating it on endpoints; identical canonical roots in the same profile/source mode are unchanged. Explicit endpoint selection changes monitoring identity.
+- Peer intermediates are candidates, not roots. No system fallback for custom trust, unrelated chain cache, AIA/intermediate/root download or revocation request. Test both absence of download and absence of silent trust broadening.
+
+### 3.3 Actual socket destination policy
+
+- Versioned numeric IPv4/IPv6 CIDR and TCP-port allowlist with explicit applicable class acknowledgments, optionally narrowed by canonical target and interface scope. Denies win; unmatched means denied. Missing/malformed policy is execution failure; valid empty policy permits zero target connections. Canonical identical replacement is unchanged.
+- Public/global unicast still needs a grant; private RFC 1918/ULA, loopback, link-local and other special-use unicast need their explicit acknowledgments too. Metadata is an **additional** overlay; all overlapping protected classes must be acknowledged. Mapped IPv6 cannot bypass IPv4 rules. Unspecified/multicast/broadcast targets are invalid rather than dialled.
+- Built-in metadata overlay: `169.254.169.254/32`, `169.254.170.2/32`, `100.100.100.200/32`, `fd00:ec2::254/128`, plus operator-added ranges. Broad grants without metadata acknowledgment do not suffice. Publish a versioned special-use classification table and test boundaries; do not call everything outside RFC 1918 public.
+- Resolve using the operator-controlled installation resolver **within** the probe budget. Authorize each actual numeric address/port/scope, then dial numerically; verify socket peer where available. Never authorize a hostname and invoke an unchecked second resolver. Check every retry/new resolution under the captured policy. Denied candidates are recorded but never contacted; a mixed set can still try permitted candidates in documented stable order.
+- No HTTP proxy/environment tunnel or alternative transport bypass. Resolver infrastructure is an installation prerequisite, not authority to contact arbitrary targets. No scanning or discovery.
+- Authority ends at the process socket boundary: unseen NAT/routes/remote relay destinations are not discovered. Operator policy must cover installation-specific metadata aliases. Document this limitation, not an impossible downstream guarantee.
+
+### 3.4 Observation, assessment and time
+
+- TLS 1.2/1.3 with the selected maintained library's documented cipher/signature support; unsupported peers get negotiation diagnostics, not invented certificate defects. No silent legacy downgrade. DNS expected identity determines canonical SNI even over an IP connection; IP identity omits SNI even over DNS. No arbitrary SNI override.
+- Probe-local invalid-certificate capture cannot weaken database or other transport TLS. Independently assess leaf time, SAN identity and server-authentication path. Send no HTTP/application data, application ALPN probe, password, client certificate or private key. Client-auth requests authorize no credentials.
+- One default **10-second total monotonic deadline**, starting before resolution and shared across connect, handshake and every candidate/retry. Cancellation closes in-flight work and prevents late connections. Loading/rendering are outside that budget but cannot conceal a probe overrun. Use a resolver that actually supports cancellation, not merely a goroutine timeout around uncancellable work.
+- Retry only pre-certificate-evidence connection/negotiation failures. Once any candidate yields certificate evidence, finish that handshake within remaining time and stop trying addresses, even if transport later fails. Never search for another certificate to hide a validation failure. Preserve ordered candidate-stage diagnostics and partial evidence.
+- Sample one actual UTC instant at certificate capture; `observed_at == assessed_at`. No certificate means both null with reasons. Production uses the actual clock; controlled validation time is an internal fixture seam only. Record separate monotonic elapsed duration.
+- Inclusive leaf validity: `notBefore <= t <= notAfter`; before is `not_yet_valid`, after is `expired`. Exactly `notAfter` is valid/critical at zero lifetime. Expiry uses actual unrounded `notAfter - t`: expired only after, else critical at or below critical, warning at or below warning, normal above warning. A future-dated leaf can have normal expiry but is invalid. Avoid fixed-width duration saturation/overflow for far-future supported certificate dates.
+- SAN-only identity: DNS wildcard only a whole leftmost certificate label matching one label; IP uses iPAddress bytes, not DNS SAN text or CN. No CN fallback. Server-authentication path is independent of identity, includes time/CA/EKU/key/name constraints, and uses exactly selected roots and available peer intermediates. A failure cannot hide known independent dimensions. A chain-building error alone does not prove “missing intermediate” or a remote misconfiguration.
+- Observation, successful transport, valid certificate, expiry and freshness are separate. Partial-handshake evidence coexists with transport failure. Unparseable/absent fields stay explicitly unavailable, never default pass or recycled prior certificate. Revocation is always `not_checked`.
+
+### 3.5 CLI, v1 fields and honest delivery
+
+Required command families: `policy set/show`; `trust import/refresh/list`; `endpoint add/list/show/edit/enable/disable`; `inspect` by registration ID only; `--json` for every command. No ad hoc unregistered probe bypass.
+
+Every writable JSON response is exactly one envelope plus newline: `schema_version: "tlsbeacon.cli.v1"`, canonical `command`, `outcome`, `data`, `error`. Success/completed inspection has object data and null error; execution failure has null data and `{code, message, action}`. Mutation data reports `created`, `updated` or `unchanged` and actual effective fields/IDs/revisions. Required types/enum meanings/exits are stable; optional additive fields are permitted, breaking changes require a new version and compatibility guidance.
+
+Inspection data must cover every S10 §7.2 group:
+
+| Group | Required facts / safeguards |
+| --- | --- |
+| Identity/configuration | `registration_id`, `monitoring_id`, `configuration_revision`, full `effective_configuration`, exact interval/threshold nanosecond strings, enabled state and captured policy revision; no mutable reread during rendering |
+| Trust/policy | `trust_context` profile/version/mode/root-set digest/source digests; `policy_context` revision/digest and authority actually enforced |
+| Time | `started_at`, `completed_at`, nullable `observed_at`/`assessed_at`, UTC RFC3339 with sufficient fractions; `probe_duration_ns` exact decimal integer string from monotonic elapsed time |
+| Transport | `contacted_address` numeric peer/port/scope when known; actual `sni` or null; negotiated `tls` version or null/reason; no invented contacted peer on DNS/refusal failure |
+| Attempt | `attempt_outcome`: `tls_observed`, `dns_failure`, `connection_failure`, `timeout`, `tls_negotiation_failure`, `policy_denied`, `certificate_evidence_unavailable`; ordered `candidate_attempts` with address/stage/diagnostics, final stopping condition not a fabricated uniform cause |
+| Observation/certificate | `observation` = `certificate_observed` or `unavailable`; `certificate` null/reason or lower-case leaf DER SHA-256 fingerprint, issuer, all presented SAN types, validity instants and exact signed `remaining_lifetime_ns` string |
+| Dimensions | Independent `{status, reason}` for `leaf_time`, `service_identity`, `certification_path`, `expiry`, with the exact S10 enums; `not_assessed` and explicit reasons where unavailable |
+| Report-level truth | `freshness` current at completion if enabled, otherwise disabled; `revocation: not_checked`; `healthy` true only with enabled/current, successful transport, observed leaf, valid time, matching identity, passing path and normal expiry; actionable `diagnostics` |
+| Limits | `retained_by_application: false`; `limitations` explicitly no history/scheduling/alerts, one connection/location/instant rather than all DNS/backends/end users, revocation not checked |
+
+Human output conveys the same facts, including null/unavailable reasons. Registry list/show uses `freshness: null`, reason `inspection_history_not_retained`, not manufactured `never_checked` or retained current success. Recent completed failures are current evidence of **failure** at report completion, not perpetual live status.
+
+Exits: **0** successful configuration/registry operation or completed healthy inspection; **1** completed nonhealthy inspection, including no certificate, policy denial or disabled; **2** execution/configuration/trust/policy/permission/storage/conflict/internal/output failure. Stable execution codes include `invalid_input`, `not_found`, `configuration_error`, `trust_configuration_error`, `policy_configuration_error`, `storage_error`, `commit_outcome_unknown`, `revision_conflict`, `permission_error`, `output_error`, `internal_error`. Broken stdout cannot claim successful report delivery; use stderr/exit 2 where controllable. A committed mutation followed by output failure must not encourage a blind duplicate create; give safe read-back guidance. OS-forced termination can prevent any envelope and is not a completed inspection.
+
+### 3.6 Exclusions and compatibility
+
+- **Delivery 2:** durable immutable inspection history (including failures), latest-attempt/latest-certificate views, query-time current/stale/never-checked state, enabled-period/re-enable freshness, scheduling/overdue restart, single active monitoring service, shared maximum-five admission, current-ordering/supersession and 100-endpoint/five-minute scale proof. Preserve these obligations without creating their tables/APIs/modules now.
+- **Delivery 3:** independent conditions, supported recoveries, atomic condition/event commits, stable webhook/replay IDs, retries/backoff/exhaustion, verified HTTPS notifications, pending-delivery recovery, full service/delivery health, release operations/backup/restore and seven-day 5–10-endpoint pilot. No scheduler leases, webhook transport or alert infrastructure now.
+- Preserve all PRD MVP exclusions: issuance/renewal/ACME/remediation, monitored private keys, discovery/scanning, signup/tenants/roles/dashboard, STARTTLS/QUIC/authenticated client certificates, revocation/CT/cipher grading/general availability and approaching-intermediate-expiry alerts. Already-invalid intermediate paths must fail now. No optional Delivery 4 or historical LabReserve replay.
+- Persist only the minimal current registry schema/format version. There is no existing schema to migrate or manual history to backfill. Document future preservation of real pilot registration/monitoring IDs, root/configuration meaning and policy; when a real upgrade exists, test it then. Do not invent a generic migration platform now.
+- Protect S1–S10, accepted roadmap checkboxes, unrelated work and credentials. Future authorized implementation may add manual-pilot usage/verification docs and a minimal README pointer, but not silently rewrite PRD/ADR/contract or later roadmaps.
+
+## 4. Observed baseline and proposed engineering decisions
+
+### 4.1 Actual planning observations
+
+Working directory for repository commands: the repository root.
+
+| Check | Actual procedure | Observed result |
+| --- | --- | --- |
+| Inventory/instructions | `rtk find`, `rtk ls`, raw `rtk proxy find`, `rtk git ls-files`, ancestor instruction checks | README, license, ignore rules, PRD, roadmap 00–05 and approved ADR/task pair only; no additional applicable repository instructions |
+| Base/dirty state | `rtk git rev-parse`, raw `rtk proxy git status --porcelain=v1 --untracked-files=all --ignored`, staged/unstaged full diffs and ignored/untracked lists | Exact §1 base; all starting dirty/ignored lists empty |
+| Approval/history | Full raw `rtk proxy git show` for `de8f0f2...` and `376af507...`, `git ls-tree`, relevant `git log --all --name-status` | Commit and roadmap candidate trees match records; no earlier task/architecture/implementation baseline found |
+| Fingerprints | `rtk proxy sha256sum` on named sources and skill files | All ten material source hashes match handoff; no source drift |
+| Plan destination | Inventory, raw directory listing and `git check-ignore --no-index` for both proposed paths | Both absent, neither ignored; selected output directory empty |
+| Safe documentation tooling | Shell `command -v` checks only | Node and Go paths found; no `psql`, `markdownlint`, `markdownlint-cli2` or `prettier` found on PATH. Runtime versions/support and PostgreSQL service availability were not established |
+| Product verification | No runnable project entry point exists; no project command run | **NOT RUN**. No product test pass, failure, timing measurement or capacity claim |
+
+Planning inspection does not complete Chunk 0. Re-discover at execution; another contributor may have added implementation or tools.
+
+### 4.2 Choices and authority
+
+Everything in this table except the approved architecture is a **proposal**, to confirm and record during separately authorized execution. No availability, installation or maintenance status is asserted by naming a version family.
+
+| Item | Authority / proposed resolution | Consequence and evidence |
+| --- | --- | --- |
+| Runtime/storage | Approved S9: local Go CLI + PostgreSQL | No embedded/file DB substitution, cloud/containers or extra administration platform |
+| Versions | Level 1 candidates: Go **1.26.x**, PostgreSQL **18.x**, exact maintained patch versions selected/verified in Chunk 0 before foundation; if unsupported/unavailable choose another maintained compliant version and record why | Record Linux distribution, architecture, compiler/DB version, library compatibility and reproducible pins. These are proposed families, not claims about installed versions or current security support |
+| Dependencies | Level 1 candidates: `pgx/v5` for PostgreSQL and `golang.org/x/net/idna` configured for the exact approved lookup rules; pin actual compatible maintained releases in the future `go.mod`/`go.sum` | Verify API behavior and transitive dependency needs; dependency download/access is an execution prerequisite, not authorized by this plan |
+| Layout | Proposed `cmd/tlsbeacon`, minimal `internal/{config,endpoint,trust,policy,registry,probe,assessment,cli}` plus local test fixtures | Names describe current seams only; no future scheduler/history/event packages. Validate boundaries in Chunk 0; avoid generic frameworks |
+| Storage | Proposed root DER sets in protected registry rows with immutable version identity; explicit schema version; parameterized SQL, row-lock or revision-CAS mutation boundary | One transaction per mutation, consistent short snapshot read; no transaction around network I/O. No evidence/history tables |
+| IDs/durations | Proposed cryptographically random opaque IDs; checked exact duration parsing and overflow-safe signed nanosecond arithmetic for certificate lifetimes (for example arbitrary-precision arithmetic) | Prove never reusing monitoring identity, no truncation/saturation or float-rounding semantics |
+| Resolver/TLS | Proposed cancellable Go resolver using installation-controlled DNS and numeric dialing; standard Go TLS/x509 only if selected-version behavior meets all evidence/verification requirements | Go default behavior is not proof of cancellation, partial-certificate capture, identity or time semantics; prove with fixtures before relying on it. Alternative compliant mechanisms remain Level 1 |
+| Linux roots/paths | Proposed Debian-family pilot profile: explicit `/etc/ssl/certs/ca-certificates.crt` import; configured equivalents allowed after documentation. Proposed operator config under `$XDG_CONFIG_HOME/tlsbeacon/` and protected scratch/state under operator-owned paths | Verify supported distro/source and secure ownership/parents; do not silently scan/fallback to opaque system roots. Exact per-installation locations are recorded during execution, not assumed here |
+| Test approach | Go-native tests, real local PostgreSQL/native CLI processes and controlled TLS/CA/DNS/listeners; no public websites or real metadata | Pure spies do not substitute for real storage/dialing. No container dependency is introduced |
+
+No blocking Level 2 decision is identified in the available approved sources. Level 0 is routine debugging/fixtures/in-scope repair. Level 1 selects compliant mechanisms/versions/layout and records tradeoffs. Level 2 changes product rules, approved runtime/storage/compatibility, authority/trust/evidence/privilege boundaries, scope or material risk; stop dependent work and present source evidence, alternatives, recommendation, tradeoffs, deferral consequence and safe independent work. Difficulty alone is not Level 2.
+
+## 5. Requirement-to-chunk coverage
+
+All current behavior is **missing / future**, not accepted implementation. Every implementation row is verified again in final Chunk 22. V-IDs below retain S10's IDs, not new requirements.
+
+| Source requirement | Current-task behavior or explicit disposition | Implementation chunks | Required evidence |
+| --- | --- | --- | --- |
+| PD-001; PRD §§1–3 | Trusted local Linux operator, protected configuration, useful complete manual pilot; active monitoring service deferred to Delivery 2 | 1–2, 7–11, 17, 21 | V-01/V-10; separate CLI-process pilot |
+| PD-002 | All approved registry/configuration/manual CLI families, human and versioned JSON; history/status deferred, dashboard excluded | 1, 11, 16–17, 20–21 | V-09/V-10; parsed envelopes, human facts, subprocess exits |
+| PD-003 | Direct TLS DNS/IPv4/IPv6/port and separate identity, no application payload/credentials | 3–4, 12–13, 15, 17, 19 | V-02/V-05/V-07/V-08; real listener/SNI and numeric-dial evidence |
+| PD-004 | Actual immutable selected system/custom roots, no fallback/download | 5, 8, 10, 13, 15 | V-03/V-05, CLI isolation in 20 |
+| PD-005 | Deferred to Delivery 3; no webhook implementation | None | Scope audits 0, 21–22 |
+| PD-006 | Hourly default; no invented registration cap; shared concurrency/100-target proof deferred to Delivery 2 | 4, 9, 11 | V-02; no capacity assertion |
+| FR-001 | Complete validated persistent records, all effective defaults/fields, actionable errors, restart | 2–5, 7–11, 18 | V-01/V-02/V-03; real DB/process restarts |
+| FR-002 | Stable versus monitoring ID, patch/no-op, revisions, disabled, immutable captured context; retained history deferred | 4, 9–11, 17–18 | V-02/V-03/V-10; concurrent mutation and snapshot barriers |
+| FR-003 | Selected manual inspection, distinct outcomes; scheduled ordering/event deduplication deferred | 12–13, 16–17, 19–20 | V-06/V-08/V-09; real failures and no-certificate report |
+| FR-004 | Leaf fingerprint/issuer/all SANs/dates/exact duration and independent time/identity/server-auth path/expiry | 13–17 | V-04/V-05, CLI matrix 20 |
+| FR-005 | Actual trust/configuration attribution, no broadened trust or unsupported chain cause; stored inspections deferred | 5, 8, 10, 13, 15–17 | V-03/V-05; immutable roots and canaries |
+| FR-006 | Scheduling/overdue restart/shared bounded concurrency/supersession deferred to Delivery 2 | None | Scope audit; preserve 10-second manual bound via 12–13/19 |
+| FR-007 | Truthful timestamped manual attempt/evidence/unknowns now; history/latest views/query freshness deferred | 10, 13–17 | V-03/V-04/V-06/V-09; no reused prior evidence |
+| FR-008 | Human/v1 JSON, every required group, applicability of freshness, 0/1/2 exits and compatibility; history/event views deferred | 1, 11, 16–17, 20–21 | V-09; all enums/types/null reasons and output failures |
+| FR-009/FR-010 | Conditions/events/atomicity/delivery/replay deferred to Delivery 3 | None | Scope audit; do not scaffold tables/transport |
+| FR-011 | Durable registry state/disable semantics and no recovery claim; history/scheduling/re-enable current evidence deferred to Delivery 2, pending deliveries to Delivery 3 | 4, 9, 11, 17–18 | V-01/V-02/V-09; disabled manual inspection remains adverse |
+| FR-012 | Startup/config/permission/storage/output failures and manual-pilot setup/errors/shutdown guidance; monitoring/delivery health/full operations deferred | 1–2, 7–11, 17–18, 20–21 | V-01/V-06/V-09/V-10; no false persistence |
+| AC-001 | Manual valid/trusted/matching beyond warning, timestamp/fingerprint/healthy | 13–17, 20–21 | V-04/V-09; controlled fixture and full pilot |
+| AC-002 | Manual before/at/after validity and unrounded expiry edges; alert transitions deferred | 14–16, 20 | V-04; exact instants, 24-hour days, sub-display units |
+| AC-003 | Wrong DNS/IP, CN-only, explicit DNS expected identity over IP | 3, 13, 15, 17 | V-02/V-05; no SNI-to-identity conflation |
+| AC-004 | Custom intended/unrelated roots, missing/expired intermediate, unrelated anchor, honest diagnoses | 5, 8, 15, 17, 20 | V-03/V-05; actual selected verifier isolation |
+| AC-005 | Manual DNS/refusal/timeout/negotiation differences and unavailable new certificate findings; earlier retained history deferred | 12–13, 16–17, 19–20 | V-06/V-09; partial evidence plus failure, no inherited expiry |
+| AC-006 | Registry restart portion only: complete settings/IDs/roots/policy/disabled persist | 7–11, 18, 21 | V-01/V-02; actual process and storage restart. History/scheduler/re-enable/overdue acceptance deferred to Delivery 2 |
+| AC-007 | Captured configuration attribution only; manual/scheduled ordering and events deferred | 9–10, 17–18 | V-03/V-10; synchronized edit versus probe, not a claim of full AC-007 |
+| AC-008/AC-009 | Deferred to Delivery 3 | None | Scope audit only, no condition/event acceptance claim |
+| AC-010 | Status/restart portion deferred to Delivery 2; events/operations to Delivery 3 | None | No stale-status store or external-alert promise now |
+| AC-011 | Actual-address probe policy/no HTTP now; webhook/secret transport acceptance deferred | 2, 6, 8, 12–13, 17, 19–20 | V-07/V-08; local credential redaction still required now |
+| AC-012 | Registry storage-failure safety now; batch/history/storage proof Delivery 2, events/delivery proof Delivery 3 | 7–11, 18, 20 | V-01; no claim of full AC-012 or measured scale |
+| PRD §5 | Independent dimensions, no false healthy, exact boundaries, SAN-only identity, revocation/single-observation limits | 13–17, 19–21 | V-04–V-09; combined independent negatives |
+| PRD §6 | Local/network authority, actual trust/context, no credentials/payload and total deadline; retained evidence/events/resource-scale deferrals intact | 2, 5–10, 12–13, 15–19 | V-01/V-03/V-05/V-07/V-08 |
+| PRD §§8, 10 | Entire 01–02 manual pilot only; all concrete approved resolutions retained | All | V-10 and final scope audit |
+| PRD §9 | Maintain factual workflow evidence from available first-review provenance, not a product feature or invented elapsed time | 0, per-chunk reports, 21–22 | Record real findings/authority/rework/human interventions; unavailable earlier ledger stays unknown. Seven-day/full-MVP acceptance deferred to Delivery 3 |
+
+## 6. Mandatory future evidence and command interface
+
+### 6.1 Environment and command rules
+
+**Everything in §§6–11 is future work, not a passed check.** Application paths, symbols, commands, tests and fixture services below are proposals, not observed repository artifacts; proposed runtime/dependency versions are not verified installed or maintained. Confirm them in Chunk 0 and, as implemented, record actual commands in the same plan's execution evidence and future usage/verification docs. Do not invent a passing baseline from an empty test suite.
+
+All future repository commands below have the repository root as their working directory. All shell executables use `rtk` (or `rtk proxy` for raw output). For JSON test commands, use the `rtk proxy` form if the ordinary Go adapter filters required discovery/run/skip/failure records; compressed success summaries alone are insufficient evidence. Package/test name templates must be resolved to actual discovered names before running; regexes are proposals, not observed tests.
+
+Prerequisites:
+
+- Selected supported Go toolchain, dependency pins and permitted dependency access; no tools installed during planning. PostgreSQL native tools/runtime and owned isolated fixture storage for required integrations. `psql` was not found on PATH at planning; other native DB tools/service availability remain unverified. Do not silently use production or substitute mocks.
+- Future scratch directory and `TLSBEACON_TEST_ARTIFACT_DIR`: absolute, owned, protected, disposable, unique to the run. Proposed test DB DSN supplied locally in `TLSBEACON_TEST_DB_DSN`; never print/commit it. Minimal privileged fixture setup is separate from the non-superuser application role; prove application behavior under that role.
+- For restart/fault tests, an **explicitly identified disposable native PostgreSQL cluster** owned for this purpose, including safe start/stop/restart authority, not an arbitrary supplied DSN. Proposed harness refuses a non-disposable database and requires fixture credentials/config without logging secrets. Record tool versions/topology. No blanket database destruction permission follows from implementation authorization.
+- Loopback/local IPv4 and IPv6 TLS/DNS/TCP fixtures, deterministic generated test-only CA hierarchies/private keys in protected temporary fixture storage, controlled validation time, barriers and post-handshake byte counters. A scoped IPv6 listener needs an explicitly permitted interface; no host route/interface changes or privileged namespace setup without authority. If unavailable, report the exact evidence gap; spies still cover classification but do not establish actual scope dialing.
+- Resolver and socket spies cover virtual metadata/public/special addresses; **never contact real cloud metadata or public websites**. Authorized local listeners provide real dialing/no-payload evidence. Include local AIA/download and proxy canaries; no new proxy transport.
+- Semantic time tests inject one precise UTC instant. Deadline tests separately use real monotonic time and record instrumentation/scheduling tolerance as measurement uncertainty, not extra permitted probe work.
+- Python is not required by this plan. If later needed for execution/validation, first obtain and activate a user-provided or verified approved project venv, record/reuse its path; do not run global Python or invent an environment.
+
+Proposed command keys used by chunks:
+
+| Key | Proposed command / procedure | Prerequisites and required evidence |
+| --- | --- | --- |
+| DISCOVER | Raw `rtk proxy git status --porcelain=v1 --untracked-files=all --ignored`; `rtk git rev-parse HEAD 'HEAD^{tree}'`; tracked inventory, full staged/unstaged/relevant untracked diffs; source SHA-256 comparison | Source/candidate identities, preserved unrelated work and affected gate freshness. No product execution in planning |
+| FMT | `rtk gofmt -w <explicit changed Go files>` followed by `rtk gofmt -l <same files>` | Future actual Go files only; empty second output, diff reviewed after formatting. Never format unrelated files |
+| UNIT(P) | `rtk go test -count=1 -json ./internal/<P>` | Existing named package/tests; inspect JSON run/pass/fail/skip actions and expected test names, not only process exit |
+| INTEGRATION(R) | `rtk go test -count=1 -json ./tests/integration -run '<actual test regex for R>'` | Real isolated PostgreSQL/local fixtures as required; expected cases discovered, missing prerequisite must fail/explicitly block required gate, not silently skip |
+| CLI(R) | `rtk go test -count=1 -json ./internal/cli -run '<actual test regex for R>'` or corresponding actual CLI subprocess integration test | Real built CLI, controlled fixture data, stdout/stderr/exit captured; source required cases must really execute |
+| BUILD | `rtk go build -o "$TLSBEACON_TEST_ARTIFACT_DIR/tlsbeacon" ./cmd/tlsbeacon` | Writable protected run-specific artifact directory; actual binary exists and subprocess behavior exercised, no privileged install |
+| FULL | `rtk go test -list . ./...`; `rtk go test -count=1 -json ./...`; `rtk go vet ./...`; BUILD; FMT verification | Future native full entry point, from module root, with required fixture environment active. Account for all V-01–V-10 tests, subprocess/lifecycle checks and expected discovery; no required skip or empty match counts as acceptance |
+| DOC | Read usage through ending, validate local links/examples against actual help, run safe available native Markdown/whitespace checks; `rtk git diff --check` plus new-file check | No invented formatter or dependency install. Proposed examples become executable verification only within authorized fixture environment |
+| GATE | FMT, focused check(s), compiler/symbol/import validation and BUILD when CLI exists, complete relevant raw diff/status review and risk/rollback report | Apply after every chunk; use package tests to compile new contracts before callers. Inspect staged/unstaged/untracked contents, secrets, scope and safe stubs. No unrun result reported passed |
+
+An optional recommended additional concurrency check is `rtk go test -race -count=1 -json ./...`, once the selected platform/compiler and fixture harness support it. It complements but cannot replace required deterministic concurrency/fault evidence; lack of race tooling is not permission to omit that evidence. No generic Makefile/CI provider is assumed or required; document the native entry point once it exists.
+
+### 6.2 V-01–V-10 preservation map
+
+These are **mandatory**, not recommendations. Add tests beside behavior in early chunks; later test-only chunks deepen real-dependency coverage rather than delaying all tests.
+
+| Contract obligation | Mandatory positive and negative cases | Implement/test chunks and intended evidence |
+| --- | --- | --- |
+| **V-01** Registry durability/failure | Fresh startup; full registry/policy/trust; close/reopen CLI and reconnect/restart actual PostgreSQL; disabled state; invalid config; DB unavailable; denied ownership/file permissions/unsafe parents; failed write/commit; ambiguous commit response | 2, 7–11, 18, 20–22: actual selected DB, separate processes, transactional fault barriers and commit-response loss. Acknowledged state/IDs persist; failed transaction leaves prior complete state; genuine ambiguity gives read-back instruction, no false empty/default success |
+| **V-02** Validation/lifecycle | Every field/default; DNS case/dot/IDNA/non-transitional/STD3/wire boundaries/single-label; IPv4/IPv6/mapped/scopes; separate DNS expected identity over IP; malformed hosts/ports/all duration units/exact decimal/overflow/thresholds; duplicates; patch omission/clearing; canonical no-op and spelling/timestamp preservation; every identity/material edit including revert; other edits; repeated enable/disable | 3–4, 9, 11, 18, 20: pure tables plus actual registry/CLI. Fresh versus retained monitoring IDs/revisions; no arbitrary cap, implicit port/expected name or target DNS activity |
+| **V-03** Snapshot/trust attribution | Custom/system import; same-path overwrite; explicit refresh and selection; reordered/duplicate canonical roots; changed material; corrupt/empty/private-key input; failed version write; synchronized endpoint/trust/policy edit during probe | 5, 8–10, 17–18, 20–21: exact selected DER/hash/source/mode and policy/config snapshot; no silent activation/fallback/partial versions, no relabelled report; no-op is no write |
+| **V-04** Exact assessment | Valid matching beyond warning; before/at/after notBefore/notAfter and both warning/critical thresholds; precision-aware sub-display edges; not-yet-valid with distant expiry; negative/far-future remaining duration | 14, 16–17, 20: generated local certificates, controlled UTC instant, exact integer expectations; inclusive validity and 24-hour days; at notAfter valid/critical zero; no overflow/saturation or healthy invalid/unknown |
+| **V-05** Identity/path/isolation | DNS/IP match/mismatch; CN-only; valid/invalid wildcard positions/depth; DNS identity over IP with SNI and IP identity without SNI; server-auth EKU/key/CA/name constraints; intended/unrelated roots; missing/expired intermediate; unrelated/expired anchor; untrusted root offered by peer | 5, 13, 15–17, 19–20: local CA/TLS hierarchies and AIA/download canary. Separate identity/path/time known results; custom roots isolated from unrelated system-root fixture; peer certificates never promoted; no fetch or unsupported causal diagnosis |
+| **V-06** Honest failures | Controlled DNS failure; refusal/other connect error; timeout at resolution/connect/handshake; non-TLS/protocol failure; partial certificate then failure; client-auth request with no credentials; sequential earlier report then no-certificate failure | 12–13, 16–17, 19–20: deterministic resolver and real local listeners/failure barriers. Distinct final/candidate diagnostics; contact only when known; null/unassessed or retained partial known facts; no fabricated expiry/cause or reused previous leaf |
+| **V-07** Actual-address authority | Allow/deny all public/private/loopback/link-local/metadata/other-special classes; IPv4/IPv6/mapped/scopes; CIDR boundaries, explicit port/target/scope narrowing; metadata overlay and extensions; broad grant without all acknowledgments; invalid unicast forms; mixed answers/rebinding/second-resolution trap; allowed failure then denied retry; deny precedence/empty/missing/malformed/proxy env | 6, 8, 12, 17, 19–20: deterministic resolver + numeric-dial spy **and** actual permitted local listeners. Zero denied dials at every path; no second-resolution/proxy bypass; opt-in private lab works; versioned class table published. Virtual metadata only |
+| **V-08** Protocol/budget/no payload | TLS 1.2/1.3; unsupported peers; invalid certificate observable; client-cert requests and post-handshake byte recording; slow resolution, multiple refusals/addresses, stalled handshake and cancellation; certificate evidence prevents backend retry | 12–13, 17, 19–20: real local TLS/TCP, monotonic duration and dial/listener logs. One default ten-second resolution-to-handshake budget; no late connect or timer reset; no application/HTTP/ALPN probe or client credentials; invalid-capture config isolated from DB TLS |
+| **V-09** Output/exits | Human and parsed v1 JSON for healthy/warning/critical/expired/not-yet-valid/mismatch/path fail/unknown/disabled/policy-denied and combined negatives; all registry commands/no-ops; all execution error codes; controls/credential redaction; broken stdout; signals distinguished from completed reports | 1, 11, 16–17, 20–22: actual CLI stdout/stderr/exit and failing sink. Required field/type/enum/null reasons, exact duration strings, independent semantic equivalence and clean single-envelope channel; no false health/persistence/history/current claims; 0/1/2 |
+| **V-10** Full pilot and scope | Policy + roots -> register -> close process -> restart/list -> human/JSON inspect; concurrent edits/no-op and edit while probe runs; documented format/carry-forward meaning | 9–11, 17–18, 21–22: separate CLI processes + actual DB/local TLS, deterministic barriers, actual usage reproduction and native commands. Full 01–02 outcome, no lost updates/relabelled snapshot, no scheduler/history/events/webhooks |
+
+Combine independent negatives (expired + mismatched + untrusted path) and preserve every known result. Regress policy, custom-root isolation and unknowns through the actual CLI, not just helpers. Final acceptance requires actual candidate evidence for every row; environment gaps remain unverified and prevent a positive completion claim under S10 §11.
+
+## 7. Effort and dependency summary
+
+Rough planning ranges for one experienced engineer, **1 engineer-day ≈ 6 focused hours**, excluding approvals, installations/access waits and other external delays. Estimates include discovery, implementation, focused tests, documentation and verification exactly once per chunk; they are not agent runtime or calendar promises. Detailed V-01–V-10 storage/fault/security evidence makes this **13.5–25.75 engineer-days (81–154.5 focused hours)**, more conservative than the earlier 8–13-day roadmap estimate. That is an estimate revision, not increased product scope. Selected-library feasibility and real fixture access dominate uncertainty.
+
+Dependencies below are cumulative: each chunk also inherits all earlier safety gates. All rows are **Not started**.
+
+| Chunk | Purpose | Depends on | Engineer-days |
+| --- | --- | --- | --- |
+| 0 | Discovery and baseline | Separate execution/gate authority | 0.5–1 |
+| 1 | Minimal executable and response boundary | 0 | 0.25–0.5 |
+| 2 | Protected local configuration | 1 | 0.5–0.75 |
+| 3 | Host and identity normalization | 2 | 0.5–1 |
+| 4 | Exact values and lifecycle decisions | 3 | 0.5–0.75 |
+| 5 | Immutable root material | 4 | 0.5–1 |
+| 6 | Destination-policy rules | 5 | 0.75–1.5 |
+| 7 | Minimal PostgreSQL registry boundary | 6 | 0.75–1.25 |
+| 8 | Atomic trust and policy persistence | 7 | 0.5–1 |
+| 9 | Atomic endpoint lifecycle | 8 | 0.75–1.5 |
+| 10 | Consistent attempt snapshot | 9 | 0.25–0.5 |
+| 11 | Registry/configuration CLI vertical slice | 10 | 0.5–1 |
+| 12 | Authorized numeric dialing and one budget | 11 | 0.75–1.25 |
+| 13 | TLS observation and partial evidence | 12 | 1–2 |
+| 14 | Exact leaf time and expiry | 13 | 0.5–1 |
+| 15 | Independent SAN identity and path | 14 | 0.75–1.5 |
+| 16 | Complete independent report model | 15 | 0.5–0.75 |
+| 17 | Manual inspect CLI integration | 16 | 0.5–1 |
+| 18 | Real restart, fault and concurrency proof | 17 | 1–2 |
+| 19 | Actual-address/protocol/deadline proof | 18 | 0.75–1.5 |
+| 20 | CLI semantics and compatibility matrix | 19 | 0.5–1 |
+| 21 | Manual-pilot documentation and reproduction | 20 | 0.5–1 |
+| 22 | Final delivery verification and scope audit | 21 and all exits | 0.5–1 |
+
+## 8. Embedded executor policy and per-chunk gate
+
+### 8.1 Immutable safety and configured defaults
+
+Policy provenance: explicit current documentation-only boundary, S2/S9/S10, applicable `AGENTS.md`, and the installed executor content identities in §2.3. No project-specific retry/environment override was discovered. **Planning never authorizes executing this policy.** At later execution start, report the governing plan/source/base/gate identity and resolved policy before commands.
+
+- Require separate explicit implementation authorization and applicable current formal preflight tied to the actual approved/committed D1 contract, accepted controlling plan and base. Do not infer a pass from a title, commit or this planner verdict. Record source/candidate drift before every chunk; revalidate affected gates after material drift.
+- Execute one bounded chunk per worker/session. Read authoritative sources, this plan, current repository instructions and any latest handoff first; restate goal/files/entry/exit. No silent competing ladder or early implementation of another chunk.
+- **Single-chunk:** execute exactly the selected chunk, complete post-work/report, then stop. Default is **confirm before creating an unrequested handoff**; a separately explicit handoff instruction can satisfy confirmation. Stopping remains mandatory regardless. No next-chunk dispatch.
+- **Continuous-loop:** requires explicit user selection **and actual fresh-session orchestration**. Main agent dispatches one chunk to a fresh worker, waits for post-work, verifies exit/evidence/scope and complete non-final handoff, then dispatches the next fresh session. Worker stops after its chunk. No same-session multi-chunk substitute or fictional worker. If orchestration is unavailable, report that exact capability gap and prepare manual continuation instructions only when authorized; do not automatically switch modes.
+- **Finite failure budget:** default **two failed validation attempts for the same current-chunk issue**, fixed before attempts. Diagnose exact command/error and classify current regression versus baseline/environment; perform smallest safe in-scope repair, add regression evidence and rerun. At the second failed attempt stop/report blocker. Do not silently raise/reset the budget, including across sessions; a different positive finite budget requires separate explicit compatible approval before retry. Never advance while a required check is failed or missing.
+- Routine implementation, tests, diagnosis and in-scope repair under an authorized chunk need no repeated permission. Never weaken tests/authority/integrity for green output or repair unrelated baseline failures opportunistically.
+- Local development only, with expressly permitted safe disposable dependencies. No push/merge/deploy, branch/stage/commit, production/live credentials, destructive external actions, privileged host changes, reset/clean or overwrite of unrelated work without separate explicit authority. Dependency/tool acquisition and service setup need the actual execution environment's permission; this plan provides none now.
+- Python environment default is §6.1; do not impose Python on Go chunks. Keep task/chunk/phase labels in plans/evidence, not executable symbols/configuration.
+- Cleanup closes connections, cancels resolver/handshake work, stops only run-owned fixtures/DB cluster when authorized and removes only that run's accidental/temp outputs. Preserve unrelated work and required evidence, no broad kill/drop/rm/reset. Generated fixture private keys are test-only, protected and never product credentials.
+
+### 8.2 Shared gate, reports, handoffs and repair boundaries
+
+Every chunk below explicitly inherits **GATE** (§6.1), this subsection and both mode-dependent handoff rules; there is no relaxed intermediate chunk.
+
+1. Validate formatting, syntax/type/build, called-symbol/type/import existence and focused behavioral regressions; inspect test discovery, executed cases and skips. Define contracts and safe stubs before dependent calls. Temporary unavailable operations return an explicit execution error or remain unreachable, never false success/healthy/persisted.
+2. Review complete current-chunk diff, staged/unstaged and full relevant untracked contents; compare to recorded starting state, remove only task-created accidental changes, preserve unrelated work. Review privilege, SQL, path replacement, secrets, trust/TLS isolation and socket authority for affected changes.
+3. Record actual commands, working directory, versions/fixtures/clocks, pass/fail/skip/not-run and intended versus measured evidence. Report functional risk, integration risk, validation gap and rollback note. No completed checkboxes from planning or compiler-only acceptance.
+4. Non-final verdict: `CONTINUABLE`, `BLOCKED` or `INCOMPLETE`. Advancement requires all required current exit evidence, safe compile state, scope-conforming diff and mode-required complete handoff. Single-chunk session stops even if `CONTINUABLE`.
+5. Proposed future evidence location: chunk completion report; when execution authorizes files, `docs/chunked-implementation/evidence/delivery-1-chunk-N.md`. Proposed non-final continuous-loop handoff: `docs/chunked-implementation/handoffs/delivery-1-chunk-N-to-N+1.md`, plus separate next-session instruction if the installed handoff workflow requires it. No such execution artifacts are created in planning.
+6. A handoff records task/plan/source identity, scope/exclusions, mode, base/candidate/dirty state, completed/next chunk, files/symbols inspected/changed, exact commands/results/discovery/skips, diff summary, risks/rollback, open blockers/assumptions/decisions, environment/cleanup, retry budget and consumed attempts, gate freshness and exact next instructions. Redact credentials. Missing/incomplete continuous handoff stops dispatch.
+7. Stop/escalate material source conflicts, Level 2 changes, scope/architecture/security/integrity weakening, unavailable indispensable access/tooling, exhausted failure budget, unsafe unisolatable diff or unauthorized environment work. Give source evidence, options/tradeoffs/recommendation, deferral impact and safe independent work; do not escalate ordinary compliant mechanism choices merely because hard.
+8. Final chunk reports `READY_FOR_REVIEW`, `BLOCKED` or `INCOMPLETE`, not independent review/approval or next-delivery permission. Under S10, all mandatory current-task evidence must be passing for readiness. Required unrun evidence cannot become optional merely because the environment lacks it. No final handoff into Delivery 2 is automatic.
+
+Rollback always means a bounded reversal of **this chunk's own delta**, not resetting user work. Before any real persistent pilot exists, disposable fixtures may be recreated only within their authorized isolated boundary. Once actual pilot state exists, never drop or rewrite it to undo code; preserve IDs/context and obtain authority for an actual compatible repair/upgrade.
+
+## 9. Implementation Ladder: Delivery 1 manual-inspection pilot
+
+All listed new files/symbol responsibilities are **proposed**, not discovered existing interfaces. Confirm names/layout in Chunk 0 and before each edit. Unless explicitly stated, each implementation chunk is one source/test pair. Larger cohesive boundaries are justified below; do not detach essential tests just to meet a file-count target. All tasks remain unchecked.
+
+### Chunk 0: Discovery and baseline
+
+- **Goal / requirements:** Revalidate all S2/S9/S10 CURRENT_TASK mappings, authority, candidate, one ladder, environment and baseline; implement no behavior.
+- **Entry / dependencies:** Separate Chunk 0 execution instruction with selected mode; applicable accepted-plan/preflight evidence current to actual source/base. Clarify missing authority before execution.
+- **Inspect:** S1–S10 in full as relevant, repository/ancestor instructions, current inventory/history/diffs/untracked/ignored state, accepted gates/handoffs and any newly added implementation/tests.
+- **Change:** No application code. Authorized execution report only; record compliant Level 1 decisions and precise actual command substitutions in this same controlling plan if necessary without erasing evidence.
+- **Tasks:**
+  - [ ] Run DISCOVER; compare source hashes/approval/candidate and classify drift. Reconcile real existing work rather than reimplementing it.
+  - [ ] Confirm exact maintained Go/PostgreSQL/dependency versions, supported Linux/root source/paths, DB-role and isolated-fixture access, DNS/IPv6/scope, monotonic instrumentation and cleanup ownership. Do not provision an unapproved service as discovery.
+  - [ ] Locate actual native verification. If still documentation-only, record **no runnable baseline** without executing nonexistent `go test`; plan first runnable smoke check in Chunk 1. Otherwise run the safe actual baseline under authorized local prerequisites and distinguish existing failures/skips.
+  - [ ] Confirm proposed package boundaries, fixture access, test command/discovery contracts, execution mode/orchestration and finite retry policy. Record unavailable tooling precisely rather than infer capacity from a binary path.
+- **Validation / intended evidence:** DISCOVER plus actual baseline only if it exists; exact versions/access/commands and unrun gaps. Planning observations are not this evidence.
+- **Safe state / excluded:** No source change, no schema/service setup or next-chunk implementation.
+- **Post-work / repair:** GATE adapted to documentation/discovery; inspect command side effects and full status. Revalidate material conflicts; no code repair here. Baseline risk is unknown/new integration state; rollback only accidental discovery outputs.
+- **Handoff / exit:** §8 mode rules. `CONTINUABLE` only when sources/gates/ladder and required next-chunk prerequisites are established, or exact blocker/incomplete report. Stop before Chunk 1.
+
+### Chunk 1: Minimal executable and response boundary
+
+- **Goal / requirements:** First runnable Go CLI with safe dispatch, v1 envelope and output-error handling; PD-002, FR-008/012, V-09 foundation.
+- **Entry / dependencies:** Chunk 0 exit; verified toolchain/pins/module identity and permitted dependency access. Inspect S10 §§4, 7 and confirmed inventory.
+- **Proposed files/symbols:** `go.mod`, necessary `go.sum`, `cmd/tlsbeacon/main.go`, `internal/cli/response.go`, `internal/cli/response_test.go`; minimal executable/dispatch and response writer/error envelope. Cohesive multi-file bootstrap is necessary to compile/test the first entry point, not a generic scaffold.
+- **Tasks:**
+  - [ ] Add only minimal module/main/response contracts, safe parser/dispatch boundary and actual command-help skeleton. Unimplemented commands fail explicitly with exit 2, never connect, mutate or emit a completed inspection.
+  - [ ] Add envelope schema/version/type, stdout/stderr/newline and output-writer failure regressions; document actual initial build/smoke command in execution evidence.
+- **Validation / intended evidence:** Proposed `rtk go test -count=1 -json ./internal/cli`; BUILD; subprocess help and unsupported command with parseable failure. Inspect actual discovered tests.
+- **Safe state / excluded:** Runnable but unavailable operations fail closed; no DB/network call, future module or falsely successful stub.
+- **Post-work / repair:** GATE, especially imports/call targets and clean JSON. Small bootstrap repairs only; §8 budget.
+- **Risk / rollback:** Envelope drift/output ambiguity; no behavior beyond dispatch is verified yet. Revert bootstrap-only delta without touching sources or user files.
+- **Handoff / exit:** §8 mode rules; compilation/build/smoke/response tests passing and no unsafe stub, then stop.
+
+### Chunk 2: Protected local configuration
+
+- **Goal / requirements:** Safe local configuration/secret boundary; PD-001, FR-012, S10 §6.1, V-01/V-09.
+- **Entry / dependencies:** Chunk 1 exit. Inspect response boundary, S9 §9, supported OS/path decision and applicable file conventions.
+- **Proposed files/symbols:** `internal/config/local.go`, `local_test.go`; configuration load/ownership/permission/parent-safety and redacted typed errors, no DB dialing yet.
+- **Tasks:**
+  - [ ] Implement explicit selected paths, required fields and secure open/read/parent checks; no permissive default roots/policy or credential leak on parse/read failure.
+  - [ ] Test owner/write/read restrictions, unsafe parent replacement/symlinks as relevant to the chosen safe mechanism, malformed/missing config and secret/control-text diagnostics in protected temp paths.
+- **Validation / intended evidence:** UNIT(config), BUILD; Linux file-permission/replacement tests run as a representative non-root operator, not silently skipped under elevated execution.
+- **Safe state / excluded:** Configuration loader can be used; unimplemented registry/probe still unavailable, no anonymous API or elevated helper.
+- **Post-work / repair:** GATE with ownership/race and redaction review; repair only local config behavior within budget.
+- **Risk / rollback:** TOCTOU and overbroad permissions; no storage durability proven yet. Reverse code only; preserve real config/secrets and clean only owned test paths.
+- **Handoff / exit:** §8 rules; permission-negative and positive evidence plus safe paths recorded, then stop.
+
+### Chunk 3: Host and expected-identity normalization
+
+- **Goal / requirements:** Exact separate target/identity parsing; FR-001, PD-003, AC-003, V-02/V-07 prerequisites.
+- **Entry / dependencies:** Chunk 2 exit; selected compliant IDNA mechanism and exact dependency version. Inspect S10 §3.1 and current validation callers before adding any.
+- **Proposed files/symbols:** `internal/endpoint/normalize.go`, `normalize_test.go`, plus necessary `go.mod`/`go.sum` updates at first dependency use; canonical connection host/address/scope and separate expected-identity value types/functions. Dependency metadata accompanies its first importing source so this chunk compiles independently.
+- **Tasks:**
+  - [ ] Implement exact DNS/IDNA/STD3 and structural IP/bracket/mapped/scope rules, preserving original display spelling separately; reject URL/combined/ambiguous forms and identity zones.
+  - [ ] Add table regressions for canonical equivalents, non-transitional Unicode, single-label/wire limits, malformed/wildcard/whitespace/legacy numeric forms and separate DNS identity over IP. Assert no resolver/network dependency.
+- **Validation / intended evidence:** UNIT(endpoint), BUILD; actual test inventory covers both positive normalization and rejection boundaries.
+- **Safe state / excluded:** Pure validated values only, no registration, DNS activity or policy inference.
+- **Post-work / repair:** GATE, inspect IDNA options and no invented product restrictions; budgeted parser fixes only.
+- **Risk / rollback:** Canonicalization can change identity/security; DB persistence not yet wired. Revert parser/test pair before dependents; never rewrite stored pilot values implicitly.
+- **Handoff / exit:** §8 rules; all approved normalization cases pass, then stop.
+
+### Chunk 4: Exact values and lifecycle decisions
+
+- **Goal / requirements:** Defaults/durations/patch/no-op/ID-change decision contract; FR-001/002/011, PD-006, V-02.
+- **Entry / dependencies:** Chunk 3 exit. Inspect normalized value contracts and S10 §§3.1–3.2.
+- **Proposed files/symbols:** `internal/endpoint/values.go`, `values_test.go`; complete create values, explicit patch presence and pure mutation decision (not DB commit).
+- **Tasks:**
+  - [ ] Parse exact duration units/decimals with overflow rejection; validate all fields/defaults and thresholds. Omission on edit is not create-default application.
+  - [ ] Define canonical no-op versus real edit and monitoring-identity-change predicate; test every field, revert, spelling-only equivalent, duplicate labels/targets, repeated enable/disable, clearing required fields and timestamp/no-write intent.
+- **Validation / intended evidence:** UNIT(endpoint), BUILD; exact nanosecond/default/patch tables. Actual persistence/no-write proof remains in Chunks 9/18.
+- **Safe state / excluded:** Pure decision functions, no durable success, cap, deletion or event count. Types exist before registry callers.
+- **Post-work / repair:** GATE with exact arithmetic/no float rounding and patch-presence review; only current validation repairs.
+- **Risk / rollback:** Hidden defaulting/no-op mutation; storage semantics not yet proven. Reverse own pair before callers or perform bounded dependent repair, preserving data.
+- **Handoff / exit:** §8 rules; pure lifecycle/validation cases passing, then stop.
+
+### Chunk 5: Immutable root material
+
+- **Goal / requirements:** Exact enumerable trust snapshots/import validation; PD-004, FR-005, V-03/V-05.
+- **Entry / dependencies:** Chunk 4 exit; protected import/source-path mechanism from Chunk 2. Inspect S9 §5 and S10 §6.2.
+- **Proposed files/symbols:** `internal/trust/material.go`, `material_test.go`; immutable parsed root set, mode/source digests and canonical root-set identity.
+- **Tasks:**
+  - [ ] Strictly import selected custom/configured system sources with full validation, no hidden roots/cache, no private-key acceptance, deterministic sorted/deduplicated length-delimited DER hashing.
+  - [ ] Test unreadable/malformed/empty/private-key-containing bundles, expired-root import, duplicates/reorder, source overwrite, source digest and immutable in-memory isolation. Define version/no-op equality without activating endpoints.
+- **Validation / intended evidence:** UNIT(trust), BUILD; controlled root sources only, compare actual exported/loaded DER set with digest input.
+- **Safe state / excluded:** Local material processing only; registry versioning in Chunk 8; no network root/intermediate fetch or opaque platform verification.
+- **Post-work / repair:** GATE including private-key redaction and input-file/actual-root equivalence; budgeted current material fixes.
+- **Risk / rollback:** Silent root drop/broadening or mutable alias; no path verification yet. Reverse code/test delta, never alter operator trust files.
+- **Handoff / exit:** §8 rules; strict parse/hash/isolation evidence passing, then stop.
+
+### Chunk 6: Destination-policy rules
+
+- **Goal / requirements:** Fail-closed address/port/class authorization contract; AC-011 probe prerequisite, S9 §6, V-07.
+- **Entry / dependencies:** Chunk 5 exit. Inspect approved class/overlay rules and normalized address/scope types.
+- **Proposed files/symbols:** `internal/policy/rules.go`, `rules_test.go`, `docs/network-policy.md`; versioned canonical policy/classification/evaluation. Third file is required published classification/limitations, not a second plan.
+- **Tasks:**
+  - [ ] Implement policy validation, deny precedence/default deny/empty policy, canonical no-op identity, all class acknowledgments, metadata built-ins/extensions, optional target/scope narrowing and invalid-unicast rejection.
+  - [ ] Test class/CIDR/port/scope boundaries, overlapping grants/classes, mapped forms, broad CIDRs missing metadata acknowledgment and all negative classes. Publish actual versioned class table and socket/NAT/operator/resolver limitation.
+- **Validation / intended evidence:** UNIT(policy), DOC, BUILD; no real special/metadata address is dialled. Actual numeric enforcement follows in Chunk 12.
+- **Safe state / excluded:** Pure authorization seam only; no hostname-only grant, blanket private ban, implicit public allow or proxy support.
+- **Post-work / repair:** GATE, review table/code equivalence and deny precedence; no weakening safety to accommodate fixtures.
+- **Risk / rollback:** Range misclassification expands authority; actual socket evidence not yet available. Reverse only policy/test/docs delta before dependents.
+- **Handoff / exit:** §8 rules; documented class boundary matrix passing, then stop.
+
+### Chunk 7: Minimal PostgreSQL registry boundary
+
+- **Goal / requirements:** Real transactional configuration storage, schema/version/least privilege and truthful errors; FR-001/012, V-01.
+- **Entry / dependencies:** Chunk 6 exit, approved isolated native PostgreSQL fixture access and selected driver/version. Inspect config/response contracts and S9 §9/S10 §6.1.
+- **Proposed files/symbols:** `internal/registry/schema.sql`, `db.go`, `db_integration_test.go` plus necessary dependency-pin update; cohesive schema/adapter/integration boundary requires these files. Schema contains only endpoint/configuration, trust material/version, policy and minimal registry-format data needed now.
+- **Tasks:**
+  - [ ] Establish minimal explicit initialization/version check, parameterized transactional adapter and error/commit-outcome classification; separate setup privileges from restricted application role. Do not auto-upgrade unknown state.
+  - [ ] Test real fresh initialization/reopen, unsupported version, unavailable DB, denied effective grants and rollback/failure paths; verify no success acknowledgment before commit and no superuser/elevated publicly callable runtime bypass.
+- **Validation / intended evidence:** UNIT(registry) with real fixtures (or actual package integration equivalent), BUILD; observed schema/grants and actual selected DB version. Missing DB is not a skipped pass.
+- **Safe state / excluded:** Storage adapter compiles; unsupported/missing state fails visibly. No history/current-state/events/scheduler tables or generic migration framework.
+- **Post-work / repair:** GATE with SQL/privilege/version/error redaction review; safe local fixture repair only under owned boundary.
+- **Risk / rollback:** Partial setup/privilege leakage/unknown commit misclassification; no operator mutations wired yet. Revert code or recreate only authorized disposable fixture, never drop real pilot state.
+- **Handoff / exit:** §8 rules; actual DB/version/grant/error evidence passing, then stop.
+
+### Chunk 8: Atomic trust and policy persistence
+
+- **Goal / requirements:** Durable immutable selected trust versions and atomic policy revisions; FR-005/012, V-01/V-03/V-07.
+- **Entry / dependencies:** Chunk 7 exit. Inspect material/policy contracts, adapter transactions and schema invariants.
+- **Proposed files/symbols:** `internal/registry/trust_policy.go`, `trust_policy_integration_test.go`; import/refresh/list and policy replacement/read operations.
+- **Tasks:**
+  - [ ] Persist validated snapshots/profile IDs/immutable versions/digests and complete policy revisions atomically; identical canonical refresh in same profile/mode or policy replacement is unchanged with no write.
+  - [ ] Test source overwrite/refresh/reorder/changed material, no endpoint activation, failed transaction/partial-version rollback, concurrent replacement and preservation of last valid policy under real DB faults.
+- **Validation / intended evidence:** UNIT(registry) focused discovered trust/policy integrations with actual PostgreSQL; BUILD; exact stored DER/root digest/mode/revision/no-op verification.
+- **Safe state / excluded:** Durable configuration available; no inspection or silent trust selection/fallback, no deferred schemas.
+- **Post-work / repair:** GATE with transaction/no-op and immutable material review; smallest current persistence fixes only.
+- **Risk / rollback:** Partial version/policy or automatic activation; full CLI workflow not yet tested. Reverse code while retaining real immutable material/config data; disposal only test-owned cluster.
+- **Handoff / exit:** §8 rules; persistence/fault/no-op evidence passing, then stop.
+
+### Chunk 9: Atomic endpoint lifecycle
+
+- **Goal / requirements:** Durable complete endpoint CRUD subset and atomic IDs/revisions/no-ops; FR-001/002/011, V-01/V-02/V-10.
+- **Entry / dependencies:** Chunk 8 exit. Inspect pure lifecycle decision, trust references and actual schema/locking choices.
+- **Proposed files/symbols:** `internal/registry/endpoints.go`, `endpoints_integration_test.go`; add/list/show/patch/enable/disable under one lock/CAS consistency boundary.
+- **Tasks:**
+  - [ ] Wire complete validation and explicit trust selection; allocate never-reused registration/monitoring IDs, current revisions and timestamps in atomic mutations. Missing ID is not_found, not upsert; duplicates allowed.
+  - [ ] Test every real/unchanged field mutation and revert, retained display spelling, patch omissions and enable/disable with actual DB; assert no-op does not write or advance timestamps. Use barriers for no-op-versus-edit and concurrent disjoint/conflicting edits; prove serialize/conflict, never lost update.
+- **Validation / intended evidence:** UNIT(registry) endpoint integrations, BUILD; real committed rows/IDs/revisions and conflict/failure observations, not mocks only.
+- **Safe state / excluded:** Complete configuration operations; no target network activity, history erasure, deletion, events or fake monitoring enablement.
+- **Post-work / repair:** GATE with atomic identity/no-op/concurrency audit; budgeted current mutation repairs.
+- **Risk / rollback:** Misattribution/lost updates; probe binding not yet tested. Revert code without rewriting acknowledged pilot IDs/config; test fixture cleanup only.
+- **Handoff / exit:** §8 rules; required lifecycle/concurrent no-op tests passing, then stop.
+
+### Chunk 10: Consistent immutable attempt snapshot
+
+- **Goal / requirements:** Capture endpoint/trust/policy context coherently without network-spanning transaction; FR-002/005, AC-007 snapshot portion, V-03/V-10.
+- **Entry / dependencies:** Chunk 9 exit. Inspect actual storage adapter and immutable root/policy types.
+- **Proposed files/symbols:** `internal/registry/snapshot.go`, `snapshot_integration_test.go`; consistent read/copy of effective endpoint, selected roots and policy revision.
+- **Tasks:**
+  - [ ] Use selected transaction/isolation mechanism to capture a consistent immutable context; validate missing/corrupt/unusable selections as execution errors. Release all transaction resources before handing it to future probe.
+  - [ ] Synchronize concurrent endpoint/trust/policy changes around capture; prove report inputs remain old coherent snapshot or new coherent snapshot, never mixture/mutable alias, and writers are not held for later network duration.
+- **Validation / intended evidence:** UNIT(registry) snapshot integrations with real DB/barriers, BUILD; context DER/config/policy identity and transaction-release evidence.
+- **Safe state / excluded:** Snapshot exists before probe callers; no inspection history/current ordering/leases or persisted attempt.
+- **Post-work / repair:** GATE, resource ownership and consistency audit; fix only snapshot/transaction behavior.
+- **Risk / rollback:** Torn context or locks held during network; no actual probe yet. Reverse pair preserving committed configuration and immutable roots.
+- **Handoff / exit:** §8 rules; coherent snapshot/released-transaction evidence passing, then stop.
+
+### Chunk 11: Registry/configuration CLI vertical slice
+
+- **Goal / requirements:** Usable required configuration commands, complete human/v1 fields and exits; PD-002, FR-001/002/008/012, V-01/V-02/V-03/V-09.
+- **Entry / dependencies:** Chunk 10 exit. Inspect actual dispatcher, response/config/storage APIs and S10 §§4, 7.
+- **Proposed files/symbols:** `internal/cli/configuration.go`, `configuration_test.go`, minimal `cmd/tlsbeacon/main.go` wiring; third file is unavoidable adapter wiring, not a new feature boundary.
+- **Tasks:**
+  - [ ] Wire all policy/trust/endpoint command families to existing operations, explicit patch presence, complete effective output/IDs/revisions/results, JSON on each command, registry freshness null/reason and actionable execution errors.
+  - [ ] Add CLI subprocess/integration cases for startup/DB/permission/trust/policy/not_found/conflict errors, no-ops/defaults, credential/control-text handling and no registration/list DNS activity. Inspect remains explicitly unavailable until Chunk 17.
+- **Validation / intended evidence:** CLI(registry), UNIT(cli), BUILD with real DB/secure config fixtures; actual stdout/stderr/exits, full effective settings and one envelope/newline.
+- **Safe state / excluded:** Operator can configure and retain registrations; no fake inspect/history/monitoring success or ad hoc target command.
+- **Post-work / repair:** GATE and symbol/dispatch/output error audit; current adapter repairs only, not later inspection code.
+- **Risk / rollback:** CLI parser omission/defaulting or committed mutation/output ambiguity; inspection still absent. Reverse wiring/adapters without erasing DB state.
+- **Handoff / exit:** §8 rules; required configuration surface and error/stream tests passing, then stop.
+
+### Chunk 12: Authorized numeric dialing and one budget
+
+- **Goal / requirements:** Resolution-to-numeric-connection authority and monotonic cancellation boundary; FR-003, AC-011 probe portion, V-06/V-07/V-08.
+- **Entry / dependencies:** Chunk 11 exit. Inspect actual snapshot/policy/scope types, chosen resolver cancellation semantics and S10 §6.3.
+- **Proposed files/symbols:** `internal/probe/dial.go`, `dial_test.go`; single-budget probe context, candidate/resolution/authorization/numeric-dial/result contracts. Define these contracts before TLS callers.
+- **Tasks:**
+  - [ ] Start one default ten-second budget before DNS, bypass DNS for literals, resolve candidate set once/stable order, authorize every numeric address/port/scope, verify peer where available and track candidate diagnostics. Capture immutable policy, ignore proxy environment.
+  - [ ] Test mixed answers, rebind/second-resolution traps, mapped/scope/metadata/port/deny cases, allowed failure followed by denied candidate, no-late-dial cancellation and slow resolver under one budget; add actual allowed local TCP listener proof alongside spies. TLS continuation receives the same remaining budget, not a new timer.
+- **Validation / intended evidence:** UNIT(probe), BUILD; real local dial logs plus spies for nonlocal metadata/special addresses, real monotonic deadline/cancellation. No payload is sent.
+- **Safe state / excluded:** Internal connection seam only, with explicit unavailable probe completion until TLS/assessment exists; no user-visible partial-success inspect or alternate transport.
+- **Post-work / repair:** GATE with every-dial/cancellation/resource leak and socket-authority audit; never relax policy to fix fixtures.
+- **Risk / rollback:** Unchecked second dial or uncancellable DNS; certificate behavior not yet verified. Reverse pair/close only owned sockets, preserve policy data.
+- **Handoff / exit:** §8 rules; actual allowed dialing and negative/no-late-connect evidence passing, then stop.
+
+### Chunk 13: TLS observation and partial evidence
+
+- **Goal / requirements:** Bounded TLS 1.2/1.3 observation without payload or evidence loss; FR-003/004, V-05/V-06/V-08.
+- **Entry / dependencies:** Chunk 12 exit. Inspect actual dial budget/result contracts, SNI/identity rules and selected library source/API as needed; library feasibility must be demonstrated, not inferred.
+- **Proposed files/symbols:** `internal/probe/tls.go`, `tls_test.go`, minimal `internal/testfixture/tls.go`; shared generated test-only CA/TLS/listener helpers are a cohesive extra file for real protocol evidence, not a product transport framework.
+- **Tasks:**
+  - [ ] Perform direct TLS using the existing authorized numeric seam and shared deadline; canonical DNS SNI or explicit absence, probe-only invalid-certificate capture, actual version/peer/evidence timestamps and partial-handshake diagnostics. No credentials, ALPN application probe or post-handshake application writes.
+  - [ ] Stop backend retries after first certificate evidence; retry only pre-evidence failures. Preserve certificate capture at one actual UTC instant even if transport later fails; no parseable evidence means explicit unavailable fields.
+  - [ ] Add TLS 1.2/1.3, invalid/unsupported/non-TLS, client-auth request, partial certificate then alert/stall, SNI/no-SNI and listener byte/credential-counter tests. Verify probe exception does not alter DB transport configuration.
+- **Validation / intended evidence:** UNIT(probe), BUILD; real local listeners/CA fixtures and separately measured monotonic duration; no-client-certificate/no-application-byte observations and stopped post-evidence retry.
+- **Safe state / excluded:** Internal evidence path only; no public inspect before explicit assessment/rendering, no healthy inference from handshake or disabled verifier, no weaker unrelated TLS.
+- **Post-work / repair:** GATE with callback/capture ordering, deadline reuse and TLS config ownership audit. Budgeted compliant library/capture repairs; Level 2 only if approved compatibility/security must change.
+- **Risk / rollback:** Fail-fast hides certificate or capture occurs too late; path assessment still unimplemented. Reverse own files/wiring; close owned fixtures and erase only disposable test keys.
+- **Handoff / exit:** §8 rules; real TLS/evidence/no-payload/budget cases passing, then stop.
+
+### Chunk 14: Exact leaf time and expiry
+
+- **Goal / requirements:** Overflow-safe exact independent time/lifetime/expiry; FR-004, AC-001/002 manual portions, V-04.
+- **Entry / dependencies:** Chunk 13 exit. Inspect captured-certificate/time contract, exact threshold representation and S10 inclusive boundary rules.
+- **Proposed files/symbols:** `internal/assessment/time.go`, `time_test.go`; exact signed remaining nanoseconds, leaf-time and expiry assessment at supplied instant.
+- **Tasks:**
+  - [ ] Implement inclusive validity and actual-duration expiry classification without fixed-width time.Sub saturation/float rounding; keep not-yet-valid invalid even with normal expiry.
+  - [ ] Test just before/at/after notBefore/notAfter and both thresholds, nanosecond/sub-display edges, all default/custom exact thresholds, negative/zero and far-future lifetimes. Controlled time is not a production CLI flag.
+- **Validation / intended evidence:** UNIT(assessment), BUILD; exact integer expected values with precision-aware certificate fixtures; no wall-clock sleep replaces semantic testing.
+- **Safe state / excluded:** Pure assessment exists before report callers; no aggregate health/output or chain conclusions.
+- **Post-work / repair:** GATE and arithmetic/time-boundary review; smallest exact-math fixes only.
+- **Risk / rollback:** Overflow/off-by-one false health; identity/path still unverified. Reverse pair before dependents, preserve all existing registry data.
+- **Handoff / exit:** §8 rules; every V-04 boundary/far-future case passing, then stop.
+
+### Chunk 15: Independent SAN identity and server-authentication path
+
+- **Goal / requirements:** SAN-only identity and actual selected-root path verification; FR-004/005, AC-003/004, V-05.
+- **Entry / dependencies:** Chunk 14 exit. Inspect material roots, captured peer chain, controlled assessment instant and selected verifier semantics.
+- **Proposed files/symbols:** `internal/assessment/identity_path.go`, `identity_path_test.go`; independent identity/path outcomes and supported error mapping using actual selected roots.
+- **Tasks:**
+  - [ ] Verify DNS/IP SAN identity independently of server-authentication path; selected exact roots/peer intermediates only, same instant for chain/time checks, no CN fallback or root/intermediate/revocation fetch.
+  - [ ] Test full V-05 hierarchy/identity/wildcard/EKU/key/CA/name/time matrix, offered-untrusted root, exclusive custom versus unrelated system fixture and download canary. Combine mismatch/expired/untrusted results without suppressing known facts; avoid unsupported missing-intermediate blame.
+- **Validation / intended evidence:** UNIT(assessment), BUILD using local generated CA hierarchies and canary; check actual verifier root material against reported digest and source mode.
+- **Safe state / excluded:** Independent assessments, no hidden hostname coupling, cache/system fallback or complete-security grade. No alternate assessment engine.
+- **Post-work / repair:** GATE, verifier options/error semantics and no-network audit. Budgeted equivalent verifier fixes, never broaden trust to pass a fixture.
+- **Risk / rollback:** Incorrect default verifier behavior or causal overclaim; full CLI report not yet wired. Reverse pair/configuration wiring only, preserve immutable trust material.
+- **Handoff / exit:** §8 rules; actual-root/independence/negative-path matrix passing, then stop.
+
+### Chunk 16: Complete independent report model
+
+- **Goal / requirements:** Assemble all required S10 §7.2 facts and health/exit decision without losing unknowns; FR-007/008, V-04/V-06/V-09.
+- **Entry / dependencies:** Chunk 15 exit. Inspect actual snapshot/probe/assessment/response contracts and exact v1 field/enum meanings.
+- **Proposed files/symbols:** `internal/assessment/report.go`, `report_test.go`; complete immutable report, nullable values/reasons, fresh-at-completion/disabled applicability and healthy predicate.
+- **Tasks:**
+  - [ ] Combine the captured context/times/transport/certificate/independent dimensions, exact duration strings, revocation/not-retained/single-observation limits; preserve partial evidence with adverse transport and no-certificate nulls.
+  - [ ] Test every healthy prerequisite and combined negatives, disabled inspect, recent failed current attempt, no inherited previous report and exact enum/type/reason serialization. Keep display rounding outside classification.
+- **Validation / intended evidence:** UNIT(assessment), BUILD; semantic full-field matrix and strict JSON decode/type assertions where applicable. Actual subprocess rendering follows in Chunk 17.
+- **Safe state / excluded:** Report pure/snapshot-bound, no retained current-status/history writes or assumed success from missing dimensions.
+- **Post-work / repair:** GATE with field/enum/source-group coverage audit; current composition fixes only.
+- **Risk / rollback:** Nulls/default booleans hide unavailable evidence; actual renderer/exits still pending. Reverse pair before wiring, no storage mutation.
+- **Handoff / exit:** §8 rules; all field groups/healthy-negative checks passing, then stop.
+
+### Chunk 17: Manual inspect CLI integration
+
+- **Goal / requirements:** First complete selected manual workflow through actual CLI; FR-003–005/007–008, manual AC-001–005, AC-011, V-03/V-09/V-10.
+- **Entry / dependencies:** Chunk 16 exit with all authority/trust/probe/assessment gates passing. Inspect dispatcher and complete snapshot/probe/report/response signatures.
+- **Proposed files/symbols:** `internal/cli/inspect.go`, `inspect_test.go`, minimal `cmd/tlsbeacon/main.go` wiring; three-file cohesive user-facing integration, no new core engine.
+- **Tasks:**
+  - [ ] Wire inspect-by-registration-ID only, config/storage/snapshot failure before network, bounded probe, mandatory assessments and semantically equivalent human/v1 JSON renderers; correct 0/1/2 and broken-output handling.
+  - [ ] Exercise actual CLI for healthy, no-cert transport/policy failure, partial evidence, invalid/path/identity/expiry/disabled and combined negatives; snapshot edits while probe blocks must not relabel report. All output says not retained; no current-state write.
+- **Validation / intended evidence:** UNIT(cli), CLI(inspect), BUILD plus real DB/local TLS fixtures; parse stdout/stderr/exits, selected root/policy digests and socket/listener records. Check actual tests ran, not just parser/unit mocks.
+- **Safe state / excluded:** Full authorized manual functionality now exposed only because all dependent invariants exist; no ad hoc target bypass, hidden previous results/history/scheduler or false health.
+- **Post-work / repair:** GATE with end-to-end authorization/trust/output error and no-write audit; repair only this integration within budget.
+- **Risk / rollback:** Adapter loses unknown/context or leaks inspection TLS into DB; deeper lifecycle/fault matrix still follows. Remove inspect wiring to fail-closed unavailable state, preserving registry/config data.
+- **Handoff / exit:** §8 rules; full manual CLI slice with representative security/unknown regressions passing, then stop.
+
+### Chunk 18: Real restart, fault and concurrency proof
+
+- **Goal / requirements:** Substantiate PostgreSQL/process durability/atomicity/concurrency; AC-006 registry, AC-007 snapshot, AC-012 registry safety, V-01/V-02/V-03/V-10.
+- **Entry / dependencies:** Chunk 17 exit and confirmed authority over a named disposable native PostgreSQL cluster, separate CLI processes and safe commit/fault barriers. Inspect all current storage/CLI behavior and test seams.
+- **Proposed files/symbols:** `tests/integration/registry_test.go`, `fixtures_test.go`; minimal shared real-process/owned-DB harness and lifecycle/fault tests, not application features.
+- **Tasks:**
+  - [ ] Close/restart CLI, disconnect/reconnect and restart the actual fixture PostgreSQL process; prove complete acknowledged registrations/IDs/roots/policy/disabled state survive. Test runtime effective privileges, unsupported schema and unavailable storage/config without empty/default success.
+  - [ ] Inject write/commit failures and lost commit response on real storage; assert atomic prior-or-new state and truthful unknown outcome/read-back, including mutation commit followed by output loss.
+  - [ ] Force concurrent CLI edits/canonical no-op and probe-snapshot versus endpoint/trust/policy edit with barriers; prove no lost updates, partial replacement or report relabelling and no DB transaction held over network I/O.
+- **Validation / intended evidence:** INTEGRATION(registry/restart/fault/concurrency), FULL discovery as needed; actual DB restart PID/lifecycle and before/after IDs/values, failure-count records and successful safe read-back. Do not count a mock transaction as restart/commit proof.
+- **Safe state / excluded:** Tests/evidence only; no new DB platform, migration framework, history/order or scheduler. A reproduced implementation defect returns to its responsible bounded repair session before this gate reruns.
+- **Post-work / repair:** GATE; test-only changes plus explicit bounded in-scope repair if needed, preserving failure budget and one ladder. No testing through a non-disposable supplied DSN.
+- **Risk / rollback:** Destructive fixture mix-up or false atomicity proof; scope/ownership checks mandatory. Stop only owned fixture cluster, preserve logs/DB evidence safely and never touch actual pilot data.
+- **Handoff / exit:** §8 rules; all required real-storage lifecycle/fault/concurrency evidence passing, then stop.
+
+### Chunk 19: Actual-address, protocol and deadline proof
+
+- **Goal / requirements:** Exhaustive actual socket/TLS/budget regressions; AC-003–005/011 manual portions, V-05/V-06/V-07/V-08.
+- **Entry / dependencies:** Chunk 18 exit; real authorized local DNS/TLS/TCP/IPv6 fixture topology and monotonic instrumentation available. Inspect every resolver/dial/retry/TLS exit path.
+- **Proposed files/symbols:** `tests/integration/probe_test.go`, `internal/testfixture/network.go`; deterministic spies/barriers/canaries and real permitted listeners as one cohesive security-evidence boundary.
+- **Tasks:**
+  - [ ] Run all address-class/mapped/scope/port/metadata/deny/mixed/rebind/retry/proxy cases; pair virtual address spies with actual authorized listeners. Show zero denied dials on every path and no unchecked second resolver.
+  - [ ] Exercise TLS 1.2/1.3, unsupported/non-TLS/client-auth/partial-certificate failures, SNI/no-SNI, invalid-certificate capture, no-download canary and no application/credential payload via actual listener logs.
+  - [ ] Measure slow DNS, multiple pre-evidence refusals/connect/handshake stalls, cancellation and post-evidence stop under **one default ten-second** monotonic budget. Separately show controlled UTC assessment instant versus real monotonic clock, no timer reset/late connection and documented measurement uncertainty.
+- **Validation / intended evidence:** INTEGRATION(probe/policy/protocol/deadline), focused UNIT(probe/policy/assessment), BUILD; discovered cases and numerical duration/dial/listener evidence, not sleep-only reasoning or public-network probes.
+- **Safe state / excluded:** Evidence only, no actual metadata/public targets, proxies or broadened policy. No shared-five/100-target scheduler scale claim.
+- **Post-work / repair:** GATE and socket/TLS resource cleanup; bounded reproduced fixes via responsible chunk, no safety relaxation.
+- **Risk / rollback:** False no-byte/timing evidence or privileged IPv6 setup; report unavailable exact fixture/access rather than skip acceptance. Stop run-owned fixtures, preserve evidence, remove only protected disposable keys/temp outputs.
+- **Handoff / exit:** §8 rules; mandatory actual-dial/no-payload/whole-budget and negative authority matrix passing, then stop.
+
+### Chunk 20: CLI semantics and v1 compatibility matrix
+
+- **Goal / requirements:** Full human/JSON/exit and truthful unknown/configuration coverage; FR-008/012, manual AC-001–005, V-09 plus V-02/V-03 CLI regressions.
+- **Entry / dependencies:** Chunk 19 exit. Inspect complete response model/dispatch and actual contract field/enums/types; fixture harness builds the real binary.
+- **Proposed files/symbols:** `tests/integration/cli_test.go`, `internal/cli/compatibility_test.go`; subprocess/semantic assertions and stable v1 contract checks, no alternate renderer implementation.
+- **Tasks:**
+  - [ ] Verify every configuration command and healthy/warning/critical/expired/future/mismatch/path/unknown/disabled/policy-denied/combined-negative inspection using both renderings, parsed schema/types/null reasons/exact strings, all 0/1/2 outcomes and stable diagnostic codes.
+  - [ ] Assert one clean JSON envelope/newline, stdout/stderr separation, control escaping, secret redaction and broken stdout behavior; mutation/output ambiguity prompts read-back. Compare independent human/JSON facts, not just snapshots that can reproduce the same bug.
+  - [ ] Prove no old certificate reused after failure, registry freshness null/reason, report-at-completion scope, revocation not checked and retained false. Regress custom-root isolation and destination denial through CLI; test additive unknown optional field tolerance without changing required v1 semantics.
+- **Validation / intended evidence:** INTEGRATION(cli), UNIT(cli), BUILD and focused assessment tests for boundary fixtures; real subprocess status/stdout/stderr and semantic expected facts.
+- **Safe state / excluded:** Test-only compatibility evidence; no version reinterpretation, history/status API or new CLI families.
+- **Post-work / repair:** GATE with complete S10 §7 field/code map; reproduced adapter bugs repaired boundedly, never weaken contract assertions.
+- **Risk / rollback:** Human/JSON shared bug or vacuous fixture skips; require independently specified expectations. Reverse test-only delta if needed while preserving reproducible failures/evidence.
+- **Handoff / exit:** §8 rules; every mandatory v1 case actually discovered/executed and passing, then stop.
+
+### Chunk 21: Manual-pilot documentation and reproduction
+
+- **Goal / requirements:** Reproducible complete pilot and bounded usage/upgrade meaning; S10 §§1, 4, 11, V-10, FR-012.
+- **Entry / dependencies:** Chunk 20 exit with all mandatory current evidence passing. Inspect actual CLI help/build/versions, database setup/privileges, root/class tables and limitations.
+- **Proposed files/symbols:** `docs/manual-pilot.md`, `tests/integration/pilot_test.go`, minimal `README.md` usage pointer if useful; third file only links actual current manual-pilot capability, not an authoritative product rewrite.
+- **Tasks:**
+  - [ ] Document actual supported Linux/Go/PostgreSQL/dependency pins, native build/full-check commands, protected paths/non-superuser registry setup, policy opt-in including scopes/metadata/NAT limitation, configured system/custom roots and explicit refresh then endpoint selection.
+  - [ ] Document all command families/JSON/exits/errors, bounded CLI completion/shutdown, no HTTP/client credentials, target-side connection-log effects, no inspection retention/scheduling/alerts and one-connection/revocation limitations.
+  - [ ] Reproduce policy + roots -> register -> close process -> restart/list -> human/JSON inspect using separate real CLI processes/DB/local TLS; document no-op/conflict/read-back recovery and actual format version/IDs/context to preserve on a future real upgrade, without invented history backfill/migrations.
+  - [ ] Preserve real workflow evidence/findings/authority/rework/human interventions; earlier inaccessible timings/digests remain unknown, not reconstructed or used to alter health.
+- **Validation / intended evidence:** INTEGRATION(pilot), DOC, BUILD and actual documented example reproduction in the isolated authorized environment; exact commands/results/versions and limitations.
+- **Safe state / excluded:** Documentation/reproduction only; no service packaging, backup platform, seven-day/full-MVP pilot, deployment or later-delivery scaffold.
+- **Post-work / repair:** GATE with docs-to-help/behavior/reference comparison; fix only current docs or explicitly bounded reproduced implementation defect before rerun.
+- **Risk / rollback:** Examples imply monitoring or expose secrets; check protected setup and nonretention wording. Reverse own docs/test/pointer delta, preserve configuration/IDs and required evidence.
+- **Handoff / exit:** §8 rules; complete 01–02 journey and usage guidance actually reproduced, then stop.
+
+### Chunk 22: Final delivery verification, documentation and scope review
+
+- **Goal / requirements:** Task-wide acceptance of all CURRENT_TASK rows/V-01–V-10, not a new feature or later delivery.
+- **Entry / dependencies:** All Chunks 0–21 meet their exit criteria; current source/approval/plan/preflight/base/candidate identities and environment still valid, no unresolved required skip/failure.
+- **Inspect/change:** Inspect the **entire task delta** against recorded base and original dirty state, every new/untracked file and actual verification/docs. Only safe documentation/evidence corrections and task-created accidental-artifact cleanup here; no feature addition.
+- **Tasks:**
+  - [ ] Revalidate source fingerprints, full staged/unstaged/untracked/ignored status, actual versions, roles, fixture topology and current candidate identity. Confirm required integration/test discovery and no hidden conditional skips.
+  - [ ] Run FULL and all mandatory V-01–V-10 additional lifecycle/fault/CLI/manual checks with real storage/dialing and distinct semantic-time/monotonic evidence. Repeat documented full manual pilot and error/output path as required; attach actual command/results to every coverage row.
+  - [ ] Verify S10 §7 human/v1 compatibility, exact validity/expiry, independent negatives/unknowns, actual-root attribution, socket policy/retries/cancellation/no-payload, registry restart/atomicity/concurrency/privilege and honest storage/output failure. No unsafe success stub or required incomplete behavior remains.
+  - [ ] Read finished usage through ending; verify actual commands/local links, future-pilot ID/context preservation and all limitations. Confirm no durable inspection-history or current-status storage, scheduler/event/webhook schema/module/API, extra tool platform, credentials/local environment files or unrelated changes slipped in; protect product/ADR/task sources and later roadmaps.
+  - [ ] Clean only task-created accidental/generated outputs and stop only run-owned fixtures according to policy. Inspect the complete final diff **again after any repair/cleanup** and record functional/integration risks, validation gaps and safe rollback boundaries.
+  - [ ] Report required evidence, base/candidate/dirty state, source/gate identity, meaningful Level 1 choices, any Level 2 dispositions, actual commands/clocks/versions/results, manual/lifecycle evidence, omissions/deviations/limitations and exactly one execution verdict.
+- **Validation / intended evidence:** FULL + DOC + complete V-map, actual process/PostgreSQL restart/fault/concurrency, real socket/no-byte and ten-second monotonic measurement, actual CLI stdout/stderr/exits and pilot reproduction. A successful full-suite exit alone is insufficient.
+- **Safe state / excluded:** No new capability. Missing evidence is explicitly unverified; no false completed report or future-delivery claim.
+- **Post-work / repair:** Final GATE/full-diff/scope/security review. Reproduced defects route to the responsible bounded repair session recorded in this same ladder, then rerun affected checks and this final gate; preserve consumed failure budget. Do not hide feature work inside cleanup or silently replace acceptance tests.
+- **Risk / rollback:** Final evidence could be stale or incomplete; compare actual candidate and source hashes after fixes. Do not roll back persistent pilot data to make verification green; preserve IDs/context and report any actual compatibility need.
+- **Handoff / exit:** No automatic final/next-delivery handoff or dispatch. `READY_FOR_REVIEW` only with all mandatory current-task evidence passing and no known blocking health/authority/persistence defect; otherwise exact `BLOCKED` or `INCOMPLETE`. Stop and await separately authorized independent review; no stage/commit/push/deploy.
+
+## 10. Final acceptance checklist — future executor only
+
+- [ ] Operator can set explicit destination policy/import roots, register a DNS/IP endpoint, restart and retain complete configuration/IDs/selected roots/policy/disabled state.
+- [ ] Every create/edit/default/no-op/identity/snapshot/concurrency and storage/permission/unknown-commit rule has actual candidate evidence, including real PostgreSQL/process lifecycle and effective least privilege.
+- [ ] Manual AC-001–005, registration AC-006 and probe-policy/no-HTTP AC-011 portions pass; AC-007 snapshot and AC-012 registry-safety portions are evidenced without claiming the deferred full scenarios.
+- [ ] All V-01–V-10 obligations have passing discovered/executed evidence, including actual dialing, custom-root isolation, independent negatives/unknowns, precise UTC assessment semantics, separately measured monotonic budget/cancellation and zero application/credential payload.
+- [ ] Human/v1 JSON field/type/enum/null/exit semantics and output/secret/control-text failures are verified through actual CLI; report nonretention and limits are explicit.
+- [ ] Actual native full verification and manual-pilot documentation/reproduction pass after repairs; source/gate/candidate identities, full diff and scope review are recorded.
+- [ ] No unauthorized protected-source or unrelated-file changes, credentials, local environment files, unsafe stubs or speculative future work remain in the task delta. Known health misstatement, network-authority bypass or false-persistence defects are not cosmetic exceptions.
+- [ ] Real workflow evidence is factual; inaccessible earlier history and unmeasured elapsed/active human time remain unknown. Delivery 2/3/4 and full-MVP release/pilot remain deferred, not waived or executed.
+
+These checkboxes are intentionally unchecked. `PLAN_READY` completes none of them.
+
+## 11. Risks, limitations and escalation
+
+| Risk / unknown | Evidence and impact | Safe response / authority | Planning blocker? |
+| --- | --- | --- | --- |
+| Missing prior review/rationale bytes | §2.2: approval provenance documented, but original draft diff/full reports inaccessible | Do not claim review reuse for different bytes; use approved primary sources and obtain exact missing material only if indispensable | No |
+| Native DB/tools/fixture access | `psql` absent on PATH; no service/native tool versions or disposable cluster authority established here | Chunk 0 verifies approved isolated alternatives/access; unavailable indispensable tool/access stops affected execution, not permission to provision or use production | No for documentation |
+| Runtime/version/library feasibility | Proposed version families/pins are not installed/support evidence; partial-handshake/cancellation/IDNA/time semantics need proof | Level 1 maintained compliant selection and fixture checks; stop only if approved behavior/architecture/security must change | No |
+| IPv6 scope and real deadline instrumentation | Actual scoped interface/permissions and monotonic scheduling tolerance not established | Confirm local fixture topology; never silently skip required evidence or grant privileged host/network changes. Report precise access gap | No for planning |
+| Trust/policy attribution or unknowns mishandled | Would misstate health or exceed authority | Mandatory isolated roots, no-download, combined negatives, actual-dial and actual-CLI regressions; no cosmetic waiver | No unresolved decision |
+| Lost update/ambiguous commit | Real PostgreSQL transaction/process fault evidence required | Atomic lock/CAS, honest ambiguity/read-back, no blind retry, owned-cluster faults; no mocks-only completion | No unresolved decision |
+| Long plan mistaken for execution permission | User acceptance and commitment do not authorize implementation | Mode remains UNSELECTED, chunks unchecked, separate preflight/execution authority required. No automatic next action | No |
+| Estimate uncertainty | Detailed security/fault matrix exceeds earlier coarse roadmap effort | Re-estimate compliant mechanisms after discovery without shrinking required evidence or adding scope | No |
+
+Escalation reports must identify the exact source and blocked dependency, compliant alternatives and tradeoffs, recommendation, consequence of deferral and safe independent work. Never silently change the PRD/ADR/contract or resolve material authority conflicts by choosing the most permissive text.
+
+## 12. Prepared future execution prompt — not authorization
+
+Only after the applicable independently accepted plan, human/process approvals and current preflight have been established through separately authorized actions, the user could issue:
+
+> Use `chunked-implementation` in **single-chunk mode**. Execute **Chunk 0 only** from `docs/chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md`. Revalidate the approved D1 contract/ADR, sources, plan and current gate/base/candidate evidence, then resolve the embedded environment/retry/handoff policy and establish the real baseline as applicable. Do not implement Chunk 1, provision unauthorized services, touch production or stage/commit/push/deploy. Report actual discovery/baseline evidence and stop. Ask before creating an unrequested handoff.
+
+This is a prepared suggestion, not a dispatch. Continuous-loop execution requires explicit selection and real fresh-session orchestration; no mode is selected by this plan.
+
+**Historical planning stopping boundary:** the planning action delivered this single file and its report without automatically starting review, approval, preflight, implementation, a follow-on session, provisioning, commit or deployment. Subsequent independent review and user approval are recorded in §1; preflight and execution remain separate actions.
