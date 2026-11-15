@@ -1,8 +1,16 @@
 # 00. Implementation Plan Overview
 
-**Roadmap authority:** PROPOSED decomposition; not an approved ADR, task contract, or execution authorization.
+**Roadmap authority:** APPROVED_AND_ACCEPTED as a planning roadmap; not an approved ADR, task contract, or execution authorization.
 
-**Roadmap status:** ROADMAP_READY_FOR_SCOPE_REVIEW
+**Roadmap status:** APPROVED_AND_ACCEPTED; Delivery 1 scope review completed with `SCOPE_READY`.
+
+**Approval and acceptance:** On 2026-11-15 (UTC+07:00), the user explicitly approved and accepted this overview, [phase 01](01-registry-and-safety-foundations.md), and [phase 02](02-trustworthy-manual-inspection.md), following the INITIAL Delivery 1 scope-readiness review in the preceding conversation response.
+
+**Approved candidate:** Committed document contents at `ea045cd39ee7aee8e67b2d5c11964573590a40df`, tree `ca46327127abe09e23323833c7af5709626d4262`. The working tree was clean before this approval record was added.
+
+**Acceptance boundary:** This records acceptance of the named roadmap/scope documents and the Delivery 1 decomposition across phases 01–02. It does not approve the phase 03–05 documents, architecture/ADRs, technology choices, or a bounded implementation contract; authorize implementation, commits, or deployment; or accept unimplemented behavior or unexecuted tests. Specification authoring remains a separately authorized next action.
+
+**Historical authoring provenance:** The next three paragraphs describe roadmap authoring, not the approval baseline above. Their references to current/uncommitted state and absent scope approval apply to that earlier authoring state.
 
 **Authoritative sources and revision:** [TLSBeacon PRD v0.1](../prd-v0.1.md), dated 10 November 2026, marked approved by product owner Merizrizal. The committed PRD baseline used to create this roadmap was Git blob `97f4e80c9bf394758432b1eb61c506149f52c06c`; its current user-updated working-tree blob is `9668a6c210364abbf0c0103b995afffa37f146ec`. The project name was updated to TLSBeacon per user instruction, with product requirements unchanged; this update is uncommitted. The recorded PRD approval covers product behavior, not architecture, phase boundaries, or implementation contracts.
 
@@ -10,7 +18,7 @@
 
 Inspected sources: the complete PRD, `README.md`, `.gitignore`, tracked-file inventory, and non-Git file inventory. The PRD and README now identify the project as TLSBeacon; this roadmap does not decide a binary/package name. No application, schemas, migrations, tests, build manifests, CI, deployment setup, architecture, or ADRs were present. The output directory existed but contained no files. No product tests or builds were run; there is no executable baseline or measured capacity result. External RFC/library links were not fetched, and the PRD's referenced previous-session proposal was not present. No separate approval evidence for scope or phase boundaries beyond the PRD's recorded product approval was supplied; the product-name update was explicitly requested.
 
-This directory translates the PRD into proposed phases with goals, scope, assumptions, ordered tasks, estimates, checkboxes, and definitions of done. Each phase needs a separately bounded contract and applicable review before code changes. PRD §8's product milestones guide the allocation; splitting Deliveries 1 and 3 into multiple engineering phases below is a proposal, not additional approval.
+This directory translates the PRD into proposed phases with goals, scope, assumptions, ordered tasks, estimates, checkboxes, and definitions of done. Each phase needs a separately bounded contract and applicable review before code changes. PRD §8's product milestones guide the allocation. The Delivery 1 split across phases 01–02 is now approved and accepted as scope planning; the Delivery 3 phase documents remain proposed. No phase has an approved implementation contract.
 
 ## 00.1 Directory Name
 
@@ -32,7 +40,7 @@ Phase 05 includes active pilot preparation, observation, and analysis, but the r
 
 ## 00.3 Phase Summary
 
-All engineering phase boundaries and dependencies below are **PROPOSED**.
+The overview is approved and accepted as roadmap planning. Phases 01–02 are approved and accepted Delivery 1 scope documents; phase 03–05 documents remain **PROPOSED** and require their own applicable review and approval. No phase is authorized for implementation by this roadmap.
 
 | Phase | File | Goal and PRD milestone | Estimate |
 | --- | --- | --- | --- |
@@ -179,13 +187,15 @@ Source locators below refer to [PRD v0.1](../prd-v0.1.md). No existing implement
 | §3 exclusions; §8 Delivery 4 | No MVP phase | All explicitly outside MVP | Issuance/renewal/ACME/remediation/private keys, discovery/scanning, signup/tenants/roles/dashboard, STARTTLS/QUIC/mTLS, revocation/CT/cipher grading/general availability, approaching intermediate expiry; additional adapters/retention/multi-user require new scope decisions. Already-invalid chains still fail. |
 | §9 product acceptance/pilot | 05 full AC matrix and seven-day, 5–10-endpoint pilot | Broader demand and HA not proven | Separate logical-event defects from receiver duplicate attempts; health/event-loss/authority defects block acceptance. |
 | §9 workflow measures/convergence | Record from first specification review; 05 summarizes actual record | LabReserve historical replay outside scope | Stable findings/authority/rework metrics; two-round diagnostic is not auto-acceptance. |
-| §10 next contract boundary | Next independent Delivery 1 scope review, covering 01–02 | Later-delivery design excluded from first contract | Resolve normalization, output/exit behavior, trust versioning, policy, TLS support, and fixtures. |
+| §10 next contract boundary | Delivery 1 scope review completed; separately authorize contract authoring for 01–02 | Later-delivery design excluded from first contract | Resolve normalization, output/exit behavior, trust versioning, policy, TLS support, and fixtures. |
 
 **Allocation result:** PD-001–006, FR-001–012, AC-001–012, and the cross-cutting MVP obligations in §§1, 3, 5–6, 8–10 are assigned. No relevant MVP requirement is unassigned or proposed for removal. No conflicting product requirements were identified. Existing coverage is absent; all verification remains future work. Out-of-MVP items remain explicitly excluded, not silently deferred requirements.
 
 ## 00.10 Next Governance Gate
 
-**Selected candidate:** PRD Delivery 1, the manual inspection pilot, spanning proposed phases 01–02. Select it as one useful delivery for independent `specification-readiness-authority` assessment in **scope readiness** mode. Supply this roadmap, PRD revision, baseline, and the boundaries/evidence expectations in those two phase files. Do not invoke that review automatically.
+**Reviewed and accepted scope:** PRD Delivery 1, the manual inspection pilot, spanning phases 01–02. The INITIAL read-only scope-readiness review returned `SCOPE_READY` for the approved candidate identified above; the user's subsequent approval and acceptance of these three documents is recorded above. No architecture or task contract was approved by that review or this roadmap acceptance.
+
+**Next action:** Separately authorize Delivery 1 specification authoring, followed by independent draft specification review. Do not start either automatically. The review's source-access limitations and the unresolved contract inputs below remain applicable; scope readiness is not implementation readiness.
 
 Before a Delivery 1 implementation contract is approved, resolve:
 

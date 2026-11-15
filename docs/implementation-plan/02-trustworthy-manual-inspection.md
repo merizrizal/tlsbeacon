@@ -1,8 +1,10 @@
 # 02. Trustworthy Manual Inspection
 
-**Phase boundary:** PROPOSED; completes PRD Delivery 1 after phase 01.
+**Phase boundary:** APPROVED_AND_ACCEPTED as scope planning; completes PRD Delivery 1 after phase 01.
 
-**Authority:** This file is a roadmap phase, not an approved implementation task contract.
+**Authority:** This file is an approved and accepted roadmap phase, not an approved implementation task contract or execution authorization.
+
+**Approval and acceptance:** Explicitly granted by the user on 2026-11-15 (UTC+07:00) for this document's committed contents at `ea045cd39ee7aee8e67b2d5c11964573590a40df`, alongside the overview and phase 01, following the INITIAL Delivery 1 scope review (`SCOPE_READY`). See the [overview approval record](00-implementation-overview.md) for the candidate baseline and acceptance boundary. This accepts the scope/decomposition, not architecture, technology choices, completed implementation, or test results; specification authoring and implementation remain separately authorized actions.
 
 **Source requirements:** [PRD v0.1](../prd-v0.1.md) §§2–6, 8, 10; PD-002–004; FR-003–005, manual-report portions of FR-007–008, probe-error portion of FR-012; manual portions of AC-001–005, probe-policy/no-application-request portion of AC-011, with registry restart evidence from phase 01. Source revision and baseline are in the overview.
 
@@ -122,4 +124,4 @@ Done when:
 | §6 target/network/resource boundaries; AC-011 probe portion | Actual address enforcement, 10-second total default, no application requests | Shared scheduler bounds in 03; webhook protection in 04 | Inspection of invalid certificates must not weaken unrelated transport verification. |
 | §8 Delivery 1; AC-006 registration portion | Complete manual-pilot demonstration with phase 01 evidence | Delivery 1 is not the full monitoring MVP | Scope is CLI-first, single operator, direct TLS only. |
 
-Proposed handoff to phase 03: reusable authorized observation/assessment behavior, approved output semantics, immutable context inputs, deterministic fixtures, and actual Delivery 1 verification evidence. History, concurrency ordering, scheduling, and alerts remain unimplemented until separately authorized. A scope-ready verdict and separate approved task contract are still required; this file is neither one.
+Proposed handoff to phase 03: reusable authorized observation/assessment behavior, approved output semantics, immutable context inputs, deterministic fixtures, and actual Delivery 1 verification evidence. History, concurrency ordering, scheduling, and alerts remain unimplemented until separately authorized. Delivery 1 scope readiness was reviewed across phases 01–02 together, followed by the user approval and acceptance recorded above. A separately approved and committed task contract and implementation preflight remain required before implementation; this roadmap is not that contract.

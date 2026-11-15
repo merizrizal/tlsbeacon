@@ -1,12 +1,14 @@
 # 01. Registry and Safety Foundations
 
-**Phase boundary:** PROPOSED; first part of PRD Delivery 1, not a standalone complete manual pilot.
+**Phase boundary:** APPROVED_AND_ACCEPTED as scope planning; first part of PRD Delivery 1, not a standalone complete manual pilot.
 
-**Authority:** This file is a roadmap phase, not an approved implementation task contract.
+**Authority:** This file is an approved and accepted roadmap phase, not an approved implementation task contract or execution authorization.
+
+**Approval and acceptance:** Explicitly granted by the user on 2026-11-15 (UTC+07:00) for this document's committed contents at `ea045cd39ee7aee8e67b2d5c11964573590a40df`, alongside the overview and phase 02, following the INITIAL Delivery 1 scope review (`SCOPE_READY`). See the [overview approval record](00-implementation-overview.md) for the candidate baseline and acceptance boundary. This accepts the scope/decomposition, not architecture, technology choices, completed implementation, or test results; specification authoring and implementation remain separately authorized actions.
 
 **Source requirements:** [PRD v0.1](../prd-v0.1.md) §§2–6, 8, 10; PD-001–004, PD-006; FR-001–002, FR-005, configuration portions of FR-008, FR-011–012; registry restart portion of AC-006 and policy prerequisites of AC-003/AC-011. Source revision and baseline are recorded in the overview.
 
-**Decision gaps:** Delivery 1 must settle runtime/storage, endpoint normalization, trust-material versioning, destination policy, and CLI contract. Go/PostgreSQL are candidates, not decisions. No new Level 2 product decision is needed for this proposed decomposition; review must escalate any design that changes product authority or scope.
+**Decision gaps:** Delivery 1 must settle runtime/storage, endpoint normalization, trust-material versioning, destination policy, and CLI contract. Go/PostgreSQL are candidates, not decisions. No new Level 2 product decision is needed for this approved scope decomposition; review must escalate any design that changes product authority or scope.
 
 ## 01.1 Goal
 
@@ -121,4 +123,4 @@ Done when:
 | FR-008, FR-012; AC-006 registry portion | Actionable configuration/persistence output and restart proof | Certificate reports in 02; service health in 03–05 | No invented JSON/exit-code contract. |
 | §6 network authority; AC-003/AC-011 prerequisites | Policy/input boundary and fixtures | Actual probe enforcement/no-HTTP proof in 02; webhook in 04 | Address-class behavior must be approved before connection code. |
 
-Proposed handoff: runnable registry, observed verification commands, effective identity/trust rules, policy evidence, and explicit remaining Delivery 1 obligations to phase 02. No application baseline exists today. A scope-ready verdict and separate approved task contract are still required; this file is neither one. Scope readiness should consider phases 01–02 together as the manual-pilot delivery, not mistake this foundation for its complete user outcome.
+Proposed handoff: runnable registry, observed verification commands, effective identity/trust rules, policy evidence, and explicit remaining Delivery 1 obligations to phase 02. No application baseline exists today. Delivery 1 scope readiness was reviewed across phases 01–02 together, followed by the user approval and acceptance recorded above. A separately approved and committed task contract and implementation preflight remain required before implementation; this roadmap is not that contract. Phase 01 alone is not the complete manual-pilot outcome.
