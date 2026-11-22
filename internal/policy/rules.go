@@ -172,6 +172,27 @@ func New(input *Input) (Policy, error) {
 	return p, nil
 }
 
+// Snapshot returns the complete canonical policy, including its classification version.
+func (p Policy) Snapshot() ([]byte, error) {
+	if !p.valid {
+		return nil, invalidPolicy
+	}
+	return []byte(p.canonical), nil
+}
+
+// Restore rejects unsupported, malformed or noncanonical stored policy values.
+func Restore(data []byte) (Policy, error) {
+	var stored canonicalPolicy
+	if json.Unmarshal(data, &stored) != nil || stored.Classification != ClassificationVersion {
+		return Policy{}, invalidPolicy
+	}
+	p, err := New(&Input{Version: stored.Version, Rules: stored.Rules, Metadata: stored.Metadata})
+	if err != nil || p.canonical != string(data) {
+		return Policy{}, invalidPolicy
+	}
+	return p, nil
+}
+
 func (p Policy) Digest() ([sha256.Size]byte, bool) { return p.identity, p.valid }
 
 func (p Policy) Equal(other Policy) bool {

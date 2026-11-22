@@ -73,6 +73,31 @@ func importMaterial(mode Mode, paths []string, afterOpen func()) (Material, erro
 	return Material{mode: mode, roots: unique, digest: digest, sources: sources}, nil
 }
 
+// Restore validates a stored snapshot without reading its original source files.
+func Restore(mode Mode, roots [][]byte, sources [][sha256.Size]byte) (Material, error) {
+	if (mode != System && mode != Custom) || len(roots) == 0 || len(sources) == 0 {
+		return Material{}, invalidMaterial
+	}
+	var encoded bytes.Buffer
+	var previous []byte
+	for _, root := range roots {
+		cert, err := x509.ParseCertificate(root)
+		if err != nil || !cert.BasicConstraintsValid || !cert.IsCA || !bytes.Equal(root, cert.Raw) || (previous != nil && bytes.Compare(previous, root) >= 0) {
+			return Material{}, invalidMaterial
+		}
+		var length [8]byte
+		binary.BigEndian.PutUint64(length[:], uint64(len(root)))
+		encoded.Write(length[:])
+		encoded.Write(root)
+		previous = root
+	}
+	m := Material{mode: mode, digest: sha256.Sum256(encoded.Bytes()), sources: append([][sha256.Size]byte(nil), sources...)}
+	for _, root := range roots {
+		m.roots = append(m.roots, bytes.Clone(root))
+	}
+	return m, nil
+}
+
 func (m Material) Mode() Mode                { return m.mode }
 func (m Material) Digest() [sha256.Size]byte { return m.digest }
 
@@ -120,7 +145,7 @@ func parseCertificates(data []byte) ([][]byte, error) {
 			return nil, invalidMaterial
 		}
 		index := bytes.Index(remaining, []byte(end))
-		if index < 0 || bytes.Contains(remaining[len(begin):index], []byte("-----BEGIN ")) {
+		if index < len(begin) || bytes.Contains(remaining[len(begin):index], []byte("-----BEGIN ")) {
 			return nil, invalidMaterial
 		}
 		boundary := index + len(end)

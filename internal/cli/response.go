@@ -9,7 +9,7 @@ import (
 
 const schemaVersion = "tlsbeacon.cli.v1"
 
-const helpText = "Usage: tlsbeacon [--json] <command>\nCommands: policy, trust, endpoint, inspect\nCommands are not yet available.\n"
+const helpText = "Usage: tlsbeacon [--json] --config PATH <command> [options]\nCommands: policy set/show; trust import/refresh/list; endpoint add/list/show/edit/enable/disable\nPolicy set accepts --rules-json JSON; trust import/refresh accept --mode and repeated --source paths.\nEndpoint add/edit use explicit fields and trust profile/version IDs.\nManual inspection is not available yet.\n"
 
 type responseError struct {
 	Code    string `json:"code"`
@@ -26,33 +26,24 @@ type envelope struct {
 }
 
 func Run(args []string, stdout, stderr io.Writer) int {
-	jsonOutput := false
-	var commandArgs []string
-	for _, arg := range args {
-		if arg == "--json" {
-			jsonOutput = true
-		} else {
-			commandArgs = append(commandArgs, arg)
-		}
+	jsonOutput, configPath, commandArgs, failure := parseGlobalArguments(args)
+	command := canonicalCommand(commandArgs)
+	if failure != nil {
+		return writeFailure(command, jsonOutput, stdout, stderr, failure)
 	}
-
 	if len(commandArgs) == 1 && (commandArgs[0] == "help" || commandArgs[0] == "--help" || commandArgs[0] == "-h") {
 		if jsonOutput {
 			return writeJSON(stdout, stderr, envelope{schemaVersion, "help", "success", map[string]string{"help": helpText}, nil}, 0)
 		}
 		return writeOutput(stdout, stderr, []byte(helpText), 0)
 	}
-
-	command := canonicalCommand(commandArgs)
-	failure := &responseError{
-		Code:    "invalid_input",
-		Message: "The requested command is unavailable or invalid.",
-		Action:  "Run tlsbeacon --help to see the available command families.",
+	if command == "inspect" {
+		return writeFailure(command, jsonOutput, stdout, stderr, unavailableInspectFailure())
 	}
-	if jsonOutput {
-		return writeJSON(stdout, stderr, envelope{schemaVersion, command, "execution_failed", nil, failure}, 2)
+	if command == "unknown" || command == "tlsbeacon" {
+		return writeFailure(command, jsonOutput, stdout, stderr, invalidInputFailure())
 	}
-	return writeOutput(stderr, stderr, []byte(failure.Message+" "+failure.Action+"\n"), 2)
+	return runConfiguration(command, configPath, commandArgs[2:], jsonOutput, stdout, stderr)
 }
 
 func canonicalCommand(args []string) string {

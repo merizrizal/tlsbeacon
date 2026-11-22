@@ -148,19 +148,20 @@ func TestStrictInputAndRedaction(t *testing.T) {
 	}
 	secret := pem.EncodeToMemory(&pem.Block{Type: "PRIVATE KEY", Bytes: keyDER})
 	cases := map[string][]byte{
-		"empty":                nil,
-		"whitespace":           []byte(" \n"),
-		"malformed":            []byte("-----BEGIN CERTIFICATE-----\n!!!\n-----END CERTIFICATE-----\n"),
-		"truncated":            good[:len(good)-5],
-		"leaf":                 leaf,
-		"key":                  secret,
-		"valid then key":       append(bytes.Clone(good), secret...),
-		"key then valid":       append(bytes.Clone(secret), good...),
-		"valid then garbage":   append(bytes.Clone(good), []byte("junk")...),
-		"invalid end line":     append(bytes.TrimSuffix(bytes.Clone(good), []byte("\n")), good...),
-		"valid then malformed": append(bytes.Clone(good), []byte("-----BEGIN CERTIFICATE-----\n!!!\n-----END CERTIFICATE-----")...),
-		"nested malformed":     append([]byte("-----BEGIN CERTIFICATE-----\n!!!\n"), good...),
-		"valid then leaf":      append(bytes.Clone(good), leaf...),
+		"empty":                  nil,
+		"whitespace":             []byte(" \n"),
+		"overlapping end marker": []byte("-----BEGIN CERTIFICATE-----END CERTIFICATE-----"),
+		"malformed":              []byte("-----BEGIN CERTIFICATE-----\n!!!\n-----END CERTIFICATE-----\n"),
+		"truncated":              good[:len(good)-5],
+		"leaf":                   leaf,
+		"key":                    secret,
+		"valid then key":         append(bytes.Clone(good), secret...),
+		"key then valid":         append(bytes.Clone(secret), good...),
+		"valid then garbage":     append(bytes.Clone(good), []byte("junk")...),
+		"invalid end line":       append(bytes.TrimSuffix(bytes.Clone(good), []byte("\n")), good...),
+		"valid then malformed":   append(bytes.Clone(good), []byte("-----BEGIN CERTIFICATE-----\n!!!\n-----END CERTIFICATE-----")...),
+		"nested malformed":       append([]byte("-----BEGIN CERTIFICATE-----\n!!!\n"), good...),
+		"valid then leaf":        append(bytes.Clone(good), leaf...),
 	}
 	for name, data := range cases {
 		t.Run(name, func(t *testing.T) {

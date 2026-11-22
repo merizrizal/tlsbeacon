@@ -99,6 +99,10 @@ func load(path string, afterOpen func()) (Local, error) {
 }
 
 func openProtected(path string) (*os.File, syscall.Stat_t, error) {
+	return openOwnedFile(path, safeFile)
+}
+
+func openOwnedFile(path string, validFile func(syscall.Stat_t) bool) (*os.File, syscall.Stat_t, error) {
 	var st syscall.Stat_t
 	parts := strings.Split(path, "/")
 	fd, err := syscall.Open("/", syscall.O_RDONLY|syscall.O_DIRECTORY|syscall.O_CLOEXEC, 0)
@@ -137,7 +141,7 @@ func openProtected(path string) (*os.File, syscall.Stat_t, error) {
 	if err != nil {
 		return nil, st, err
 	}
-	if err = syscall.Fstat(file, &st); err != nil || !safeFile(st) {
+	if err = syscall.Fstat(file, &st); err != nil || !validFile(st) {
 		syscall.Close(file)
 		return nil, st, fmt.Errorf("unsafe configuration")
 	}

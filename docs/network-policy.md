@@ -1,6 +1,6 @@
 # Destination policy: classification v1
 
-This document describes the pure policy rules in `internal/policy`. They are not yet wired to a command, persistent registry, resolver or socket. Policy persistence and actual enforcement on every numeric connection and retry are later delivery steps; these rules alone do not establish that any socket has been protected.
+This document describes the pure policy rules in `internal/policy`. The rules are available through the `policy set` and `policy show` commands and are persisted in the registry. They are not yet wired to a resolver or socket; actual enforcement on every numeric connection and retry remains a later delivery step. These rules alone do not establish that any socket has been protected.
 
 ## Authority and input
 
