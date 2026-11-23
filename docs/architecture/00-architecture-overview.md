@@ -4,7 +4,9 @@
 
 **Approval record:** Following the independent INITIAL draft specification review, which returned `DRAFT_SPEC_READY` with no substantiated material blocker, the user explicitly confirmed review, approval and acceptance of the documents in the current conversation and requested this approval record. The reviewer's fresh-session separation was user-attested, not independently verified by session identity. Approval covers this overview and the preserved reference copy **as supporting reference material**, not wholesale adoption of the reference proposal's architecture.
 
-**Reviewed candidates:** Before this approval-record update, on `main` at HEAD `af5e8dec0fcd60ca3bfa7167132b4157de6779c0`, tree `ed734052ea76fd68fe2816bd20d2e443591df334`, the untracked overview SHA-256 was `54217700bad9ceeb0fbd8111b1d7cf643a88fc75f4bdb1fc714c7e4f5db9b940` and the verbatim reference copy SHA-256 was `25841d4b031382e594f6ecebb46babc52bc0c43db50f4925a7d59736379cf5e9`. The review verdict applies to those candidate bytes, not automatically to this later approval-record update; assess its actual impact and any subsequent material drift.
+**Command-example cleanup approval:** The owner explicitly reviewed, approved and accepted the removal of harness-specific command prefixes in §9 and the paired [D1 execution plan changes](../chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md). At approval, on `phase-01-delivery-1-manual-inspection` at HEAD `0766e7760df658cec62a558a3cd0bd2c0c4b6149`, the overview candidate SHA-256 was `f13aaf264ed8bed0ac35d21ed8d0187805736febd91624e4e092c8e2f5155547` before this approval record was added. This approval does not reconcile the overview with the Compose amendments or authorize preflight or execution.
+
+**Reviewed candidates (historical baseline):** Before this approval-record update, on `main` at HEAD `af5e8dec0fcd60ca3bfa7167132b4157de6779c0`, tree `ed734052ea76fd68fe2816bd20d2e443591df334`, the untracked overview SHA-256 was `54217700bad9ceeb0fbd8111b1d7cf643a88fc75f4bdb1fc714c7e4f5db9b940` and the verbatim reference copy SHA-256 was `25841d4b031382e594f6ecebb46babc52bc0c43db50f4925a7d59736379cf5e9`. The review verdict applies to those candidate bytes, not automatically to this later approval-record update; assess its actual impact and any subsequent material drift.
 
 **Approval boundary:** Acceptance records the overview's practical baseline and its Level 1 conventions and alternatives, not a claim that they are installed, tested or mandatory over equivalent compliant choices. References below to proposed choices describe their design character and unimplemented state, not a pending owner-acceptance gate. The reference copy retains its original historical status and wording without alteration. Approval does not commit files, authorize plan changes, preflight, implementation, provisioning or deployment, or establish any product test result.
 
@@ -213,10 +215,10 @@ Docker CLI presence was observed; no daemon/image/fixture operation ran. No imag
 There is no runnable product baseline today. The following are proposed future commands from the existing plan, not commands executed during document authoring. Run them only once the relevant implementation and authorized local prerequisites exist, from repository root, with the recorded local toolchain and protected artifact directory.
 
 ```sh
-rtk proxy go test -list . ./...
-rtk proxy go test -count=1 -json ./...
-rtk go vet ./...
-rtk go build -o "$TLSBEACON_TEST_ARTIFACT_DIR/tlsbeacon" ./cmd/tlsbeacon
+go test -list . ./...
+go test -count=1 -json ./...
+go vet ./...
+go build -o "$TLSBEACON_TEST_ARTIFACT_DIR/tlsbeacon" ./cmd/tlsbeacon
 ```
 
 Use focused package checks first, `gofmt` on explicit changed Go files, and full verification at the plan's required gates. Raw test JSON must establish discovery, execution, failures and skips. An empty regex/package match or required integration skip cannot count as acceptance. Resolve real test names rather than blindly copy a proposed regex.
