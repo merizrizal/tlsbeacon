@@ -1,6 +1,8 @@
 # TLSBeacon architecture overview and D1 technical baseline
 
-**Status:** APPROVED AND ACCEPTED by the owner as the D1 architecture overview and practical technical baseline, within the scope and boundaries below. This document does not supersede the PRD, ADR, task contract or controlling execution plan.
+**Status:** The owner reviewed, approved and accepted the current partial Compose reconciliation. The reconciliation remains incomplete: native-only, optional-fixture and stale ladder statements elsewhere still require correction and source/plan drift assessment. This document remains subordinate to the PRD, approved ADRs and task contracts, and is not execution authority.
+
+**Partial Compose reconciliation approval:** The owner explicitly reviewed, approved and accepted the current reconciliation in the conversation. Before this approval record, the uncommitted overview SHA-256 was `dca96c80345ab6ae3f5a36c695f47e0bbd6175cecef865d575eb7410b448452c`, on branch `phase-01-delivery-1-manual-inspection` at HEAD `787b821a83d1754540bc1460041c80895b6596f2`, tree `ad62556f71744e93a721a47fa95f6d56cb7de2f1`. This identifies the approved bytes before this record, not the resulting file hash. Approval does not establish reconciliation completeness, independent review, preflight or execution authority.
 
 **Approval record:** Following the independent INITIAL draft specification review, which returned `DRAFT_SPEC_READY` with no substantiated material blocker, the user explicitly confirmed review, approval and acceptance of the documents in the current conversation and requested this approval record. The reviewer's fresh-session separation was user-attested, not independently verified by session identity. Approval covers this overview and the preserved reference copy **as supporting reference material**, not wholesale adoption of the reference proposal's architecture.
 
@@ -23,10 +25,10 @@ The architecture should answer two questions: what D1 is allowed to build, and h
 | Source | Role and precedence |
 | --- | --- |
 | [PRD v0.2](../prd-v0.2.md) | Current approved product behavior, PD-001–006, FR-001–012 and AC-001–019. PRD v0.1 is historical provenance, not the active baseline |
-| [ADR-001](01-adr-001-delivery-1-manual-inspection.md) | Separately approved D1 engineering decisions and test-only Docker exception, especially §§3–9 |
-| [D1 task contract](../tasks/01-delivery-1-manual-inspection-contract.md) | Exact input, lifecycle, safety, CLI/JSON/exit semantics and mandatory V-01–V-10 evidence; its v0.2 reconciliation records separate approval |
+| [ADR-001](01-adr-001-delivery-1-manual-inspection.md) and [Compose amendment](02-adr-001-amendment-d1-compose.md) | Approved D1 engineering decisions; the amendment governs the Compose topology and supersedes native-only deployment and optional-fixture boundaries |
+| [D1 task contract](../tasks/01-delivery-1-manual-inspection-contract.md) and [Compose amendment](../tasks/02-delivery-1-compose-contract-amendment.md) | Exact D1 semantics and mandatory V-01–V-10, plus Compose lifecycle, security and C-V01–C-V05 including appended evidence |
 | [Roadmap overview](../implementation-plan/00-implementation-overview.md), [phase 01](../implementation-plan/01-registry-and-safety-foundations.md), [phase 02](../implementation-plan/02-trustworthy-manual-inspection.md) | Approved D1 scope decomposition, not a second technical or execution authority |
-| [D1 execution plan](../chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md) | The sole controlling 23-chunk ladder, 0–22; approval, preflight and execution remain distinct |
+| [D1 execution plan](../chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md) | The sole controlling ladder, Chunks 0–30; approval, current affected preflight and execution remain distinct |
 | This overview | Owner-accepted explanation and practical Level 1 baseline. It does not supersede the sources above, alter their guarantees or authorize execution |
 
 Existing source documents retain their own approval and historical review provenance. A new overview cannot make old reviews cover different bytes. If a summary here appears inconsistent with a controlling requirement, inspect the complete sources and resolve the affected boundary; never select the more permissive wording.
@@ -35,7 +37,7 @@ The [Initial System Architecture Proposal](../proposed-architecture-baseline.md)
 
 ## 2. D1 system shape — existing approved decisions
 
-D1 is one trusted operator using a local, host-run Go CLI and a local PostgreSQL configuration registry. It is a manual pilot, not a continuously running monitoring service or the complete MVP.
+D1 is one trusted Linux operator using a persistent Compose PostgreSQL configuration registry. The normal one-off CLI probes container-reachable targets; the supported host-run CLI probes host-loopback-only targets. Both use the same enrolled registry. It is a manual pilot, not a continuously running monitoring service or the complete MVP.
 
 ```text
 Trusted local operator
@@ -63,7 +65,7 @@ Host CLI: tlsbeacon
 
 - The CLI accesses the registry and performs the requested inspection directly. No mandatory daemon, Unix control socket, HTTP API or listening management service is introduced.
 - PostgreSQL is the durable source of truth for endpoint configuration, selected trust-profile versions and destination policy. A local file supplies bootstrap connection/path settings, not a competing live endpoint or policy store.
-- Product containers, cloud provisioning, a database administration platform, systemd packaging and deployment automation are not D1 additions. Optional Docker is restricted to the controlled test fixtures in §8.
+- The approved Compose pilot comprises the PostgreSQL registry and a short-lived one-off CLI; host-run CLI access uses the protected PostgreSQL Unix socket. Cloud provisioning, a database administration platform, systemd packaging and a TLSBeacon daemon are not D1 additions. Full verification uses separate owned disposable Compose fixtures (§8).
 - The OS/operator boundary is the authority boundary. Ordinary registry commands must not resolve or contact monitored targets. Explicit `inspect` selects an existing registration; no ad hoc unregistered-target bypass exists.
 - Only configuration is durable. No inspection-history, current-monitoring-status, scheduler, condition, event or webhook schema/module is introduced in D1.
 
@@ -197,7 +199,7 @@ The overview does not redefine task §§3/6–7; the following constraints guide
 
 ## 8. Verification infrastructure — not product deployment
 
-Use host-run CLI/Go tests and controlled local PostgreSQL/TLS/DNS/TCP fixtures. Native disposable fixtures and the optional test-only Docker exception are alternatives, not permission to provision either now.
+Use host-run Go tests and controlled local PostgreSQL/TLS/DNS/TCP fixtures. Full verification requires a distinct owned disposable Compose fixture stack; it also exercises the actual one-off image and installed host CLI. This document does not authorize provisioning.
 
 | Fixture concern | Required boundary and evidence before affected use |
 | --- | --- |
@@ -257,7 +259,7 @@ Other PRD MVP exclusions remain excluded: issuance/renewal/ACME/remediation, mon
 
 - D2 reuses the same authorized observation/assessment path, adds durable immutable evidence, ordering, independent inspection/scheduler clocks and bounded scheduling. The daemon/control transport, single-active mechanism, history schema and clock details still need their own bounded contract; a Unix socket is a possible future option, not adopted here.
 - D3 adds conditions, atomic required persistence and durable verified webhook delivery. A PostgreSQL transactional outbox is a credible design option, not a mandated D1 table or a substitute for the PRD's atomicity guarantee.
-- Product Compose/systemd packaging, host sizing, observability endpoints, CI provider, backup mechanics and future package names are not settled by reproducing the external proposal. Decide only when the affected delivery requires them.
+- The approved D1 Compose topology is limited to the pilot and fixtures specified in the amendments. Systemd packaging, host sizing, observability endpoints, CI provider, backup mechanics and future package names are not settled by reproducing the external proposal.
 
 ### 11.2 Reading the current documents accurately
 
