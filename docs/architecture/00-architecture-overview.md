@@ -1,12 +1,18 @@
 # TLSBeacon architecture overview and D1 technical baseline
 
-**Status:** APPROVED AND ACCEPTED by the owner as the D1 architecture overview and practical technical baseline, within the scope and boundaries below. This document does not supersede the PRD, ADR, task contract or controlling execution plan.
+**Status:** Compose reconciliation independently reviewed (`DRAFT_SPEC_READY`) and explicitly accepted and approved by the owner as recorded below. Approval covers the reviewed overview candidate, not the execution plan or any preflight, implementation, provisioning or deployment. This document remains subordinate to the PRD, approved ADRs and task contracts, and is not execution authority.
+
+**S12 independent review and owner approval:** The independent read-only review recommended `DRAFT_SPEC_READY` and closed findings S12-01 and S12-02. The owner explicitly confirmed reviewing, accepting and approving the candidate in the current conversation. Before this approval-record update, the reviewed overview SHA-256 was `31b0d31f3a9a242495b2b400e05edc0acab7074d5a032607e1dddc0a0d5dc634`, on branch `phase-01-delivery-1-manual-inspection` at HEAD `8a0ecdb28c0cf7da808aecd105c2219e5c8f9119`, tree `5cddfad5349c04d513c5d4230a7b7e1e9b649b31`. This identifies the reviewed candidate before this record, not the resulting file hash. Reviewer-session separation was user-attested; no direct session-ID comparison with the candidate author was available. The plan remains unreconciled with these changes and requires separate treatment before affected preflight. Approval does not authorize plan changes, preflight, implementation, provisioning or deployment, or establish runtime qualification or product test results.
+
+**Partial Compose reconciliation approval:** The owner explicitly reviewed, approved and accepted the current reconciliation in the conversation. Before this approval record, the uncommitted overview SHA-256 was `dca96c80345ab6ae3f5a36c695f47e0bbd6175cecef865d575eb7410b448452c`, on branch `phase-01-delivery-1-manual-inspection` at HEAD `787b821a83d1754540bc1460041c80895b6596f2`, tree `ad62556f71744e93a721a47fa95f6d56cb7de2f1`. This identifies the approved bytes before this record, not the resulting file hash. Approval does not establish reconciliation completeness, independent review, preflight or execution authority.
 
 **Approval record:** Following the independent INITIAL draft specification review, which returned `DRAFT_SPEC_READY` with no substantiated material blocker, the user explicitly confirmed review, approval and acceptance of the documents in the current conversation and requested this approval record. The reviewer's fresh-session separation was user-attested, not independently verified by session identity. Approval covers this overview and the preserved reference copy **as supporting reference material**, not wholesale adoption of the reference proposal's architecture.
 
-**Reviewed candidates:** Before this approval-record update, on `main` at HEAD `af5e8dec0fcd60ca3bfa7167132b4157de6779c0`, tree `ed734052ea76fd68fe2816bd20d2e443591df334`, the untracked overview SHA-256 was `54217700bad9ceeb0fbd8111b1d7cf643a88fc75f4bdb1fc714c7e4f5db9b940` and the verbatim reference copy SHA-256 was `25841d4b031382e594f6ecebb46babc52bc0c43db50f4925a7d59736379cf5e9`. The review verdict applies to those candidate bytes, not automatically to this later approval-record update; assess its actual impact and any subsequent material drift.
+**Command-example cleanup approval:** The owner explicitly reviewed, approved and accepted the removal of harness-specific command prefixes in §9 and the paired [D1 execution plan changes](../chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md). At approval, on `phase-01-delivery-1-manual-inspection` at HEAD `0766e7760df658cec62a558a3cd0bd2c0c4b6149`, the overview candidate SHA-256 was `f13aaf264ed8bed0ac35d21ed8d0187805736febd91624e4e092c8e2f5155547` before this approval record was added. This approval does not reconcile the overview with the Compose amendments or authorize preflight or execution.
 
-**Approval boundary:** Acceptance records the overview's practical baseline and its Level 1 conventions and alternatives, not a claim that they are installed, tested or mandatory over equivalent compliant choices. References below to proposed choices describe their design character and unimplemented state, not a pending owner-acceptance gate. The reference copy retains its original historical status and wording without alteration. Approval does not commit files, authorize plan changes, preflight, implementation, provisioning or deployment, or establish any product test result.
+**Reviewed candidates (historical baseline):** Before this approval-record update, on `main` at HEAD `af5e8dec0fcd60ca3bfa7167132b4157de6779c0`, tree `ed734052ea76fd68fe2816bd20d2e443591df334`, the untracked overview SHA-256 was `54217700bad9ceeb0fbd8111b1d7cf643a88fc75f4bdb1fc714c7e4f5db9b940` and the verbatim reference copy SHA-256 was `25841d4b031382e594f6ecebb46babc52bc0c43db50f4925a7d59736379cf5e9`. The review verdict applies to those candidate bytes, not automatically to this later approval-record update; assess its actual impact and any subsequent material drift.
+
+**Approval boundary:** Acceptance records the overview's practical baseline and its Level 1 conventions and alternatives, not a claim that they are installed, tested or mandatory over equivalent compliant choices. References below to proposed choices describe their design character and unimplemented state, not a pending owner-acceptance gate. The reference copy retains its original historical status and wording without alteration. Approval does not authorize plan changes, preflight, implementation, provisioning or deployment, or establish any product test result.
 
 **Scope:** Delivery 1 (D1), the manual inspection pilot. Later deliveries are described only by their existing product obligations and explicitly unadopted architectural options. This is neither a new ADR nor an implementation contract, ADS, installation script or execution ladder.
 
@@ -21,10 +27,10 @@ The architecture should answer two questions: what D1 is allowed to build, and h
 | Source | Role and precedence |
 | --- | --- |
 | [PRD v0.2](../prd-v0.2.md) | Current approved product behavior, PD-001–006, FR-001–012 and AC-001–019. PRD v0.1 is historical provenance, not the active baseline |
-| [ADR-001](01-adr-001-delivery-1-manual-inspection.md) | Separately approved D1 engineering decisions and test-only Docker exception, especially §§3–9 |
-| [D1 task contract](../tasks/01-delivery-1-manual-inspection-contract.md) | Exact input, lifecycle, safety, CLI/JSON/exit semantics and mandatory V-01–V-10 evidence; its v0.2 reconciliation records separate approval |
+| [ADR-001](01-adr-001-delivery-1-manual-inspection.md) and [Compose amendment](02-adr-001-amendment-d1-compose.md) | Approved D1 engineering decisions; the amendment governs the Compose topology and supersedes native-only deployment and optional-fixture boundaries |
+| [D1 task contract](../tasks/01-delivery-1-manual-inspection-contract.md) and [Compose amendment](../tasks/02-delivery-1-compose-contract-amendment.md) | Exact D1 semantics and mandatory V-01–V-10, plus Compose lifecycle, security and C-V01–C-V05 including appended evidence |
 | [Roadmap overview](../implementation-plan/00-implementation-overview.md), [phase 01](../implementation-plan/01-registry-and-safety-foundations.md), [phase 02](../implementation-plan/02-trustworthy-manual-inspection.md) | Approved D1 scope decomposition, not a second technical or execution authority |
-| [D1 execution plan](../chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md) | The sole controlling 23-chunk ladder, 0–22; approval, preflight and execution remain distinct |
+| [D1 execution plan](../chunked-implementation/01-delivery-1-manual-inspection-execution-plan.md) | The sole controlling ladder, Chunks 0–30; approval, current affected preflight and execution remain distinct |
 | This overview | Owner-accepted explanation and practical Level 1 baseline. It does not supersede the sources above, alter their guarantees or authorize execution |
 
 Existing source documents retain their own approval and historical review provenance. A new overview cannot make old reviews cover different bytes. If a summary here appears inconsistent with a controlling requirement, inspect the complete sources and resolve the affected boundary; never select the more permissive wording.
@@ -33,7 +39,7 @@ The [Initial System Architecture Proposal](../proposed-architecture-baseline.md)
 
 ## 2. D1 system shape — existing approved decisions
 
-D1 is one trusted operator using a local, host-run Go CLI and a local PostgreSQL configuration registry. It is a manual pilot, not a continuously running monitoring service or the complete MVP.
+D1 is one trusted Linux operator using a persistent Compose PostgreSQL configuration registry. The normal one-off CLI probes container-reachable targets; the supported host-run CLI probes host-loopback-only targets. Both use the same enrolled registry. It is a manual pilot, not a continuously running monitoring service or the complete MVP.
 
 ```text
 Trusted local operator
@@ -61,7 +67,7 @@ Host CLI: tlsbeacon
 
 - The CLI accesses the registry and performs the requested inspection directly. No mandatory daemon, Unix control socket, HTTP API or listening management service is introduced.
 - PostgreSQL is the durable source of truth for endpoint configuration, selected trust-profile versions and destination policy. A local file supplies bootstrap connection/path settings, not a competing live endpoint or policy store.
-- Product containers, cloud provisioning, a database administration platform, systemd packaging and deployment automation are not D1 additions. Optional Docker is restricted to the controlled test fixtures in §8.
+- The approved Compose pilot comprises the PostgreSQL registry and a short-lived one-off CLI; host-run CLI access uses the protected PostgreSQL Unix socket. Cloud provisioning, a database administration platform, systemd packaging and a TLSBeacon daemon are not D1 additions. Full verification uses separate owned disposable Compose fixtures (§8).
 - The OS/operator boundary is the authority boundary. Ordinary registry commands must not resolve or contact monitored targets. Explicit `inspect` selects an existing registration; no ad hoc unregistered-target bypass exists.
 - Only configuration is durable. No inspection-history, current-monitoring-status, scheduler, condition, event or webhook schema/module is introduced in D1.
 
@@ -91,7 +97,7 @@ Go `1.26.11` also appeared in official stable release metadata. The plan's Go `1
 - When implementation is authorized, record Go `1.27.4` as the initial minimum patch/compiler baseline and run with `GOTOOLCHAIN=local` to avoid an unnoticed automatic toolchain download. No `go.mod` is created by this document.
 - Pin direct dependencies at their first actual use and commit the resulting `go.mod`/`go.sum` only through separately authorized Git work. Do not add unused dependencies during bootstrap. The exact complete module graph and checksums are future implementation evidence.
 - The inspected driver and IDNA module files require different `golang.org/x/text` versions (`v0.41.0` and `v0.43.0`). Go's resolved graph must be inspected and tested; satisfying declared Go minima is not proof that the combined graph works. No transitive dependency set is declared tested here.
-- Record PostgreSQL server/client and distribution package revisions, not only the major number. If a Docker fixture is chosen later, record the actual maintained image tag, immutable digest and platform separately; no image or digest has been selected or pulled here.
+- Record PostgreSQL server/client and distribution package revisions, not only the major number. Full verification requires a distinct, owned, disposable Compose fixture stack; fast Go checks remain Docker-free. The exact fixture image tag, immutable digest and platform remain future selections and must be qualified before fixture use; no image or digest has been selected or pulled here.
 - Recheck upstream support, release notes and security advisories before adoption and before an update. Maintenance is a policy, not a one-time claim that a version has no vulnerabilities. Refresh exact patches through a recorded Level 1 change with affected tests; never silently follow `latest` or change a recorded candidate mid-run.
 - Before a Go/PostgreSQL major or dependency update, inspect compatibility and persistence implications. Compliant mechanism/version choices remain Level 1; changing architecture, approved TLS compatibility, trust/network authority or evidence semantics is Level 2. Database upgrades involving real pilot state require an authorized preservation/recovery procedure, not destructive recreation.
 
@@ -134,7 +140,7 @@ docs/                        existing requirements, architecture, tasks and plan
 - Prefer concrete operations until a resolver/dial/clock/storage seam is needed for the contract or tests. Do not create an interface per struct, generic `utils`, parallel `models/services/repositories` layers, a public `pkg/` API or multiple modules without a demonstrated D1 need.
 - Place unit tests beside behavior and real multi-process acceptance tests in `tests/integration/`. `internal/testfixture/` holds test-only material helpers, never runtime private-key support.
 - Keep current PRD, ADR, task, roadmap and controlling-plan paths intact. The plan already proposes `docs/network-policy.md` and `docs/manual-pilot.md` when their implementation chunks arrive; they are future usage references, not files created here.
-- Do not scaffold `control`, `scheduler`, `history`, `alerting`, `webhook`, deployment manifests or future database tables. No container build, Makefile or CI provider is a prerequisite imposed by this baseline.
+- Do not scaffold `control`, `scheduler`, `history`, `alerting`, `webhook` or future database tables. The approved D1 Compose definitions, image builds and thin Make targets are in scope; no CI provider is selected.
 
 ## 5. Proposed local configuration and filesystem boundary
 
@@ -157,7 +163,11 @@ No monitored private keys or client credentials are required or supported. Gener
 
 ### 6.1 Setup and runtime roles
 
-Proposed native installation convention: a local PostgreSQL cluster, preferably reached through a configured Unix database socket. That database transport is not a new CLI-to-daemon control socket. A compliant loopback TCP fixture may instead be used under §8; explicitly record its connection, authentication and TLS configuration. Inspection's invalid-certificate capture settings must never alter database transport security or introduce insecure fallback.
+The approved pilot uses one enrolled Compose PostgreSQL instance, with a private bridge and no published database ports. The host CLI uses the protected PostgreSQL Unix socket, not a TLSBeacon control socket; the one-off CLI uses generation-pinned authenticated TLS on the private bridge. Both verify the actual connection and live deployment identity before registry access, including reconnects. Probe TLS settings never weaken database transport.
+
+Bootstrap reserves new storage with a protected pending enrollment and independent witness; ambiguity requires nondestructive recovery. Under the exclusive lifecycle lock, the operator checks the exact stopped container ID and immutable image/configuration before starting it, verifies live socket peer, process and enrolled storage, and jointly publishes the generation binding and fresh TLS pin only after independent local and bridge proofs. Proof roles are server-restricted to fixed identity reads, including denial of persistent changes; neither CLI receives proof or setup credentials. See the Compose amendments for the complete admission, role and lifecycle contract.
+
+`pilot-up` does not initialize schema or require setup authority. Explicit `pilot-init` proves the actual setup connection under the exclusive lock and atomically commits schema, grants and marker; a compatible repeat is no-write and an unknown commit requires verified read-back. No unchecked restart, reload, replacement or destructive recovery is permitted.
 
 - An explicitly authorized setup identity owns/initializes the dedicated database schema. A distinct runtime role receives only required registry privileges; it must not need superuser, role/database creation, schema modification or publicly callable elevated operations.
 - Prefer an explicitly owned dedicated schema with constrained namespace/search-path behavior and no unintended public create/write grants. Effective privileges must be inspected and negatively tested, not inferred from role names.
@@ -195,7 +205,7 @@ The overview does not redefine task §§3/6–7; the following constraints guide
 
 ## 8. Verification infrastructure — not product deployment
 
-Use host-run CLI/Go tests and controlled local PostgreSQL/TLS/DNS/TCP fixtures. Native disposable fixtures and the optional test-only Docker exception are alternatives, not permission to provision either now.
+Use host-run Go tests and controlled local PostgreSQL/TLS/DNS/TCP fixtures. Full verification requires a distinct owned disposable Compose fixture stack; it also exercises the actual one-off image and installed host CLI. This document does not authorize provisioning.
 
 | Fixture concern | Required boundary and evidence before affected use |
 | --- | --- |
@@ -213,17 +223,17 @@ Docker CLI presence was observed; no daemon/image/fixture operation ran. No imag
 There is no runnable product baseline today. The following are proposed future commands from the existing plan, not commands executed during document authoring. Run them only once the relevant implementation and authorized local prerequisites exist, from repository root, with the recorded local toolchain and protected artifact directory.
 
 ```sh
-rtk proxy go test -list . ./...
-rtk proxy go test -count=1 -json ./...
-rtk go vet ./...
-rtk go build -o "$TLSBEACON_TEST_ARTIFACT_DIR/tlsbeacon" ./cmd/tlsbeacon
+go test -list . ./...
+go test -count=1 -json ./...
+go vet ./...
+go build -o "$TLSBEACON_TEST_ARTIFACT_DIR/tlsbeacon" ./cmd/tlsbeacon
 ```
 
 Use focused package checks first, `gofmt` on explicit changed Go files, and full verification at the plan's required gates. Raw test JSON must establish discovery, execution, failures and skips. An empty regex/package match or required integration skip cannot count as acceptance. Resolve real test names rather than blindly copy a proposed regex.
 
 Task §9 V-01–V-10 remains mandatory: real PostgreSQL/process restart, effective privilege negatives, genuinely unknown commit/read-back, deterministic concurrent edits/no-ops/snapshot barriers, exact trust attribution, controlled certificate boundaries and combined negatives, every actual dial, no-payload/credential evidence, one real monotonic budget, actual CLI output/exits and full pilot reproduction. A green unit suite alone cannot establish these properties. Optional race checks complement, not replace, deterministic concurrency evidence.
 
-No CI provider is selected or workflow created here. If CI is separately scoped later, reuse these native checks and the same fixture safety/secret boundaries; do not introduce a containerized product build, deployment pipeline or privileged fixture merely to obtain green CI. Do not run dependency-author development setup scripts as a shortcut to permission.
+The Compose amendment requires thin Make entry points and a nonrewriting `make verify` with host-run discovery, uncached tests and the complete owned Compose fixture and pilot evidence; missing prerequisites, empty selections, required skips or unsafe cleanup fail closed. Fast Go checks remain Docker-free. No CI provider is selected; a future CI workflow must preserve the same safety boundaries and must not add privileged fixtures or deployment automation merely to obtain green CI.
 
 ## 10. Requirement fidelity and delivery allocation
 
@@ -255,7 +265,7 @@ Other PRD MVP exclusions remain excluded: issuance/renewal/ACME/remediation, mon
 
 - D2 reuses the same authorized observation/assessment path, adds durable immutable evidence, ordering, independent inspection/scheduler clocks and bounded scheduling. The daemon/control transport, single-active mechanism, history schema and clock details still need their own bounded contract; a Unix socket is a possible future option, not adopted here.
 - D3 adds conditions, atomic required persistence and durable verified webhook delivery. A PostgreSQL transactional outbox is a credible design option, not a mandated D1 table or a substitute for the PRD's atomicity guarantee.
-- Product Compose/systemd packaging, host sizing, observability endpoints, CI provider, backup mechanics and future package names are not settled by reproducing the external proposal. Decide only when the affected delivery requires them.
+- The approved D1 Compose topology is limited to the pilot and fixtures specified in the amendments. Systemd packaging, host sizing, observability endpoints, CI provider, backup mechanics and future package names are not settled by reproducing the external proposal.
 
 ### 11.2 Reading the current documents accurately
 
@@ -264,12 +274,12 @@ This reconciles their interpretation; it does not rewrite approved records:
 | Existing wording | Current interpretation / bounded follow-up |
 | --- | --- |
 | ADR §1 links v0.1 as the approved PRD | Historical authoring baseline; v0.2 is current, as explicitly recorded in the reconciled task/plan. No D1 trust or evidence guarantee is weakened |
-| ADR §3 says the plan currently excludes containers and requires native fixtures | Stale present-tense statement: current plan §§4.2/6.1 and Chunks 7/18 already permit the compliant test-only exception. Product containers remain excluded |
+| ADR §3 excludes product containers and describes optional test-only Docker | Superseded specifically by the approved Compose amendments: one persistent Compose registry, two CLI paths and required isolated Compose full-verification fixtures |
 | ADR header/§§3/11 retain pending fixture-remediation wording | Later handoff 11 reports design-level resolution of DOCKER-SPEC-001/002 with reviewer-isolation limits; the plan records later review/preflight chronology. This overview does not issue a retrospective review verdict or prove runtime safety |
 | Task §§2/12 describe controlling-plan authoring as future | Historical stage wording, not evidence that the existing sole ladder is absent or permission to create another |
 | Roadmaps describe Go/PostgreSQL as candidates | Their scope-only approval predates the separate ADR decision; do not reopen or silently replace the approved stack |
 | Older overview/phases 03–05 reflect v0.1 freshness, redirect and release wording | v0.2 controls separate scheduler state, no automatic webhook redirects and AC-001–019 release coverage. Reconcile the affected later documents before their gates, not by building them in D1 |
-| Plan §4.2 names Go 1.26.x and unpinned dependencies | Proposals deliberately delegated to Level 1. The owner has accepted this overview; record actual choices/source identities in the same plan's relevant sections and discovery evidence only under separately authorized plan ownership, retaining all 23 chunks and V-IDs |
+| Earlier plan named Go 1.26.x and had 23 chunks | Historical wording; the current plan records qualification candidates and the sole 0–30 ladder. Actual pins and qualification remain future evidence, not an approved support restriction |
 
 No approved PRD/ADR/task/plan is edited by this authoring action. Their current commitments are real; their historical preflight is not evergreen. The reported `ea7af335...` affected preflight predates v0.2 and the final task/plan reconciliation. A current affected preflight against adopted, approved/committed sources remains a separate action; this document does not supply it. Chunk 0 remains previously reported blocked, not completed.
 
@@ -307,6 +317,6 @@ Two guessed PostgreSQL website-source paths returned HTTP 404 before repository 
 
 - The separate INITIAL review and owner acceptance are recorded above. The review applies to the identified pre-approval-record candidate bytes; revalidate affected changes rather than assuming that verdict covers later revisions.
 - Level 0 remains routine authorized testing/debugging/fixture repair. Level 1 remains compliant versions, layout, parsing, SQL/locking and test mechanisms with meaningful decisions recorded. The review identified no unresolved Level 2 decision for the reviewed draft.
-- A daemon/socket requirement, product container deployment, storage substitution, broader privileges, weakened root/socket/evidence guarantees, unsupported compatibility change or scope expansion requires an explicit affected architecture/product/security decision before dependent work. Do not infer such approval from this overview.
-- This overview selects no execution mode, resets no failure budget and completes no chunk, V-ID, acceptance scenario or roadmap checkbox. Implementation tooling/access, full dependency resolution, native database setup, fixture ownership/exposure, scoped IPv6, selected-library behavior and real timing/fault evidence remain future prerequisites/results at the existing gates.
+- A TLSBeacon daemon or control socket, a deployment topology beyond the approved D1 Compose pilot, storage substitution, broader privileges, weakened root/socket/evidence guarantees, unsupported compatibility change or scope expansion requires an explicit affected architecture/product/security decision before dependent work. The approved pilot topology is permitted by the Compose amendments; it does not approve production deployment or a broader topology. Do not infer such approval from this overview.
+- This overview selects no execution mode, resets no failure budget and completes no chunk, V-ID, acceptance scenario or roadmap checkbox. Implementation tooling/access, full dependency resolution, Compose lifecycle and guarded image qualification, fixture ownership/exposure, scoped IPv6, selected-library behavior and real timing/fault evidence remain future prerequisites/results at the existing gates.
 - Recording owner approval does not automatically authorize a controlling-plan change, preflight, implementation, provisioning, staging, commit, push or deployment.
